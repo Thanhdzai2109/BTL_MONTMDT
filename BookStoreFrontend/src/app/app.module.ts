@@ -49,7 +49,7 @@ import { RatedbooksComponent } from './Component/ratedbooks/ratedbooks.component
 import { BookreviewsComponent } from './Component/bookreviews/bookreviews.component';
 import { OrderstatusComponent } from './Component/orderstatus/orderstatus.component';
 import { UploadBookImageComponent } from './Component/addbook/upload-book-image/upload-book-image.component';
-
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 
 @NgModule({
@@ -107,6 +107,7 @@ import { UploadBookImageComponent } from './Component/addbook/upload-book-image/
     MatSelectModule,
     MatTooltipModule,
     MatDialogModule,
+    MatCarouselModule.forRoot() // ---------- Important
  ],
   providers: [HttpClient],
   bootstrap: [AppComponent],

@@ -1,10 +1,16 @@
 <div class="main-container">
+    <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="6000" color="accent" maxWidth="auto"
+        proportion="25" slides="5" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true"
+        [useMouseWheel]="false" orientation="ltr">
+        <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
+            overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
+    </mat-carousel>
     <div class="container">
         <div *ngIf="bookList.length!=0">
             <div class="title">Books
                 <span style="font-size: 15px; font-family: Lato, Regular; color: rgb(139, 136, 136);">
-              ({{ size }} &nbsp;Items)
-              </span>
+                    ({{ size }} &nbsp;Items)
+                </span>
             </div>
             <div>
                 <select id="sort" [ngModel]="selectedValue" (ngModelChange)="onChange($event)" style="float: right;
@@ -12,15 +18,16 @@
               display: flex; margin-right: 74px; border: 1px solid #e0d6d6; outline: none; background-color: white;
               border-radius: 3px;
             " fxFlexAlign='end'>
-            <option value="relevance">Sort by relevance</option>
-                          <option value="mod1">Price: High to low</option>
-                          <option value="mod2">Price: Low to High</option>
-                          <option value="mod3">Newest: Arrival</option>
-            </select>
+                    <option value="relevance">Sort by relevance</option>
+                    <option value="mod1">Price: High to low</option>
+                    <option value="mod2">Price: Low to High</option>
+                    <option value="mod3">Newest: Arrival</option>
+                </select>
             </div>
         </div>
         <br>
-        <div class="alert alert-danger text-justify" *ngIf="bookList.length==0">There is not any books to display please add some book and approved it</div>
+        <div class="alert alert-danger text-justify" *ngIf="bookList.length==0">There is not any books to display please
+            add some book and approved it</div>
 
         <div class="list-books">
 
@@ -37,13 +44,14 @@
 
 
                         <span class="tooltiptext">
-                          <h2 style="text-align: left; padding-left: 10px;"> Details</h2>
-                          {{ book.bookDetails }}
+                            <h2 style="text-align: left; padding-left: 10px;"> Details</h2>
+                            {{ book.bookDetails }}
                         </span>
 
                         <div class="authorname ">by {{ book.authorName }}</div>
                         <div class="price ">Rs. {{ book.price }}</div>
-                        <div class="availablity " style="color: rgb(163, 43, 6); " *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
+                        <div class="availablity " style="color: rgb(163, 43, 6); "
+                            *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
                             Only {{ book.noOfBooks }} left hurry up
                         </div>
                         <ng-template #elsecondition>
@@ -54,7 +62,8 @@
                         </ng-template>
                         <div class="cart-buttons " *ngIf="book.noOfBooks && value[book.bookId] !=book.bookId ">
                             <div>
-                                <button class="addtobag " (output)="getUpdatedNotes($event)" (click)="addtobag(book.bookId)" #clickState mat-button>ADD TO BAG</button>
+                                <button class="addtobag " (output)="getUpdatedNotes($event)"
+                                    (click)="addtobag(book.bookId)" #clickState mat-button>ADD TO BAG</button>
                             </div>
                             <div>
                                 <button (click)="addtoWish(book.bookId)" style="border: 1px solid #e0d6d6;
@@ -62,14 +71,14 @@
                               width: 83px;
                               height: 35px;
                               background-color: white;
-                              border-radius: 3px;">WISHLIST</button>
+                              border-radius: 3px;">DANH SÁCH MUỐN</button>
                             </div>
                         </div>
                         <div class="addedbtn " *ngIf="book.noOfBooks && value[book.bookId]==book.bookId ">
                             <button style=" height: 32px; width: 191px; background-color: #3371b5;
                           border-radius: 2px; color: whitesmoke; text-align: center; " mat-button>
-                            ADDED TO BAG
-                    </button>
+                                Đã thêm vào giỏ hàng
+                            </button>
                         </div>
                         <div class="addedbtn " (click)="addtoWish(book.bookId)" *ngIf="!book.noOfBooks">
                             <button style=" height: 34px; width: 191px; border-radius: 0px; display: flex;
@@ -83,12 +92,17 @@
             </div>
         </div>
     </div>
-    <div class="container text-center" >
+    <div class="container text-center">
         <div class="pagination" *ngIf="bookList.length!=0">
-            <a  (click)="previos($event)" style=" margin-right: 12px; border-radius: 40px;  border: 1px solid  #e0d6d6; padding-right: 10px;" href="#" href="#">
+            <a (click)="previos($event)"
+                style=" margin-right: 12px; border-radius: 40px;  border: 1px solid  #e0d6d6; padding-right: 10px;"
+                href="#" href="#">
                 < </a>
-                    <a *ngFor="let p of totalPage; let i=index " href="" fxFlexAlign="center" (click)="SetPage(i,$event)" [ngClass]="{'active':i==page}">{{i+1}}</a>
-                    <a (click)="next($event)" style=" margin-right: 12px; border-radius: 40px;  border: 1px solid #e0d6d6; padding-right: 10px;" href="#" href="#">></a>
+                    <a *ngFor="let p of totalPage; let i=index " href="" fxFlexAlign="center"
+                        (click)="SetPage(i,$event)" [ngClass]="{'active':i==page}">{{i+1}}</a>
+                    <a (click)="next($event)"
+                        style=" margin-right: 12px; border-radius: 40px;  border: 1px solid #e0d6d6; padding-right: 10px;"
+                        href="#" href="#">></a>
         </div>
     </div>
 </div>
