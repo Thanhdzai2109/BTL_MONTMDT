@@ -50,8 +50,9 @@ import { BookreviewsComponent } from './Component/bookreviews/bookreviews.compon
 import { OrderstatusComponent } from './Component/orderstatus/orderstatus.component';
 import { UploadBookImageComponent } from './Component/addbook/upload-book-image/upload-book-image.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
-
-
+import { ChartComponent } from './Component/chart/chart.component';
+import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +81,9 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     BookreviewsComponent,
     OrderstatusComponent,
     RatedbooksComponent,
-    WishComponent
+    WishComponent,
+    CanvasJSChart,
+    ChartComponent
 
   ],
   imports: [
@@ -108,6 +111,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     MatTooltipModule,
     MatDialogModule,
     MatCarouselModule.forRoot() // ---------- Important
+    
  ],
   providers: [HttpClient],
   bootstrap: [AppComponent],

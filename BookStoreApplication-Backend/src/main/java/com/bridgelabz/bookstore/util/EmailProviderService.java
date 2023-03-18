@@ -19,8 +19,8 @@ public class EmailProviderService{
 
 	public  void sendMail(String emailContact, String emailSubject, String body) {
 
-		String fromEmail =System.getenv("email");
-		String password =System.getenv("password");
+		String fromEmail ="thanhcuto2109@gmail.com";
+		String password ="zoudvxkntkemlhpx";
 		Properties property = new Properties();
 		property.put("mail.smtp.auth", "true");
 		property.put("mail.smtp.starttls.enable", "true");

@@ -16,6 +16,7 @@ import { OrderstatusComponent } from './Component/orderstatus/orderstatus.compon
 import { RatedbooksComponent } from './Component/ratedbooks/ratedbooks.component';
 import { BookreviewsComponent } from './Component/bookreviews/bookreviews.component';
 import { WishComponent } from './Component/wish/wish.component';
+import { ChartComponent } from './Component/chart/chart.component';
 import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [

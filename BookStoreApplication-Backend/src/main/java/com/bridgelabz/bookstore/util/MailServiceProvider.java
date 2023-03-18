@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 public class MailServiceProvider {
 	public static void sendEmail(String toEmail, String subject, String body) {
 
-		String fromEmail = System.getenv("email");
-		String password = System.getenv("password");
+		String fromEmail ="thanhcuto2109@gmail.com";
+		String password ="zoudvxkntkemlhpx";
 
 		Properties prop = new Properties();
 		prop.put("mail.smtp.auth", "true");
