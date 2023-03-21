@@ -23,13 +23,21 @@ public class Users  {
 		private LocalDateTime createdDate;
 		private boolean isVerified;
 		private String role;
+		private Integer active;
 		
 		@OneToMany(cascade = CascadeType.ALL, targetEntity = Address.class)
 		@JoinColumn(name = "userId")
 		private List<Address> address;
-		
 
-		@OneToMany(cascade = CascadeType.ALL, targetEntity = CartItem.class)
+	public Integer getActive() {
+		return active;
+	}
+
+	public void setActive(Integer active) {
+		this.active = active;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = CartItem.class)
 		@JoinColumn(name = "userId")
 		private List<CartItem> cartBooks;
 		
@@ -39,8 +47,6 @@ public class Users  {
 		@OneToMany(cascade = CascadeType.ALL, targetEntity = Order.class)
 		@JoinColumn(name = "userId")
 		private List<Order> orderBookDetails;
-
-
 		@Override
 		public String toString() {
 			return "Users [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password
@@ -48,8 +54,41 @@ public class Users  {
 					+ ", role=" + role + ", address=" + address + ", cartBooks=" + cartBooks + "]";
 		}
 
+	public Users(long userId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, boolean isVerified, String role, Integer active, List<Address> address, List<CartItem> cartBooks, List<WishlistBook> wishlistBook, List<Order> orderBookDetails) {
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.mobileNumber = mobileNumber;
+		this.createdDate = createdDate;
+		this.isVerified = isVerified;
+		this.role = role;
+		this.active = active;
+		this.address = address;
+		this.cartBooks = cartBooks;
+		this.wishlistBook = wishlistBook;
+		this.orderBookDetails = orderBookDetails;
+	}
 
-		public long getUserId() {
+	public Users() {
+	}
+
+	public Users(long userId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, boolean isVerified, String role, List<Address> address, List<CartItem> cartBooks, List<WishlistBook> wishlistBook, List<Order> orderBookDetails) {
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.mobileNumber = mobileNumber;
+		this.createdDate = createdDate;
+		this.isVerified = isVerified;
+		this.role = role;
+		this.address = address;
+		this.cartBooks = cartBooks;
+		this.wishlistBook = wishlistBook;
+		this.orderBookDetails = orderBookDetails;
+	}
+
+	public long getUserId() {
 			return userId;
 		}
 

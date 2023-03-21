@@ -1,16 +1,11 @@
 package com.bridgelabz.bookstore.controller;
+import com.bridgelabz.bookstore.response.BookResponse;
+import com.bridgelabz.bookstore.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.*;
 
 import com.bridgelabz.bookstore.dto.UserDto;
 import com.bridgelabz.bookstore.entity.Users;
@@ -22,6 +17,8 @@ import com.bridgelabz.bookstore.response.Response;
 import com.bridgelabz.bookstore.response.UsersDetailRes;
 import com.bridgelabz.bookstore.service.UserServices;
 import com.bridgelabz.bookstore.util.JwtGenerator;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -53,7 +50,7 @@ public class UserController {
 	public ResponseEntity<UsersDetailRes> login(@RequestBody LoginInformation information) {
 		
 		Users users = service.login(information);
-		if (users!=null) {
+		if (users!=null&&users.getActive()==1) {
 			String token= generate.jwtToken(users.getUserId());
 			return ResponseEntity.status(HttpStatus.ACCEPTED).header("login successfull", information.getEmail())
 					.body(new UsersDetailRes(token, 200, users));
@@ -119,5 +116,36 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
 				.body(new Response("user is", 200, user));
 	}
+	@GetMapping("user/getAll")
+	public ResponseEntity<UserResponse> getAllUsers() {
+		List<Users> users = service.getUsers();
+//		User users=service.getSingleUser(token);
+		return ResponseEntity.status(HttpStatus.ACCEPTED)
+				.body(new UserResponse("status", users));
+	}
+	@PutMapping("DeleteUser/{userId}")
+	public ResponseEntity<Response> deleteUser(@PathVariable long userId) {
+		Users user=service.findById(userId);
+		user.setActive(0);
+		service.save(user);
+		return ResponseEntity.status(HttpStatus.ACCEPTED)
+				.body(new Response("delete",200,user));
+	}
+	@PutMapping("ActiveUser/{userId}")
+	public ResponseEntity<Response> activeUser(@PathVariable long userId) {
+		Users user=service.findById(userId);
+		user.setActive(1);
+		service.save(user);
+		return ResponseEntity.status(HttpStatus.ACCEPTED)
+				.body(new Response("delete",200,user));
+	}
+	@GetMapping("user/getUsersDeleted")
+	public ResponseEntity<UserResponse> getAllUsersDeleted() {
+		List<Users> users = service.getUsersDeleted();
+//		User users=service.getSingleUser(token);
+		return ResponseEntity.status(HttpStatus.ACCEPTED)
+				.body(new UserResponse("status", users));
+	}
+
 	
 }

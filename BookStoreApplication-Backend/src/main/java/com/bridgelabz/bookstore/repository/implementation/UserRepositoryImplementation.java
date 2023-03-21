@@ -96,7 +96,14 @@ public class UserRepositoryImplementation implements IUserRepository {
 	@Override
 	public List<Users> getUsers() {
 		Session currentsession = entityManager.unwrap(Session.class);
-		List<Users> usersList = currentsession.createQuery("from Users").getResultList();
+		List<Users> usersList = currentsession.createQuery("from Users where active=1").getResultList();
+		return  usersList;
+	}
+
+	@Override
+	public List<Users> GetAllDeleted() {
+		Session currentsession = entityManager.unwrap(Session.class);
+		List<Users> usersList = currentsession.createQuery("from Users where active=0").getResultList();
 		return  usersList;
 	}
 

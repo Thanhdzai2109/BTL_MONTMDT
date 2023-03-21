@@ -229,7 +229,7 @@ public class UserServiceImplementation implements UserServices {
 	@Override
 	public List<Users> getUsers() {
 		// TODO Auto-generated method stub
-		return null;
+		return repository.getUsers();
 	}
 
 	/**
@@ -254,6 +254,21 @@ public class UserServiceImplementation implements UserServices {
 		}else {
 			throw new UserException("token is not valid");
 		}
+	}
+
+	@Override
+	public Users findById(Long id) {
+		return repository.getUserById(id);
+	}
+
+	@Override
+	public Users save(Users users) {
+		return repository.save(users);
+	}
+
+	@Override
+	public List<Users> getUsersDeleted() {
+		return repository.GetAllDeleted();
 	}
 
 }

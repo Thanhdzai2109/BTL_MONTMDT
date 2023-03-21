@@ -1,13 +1,16 @@
 package com.bridgelabz.bookstore.response;
 
+import com.bridgelabz.bookstore.entity.Users;
 import org.springframework.http.HttpStatus;
+
+import java.util.List;
 
 public class UserResponse {
 
 	private String Message;
 	private HttpStatus status;
 	private Object obj;
-	
+	private List<Users>users;
 
 	public UserResponse(String message, Object obj,HttpStatus status) {
 		super();
@@ -16,6 +19,18 @@ public class UserResponse {
 		this.obj = obj;
 	}
 
+	public List<Users> getUsers() {
+		return users;
+	}
+
+	public UserResponse(String message, List<Users> users) {
+		Message = message;
+		this.users = users;
+	}
+
+	public void setUsers(List<Users> users) {
+		this.users = users;
+	}
 
 	public String getMessage() {
 		return Message;

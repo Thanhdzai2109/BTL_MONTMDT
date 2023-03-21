@@ -17,4 +17,8 @@ public interface UserServices {
 	boolean update(PasswordUpdate information, String token);
 	List<Users> getUsers();
 	Users getSingleUser(String token);
+	Users findById(Long id);
+	Users save(Users users);
+	List<Users> getUsersDeleted();
+
 }
