@@ -63,7 +63,7 @@ export class LoginComponentComponent implements OnInit {
     });
     if (this.form.role === 'admin') {
       localStorage.setItem('role', 'admin');
-      this.route.navigateByUrl('books');
+      this.route.navigateByUrl('chart');
       return;
     }
     if (this.form.role === 'seller') {

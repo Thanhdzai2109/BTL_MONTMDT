@@ -46,6 +46,7 @@ const routes: Routes = [
   {path: 'books/orders', component: OrderstatusComponent},
   {path: 'ratedbooks', component: RatedbooksComponent},
   {path: 'bookreviews', component: BookreviewsComponent},
+  {path:'chart' ,component:ChartComponent},
   {path: '**', component: PagenotfoundComponent},
 ];
 
