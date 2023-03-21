@@ -52,6 +52,8 @@ import { UploadBookImageComponent } from './Component/addbook/upload-book-image/
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { ChartComponent } from './Component/chart/chart.component';
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+import { AdminUserComponent } from './Component/admin-user/admin-user.component';
+import {MatTableModule} from '@angular/material/table'
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
@@ -83,7 +85,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     RatedbooksComponent,
     WishComponent,
     CanvasJSChart,
-    ChartComponent
+    ChartComponent,
+    AdminUserComponent
 
   ],
   imports: [
@@ -110,6 +113,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     MatSelectModule,
     MatTooltipModule,
     MatDialogModule,
+    MatTableModule,
     MatCarouselModule.forRoot() // ---------- Important
     
  ],

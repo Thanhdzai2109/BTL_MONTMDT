@@ -55,7 +55,9 @@ export class SidenavbarComponent implements OnInit {
     this.router.navigate(['books'],{queryParams:{book:'books'}});
   }
 
-
+  User(){
+    this.router.navigate(['user']);
+  }
   sellerBook(){
     
       this.router.navigate(['books'],{queryParams:{book:'sellerbook'}});

@@ -18,6 +18,7 @@ import { BookreviewsComponent } from './Component/bookreviews/bookreviews.compon
 import { WishComponent } from './Component/wish/wish.component';
 import { ChartComponent } from './Component/chart/chart.component';
 import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
+import { AdminUserComponent } from './Component/admin-user/admin-user.component';
 
 const routes: Routes = [
 
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'ratedbooks', component: RatedbooksComponent},
   {path: 'bookreviews', component: BookreviewsComponent},
   {path:'chart' ,component:ChartComponent},
+  {path:'user',component:AdminUserComponent},
   {path: '**', component: PagenotfoundComponent},
 ];
 
