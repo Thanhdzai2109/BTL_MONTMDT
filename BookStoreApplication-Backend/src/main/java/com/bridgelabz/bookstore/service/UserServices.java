@@ -20,5 +20,5 @@ public interface UserServices {
 	Users findById(Long id);
 	Users save(Users users);
 	List<Users> getUsersDeleted();
-
+    List<Users> searchData(String name);
 }

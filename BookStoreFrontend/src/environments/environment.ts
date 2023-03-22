@@ -57,7 +57,7 @@ export const environment = {
   PLACE_ORDER: '/bookstore/placeOrder?addressId=',
   WRITE_REVIEW: 'books/ratingreview?bookId=',
   GET_REVIEWS: 'books/ratingreviews/?bookId=',
-
+  UserSearch:'user/SearchData',
   ratereview: 'books/getratereviews/?bookId=',
 
   adminUrl: 'http://localhost:8080/',

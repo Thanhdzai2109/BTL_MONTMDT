@@ -1,4 +1,5 @@
 package com.bridgelabz.bookstore.controller;
+
 import com.bridgelabz.bookstore.repository.UserRepository;
 import com.bridgelabz.bookstore.response.BookResponse;
 import com.bridgelabz.bookstore.response.UserResponse;
@@ -28,137 +29,141 @@ import java.util.Optional;
 @RestController
 @CrossOrigin
 public class UserController {
-	
-	@Autowired
-	private UserServices service;
-	
-	@Autowired
-	private UserRepository repository;
-	@Autowired
-	private JwtGenerator generate;
 
-	@PostMapping("/registration")
-	@ResponseBody
-	public ResponseEntity<Response> registration(@RequestBody UserDto information) {
-		System.out.println("user info" + information.toString());
-		boolean result = service.register(information);
-		if (result) {
-			return ResponseEntity.status(HttpStatus.CREATED)
-					.body(new Response("registration successfull", 200, information));
-		} else {
-			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED)
-					.body(new Response("User Already Exist", 400, information));
-		}
-	}
-	
-	
-	@PostMapping("/user/login")
-	public ResponseEntity<UsersDetailRes> login(@RequestBody LoginInformation information) {
-		
-		Users users = service.login(information);
-		if (users!=null&&users.getActive()==1) {
-			String token= generate.jwtToken(users.getUserId());
-			return ResponseEntity.status(HttpStatus.ACCEPTED).header("login successfull", information.getEmail())
-					.body(new UsersDetailRes(token, 200, users));
-		}
-		else {
-			throw new UserException(" Invalide credentials");
-		}
-	}
-	
-	/**
-	 * This is for the user verify.......
-	 * @param token
-	 * @return response as success and fail
-	 * @throws Exception
-	 */
-	@GetMapping("/user/verify/{token}")
-	public ResponseEntity<Response> userVerification(@PathVariable("token") String token) throws Exception {
-		System.out.println("token for verification" + token);
-		boolean update = service.verify(token);
-		if (update)
-		{
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("verified", 200));
-		} 
-		else 
-		{	
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("not verified", 400));
-		}
-	}
-	
-	/**
-	 * This is used for the get one user based on there token
-	 * @param token
-	 * @return response
-	 */
-	@PostMapping("user/forgotpassword")
-	public ResponseEntity<Response> forgogPassword(@RequestBody PasswordReset passwordReset) {
-	
-		boolean result = service.isUserExist(passwordReset.getEmail());
-		if (result) {
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Check your email: Email sent", 200));
-		} else {
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("user does not exist with given email id", 400));
-		}
-	}
-	
-	@PutMapping("user/update/{token}")
-	public ResponseEntity<Response> update(@PathVariable("token") String token, @RequestBody PasswordUpdate update) {
-		System.out.println("inside controller  " +token);
-		boolean result = service.update(update, token);
-		if (result) {
-			return ResponseEntity.status(HttpStatus.ACCEPTED)
-					.body(new Response("password updated successfully", 200));
-		} else {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-					.body(new Response("password doesn't match", 401));
-		}
+    @Autowired
+    private UserServices service;
 
-	}
-	
-	@GetMapping("user/getOneUser")
-	public ResponseEntity<Response> getOneUsers(@RequestHeader("token") String token){
-	Users user=service.getSingleUser(token);
-		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new Response("user is", 200, user));
-	}
-	@GetMapping("user/getUsers")
-	public ResponseEntity<UserResponse> getUsers(@RequestParam(value = "keyword", required = false) String searchName,
-												 @RequestParam(defaultValue = "0") int currentPage, @RequestParam(defaultValue = "10") int perPage
-												) {
-		Pageable paging = PageRequest.of(currentPage, perPage);
-		Page<Users> users = repository.GetAll(searchName, paging);
-		List<Users>user=users.getContent();
-		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new UserResponse("status", users.getContent(),users.getTotalPages()));
-	}
-	@PutMapping("DeleteUser/{userId}")
-	public ResponseEntity<Response> deleteUser(@PathVariable long userId) {
-		Users user=service.findById(userId);
-		user.setActive(0);
-		service.save(user);
-		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new Response("delete",200,user));
-	}
-	@PutMapping("ActiveUser/{userId}")
-	public ResponseEntity<Response> activeUser(@PathVariable long userId) {
-		Users user=service.findById(userId);
-		user.setActive(1);
-		service.save(user);
-		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new Response("delete",200,user));
-	}
-	@GetMapping("user/getUsersDeleted")
-	public ResponseEntity<UserResponse> getAllUsersDeleted(@RequestParam(value = "keyword", required = false) String searchName,
-														   @RequestParam(defaultValue = "0") int currentPage, @RequestParam(defaultValue = "10") int perPage
-														   )
-														   {
-		Pageable paging = PageRequest.of(currentPage, perPage);
-		Page<Users> users = repository.GetAllDeleted(searchName,paging);
-		List<Users>user=users.getContent();
-		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new UserResponse("status", users.getContent(),users.getTotalPages()));
-	}
+    @Autowired
+    private UserRepository repository;
+    @Autowired
+    private JwtGenerator generate;
 
-	
+    @PostMapping("/registration")
+    @ResponseBody
+    public ResponseEntity<Response> registration(@RequestBody UserDto information) {
+        System.out.println("user info" + information.toString());
+        boolean result = service.register(information);
+        if (result) {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(new Response("registration successfull", 200, information));
+        } else {
+            return ResponseEntity.status(HttpStatus.ALREADY_REPORTED)
+                    .body(new Response("User Already Exist", 400, information));
+        }
+    }
+
+
+    @PostMapping("/user/login")
+    public ResponseEntity<UsersDetailRes> login(@RequestBody LoginInformation information) {
+
+        Users users = service.login(information);
+        if (users != null && users.getActive() == 1) {
+            String token = generate.jwtToken(users.getUserId());
+            return ResponseEntity.status(HttpStatus.ACCEPTED).header("login successfull", information.getEmail())
+                    .body(new UsersDetailRes(token, 200, users));
+        } else {
+            throw new UserException(" Invalide credentials");
+        }
+    }
+
+    /**
+     * This is for the user verify.......
+     *
+     * @param token
+     * @return response as success and fail
+     * @throws Exception
+     */
+    @GetMapping("/user/verify/{token}")
+    public ResponseEntity<Response> userVerification(@PathVariable("token") String token) throws Exception {
+        System.out.println("token for verification" + token);
+        boolean update = service.verify(token);
+        if (update) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("verified", 200));
+        } else {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("not verified", 400));
+        }
+    }
+
+    /**
+     * This is used for the get one user based on there token
+     *
+     * @param token
+     * @return response
+     */
+    @PostMapping("user/forgotpassword")
+    public ResponseEntity<Response> forgogPassword(@RequestBody PasswordReset passwordReset) {
+
+        boolean result = service.isUserExist(passwordReset.getEmail());
+        if (result) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Check your email: Email sent", 200));
+        } else {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("user does not exist with given email id", 400));
+        }
+    }
+
+    @PutMapping("user/update/{token}")
+    public ResponseEntity<Response> update(@PathVariable("token") String token, @RequestBody PasswordUpdate update) {
+        System.out.println("inside controller  " + token);
+        boolean result = service.update(update, token);
+        if (result) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED)
+                    .body(new Response("password updated successfully", 200));
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new Response("password doesn't match", 401));
+        }
+
+    }
+
+    @GetMapping("user/getOneUser")
+    public ResponseEntity<Response> getOneUsers(@RequestHeader("token") String token) {
+        Users user = service.getSingleUser(token);
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new Response("user is", 200, user));
+    }
+
+    @GetMapping("user/getUsers")
+    public ResponseEntity<UserResponse> getUsers(@RequestParam(value = "keyword", required = false) String searchName,
+                                                 @RequestParam(defaultValue = "0") int currentPage, @RequestParam(defaultValue = "10") int perPage
+    ) {
+        Pageable paging = PageRequest.of(currentPage, perPage);
+        Page<Users> users = repository.GetAll(searchName, paging);
+        List<Users> user = users.getContent();
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new UserResponse("status", users.getContent(), users.getTotalPages()));
+    }
+
+    @PutMapping("DeleteUser/{userId}")
+    public ResponseEntity<Response> deleteUser(@PathVariable long userId) {
+        Users user = service.findById(userId);
+        user.setActive(0);
+        service.save(user);
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new Response("delete", 200, user));
+    }
+
+    @PutMapping("ActiveUser/{userId}")
+    public ResponseEntity<Response> activeUser(@PathVariable long userId) {
+        Users user = service.findById(userId);
+        user.setActive(1);
+        service.save(user);
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new Response("delete", 200, user));
+    }
+
+    @GetMapping("user/getUsersDeleted")
+    public ResponseEntity<UserResponse> getAllUsersDeleted(@RequestParam(value = "keyword", required = false) String searchName,
+                                                           @RequestParam(defaultValue = "0") int currentPage, @RequestParam(defaultValue = "10") int perPage
+    ) {
+        Pageable paging = PageRequest.of(currentPage, perPage);
+        Page<Users> users = repository.GetAllDeleted(searchName, paging);
+        List<Users> user = users.getContent();
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new UserResponse("status", users.getContent(), users.getTotalPages()));
+    }
+
+    @PostMapping("user/SearchData")
+    public List<Users> searchData(@RequestBody Users users) {
+        return service.searchData(users.getName());
+    }
 }

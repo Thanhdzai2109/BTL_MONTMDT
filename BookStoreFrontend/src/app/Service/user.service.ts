@@ -41,4 +41,7 @@ export class UserService {
     return this.http
     .put(`${environment.BASE_URL}/${environment.UPDATE_ADDRESS}`, address, {headers: new HttpHeaders({token: localStorage.token})});
    }
+  public SearchUser(data:any){
+    return this.http.post(`${environment.BASE_URL}/${environment.UserSearch}`,data)
+  } 
 }

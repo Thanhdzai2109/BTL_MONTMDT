@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.bridgelabz.bookstore.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,7 +37,8 @@ public class UserServiceImplementation implements UserServices {
 	private Users users = new Users();
 	@Autowired
 	private IUserRepository repository;
-
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	private BCryptPasswordEncoder encryption;
 	@Autowired
@@ -269,6 +271,14 @@ public class UserServiceImplementation implements UserServices {
 	@Override
 	public List<Users> getUsersDeleted() {
 		return repository.GetAllDeleted();
+	}
+
+	@Override
+	public List<Users> searchData(String name) {
+		if(name==null){
+			return (List<Users>) userRepository.findAll();
+		}
+		return  userRepository.getdata(name);
 	}
 
 }
