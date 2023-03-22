@@ -130,7 +130,7 @@ public class UserController {
 		Page<Users> users = repository.GetAll(searchName, paging);
 		List<Users>user=users.getContent();
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new UserResponse("status", users.getContent()));
+				.body(new UserResponse("status", users.getContent(),users.getTotalPages()));
 	}
 	@PutMapping("DeleteUser/{userId}")
 	public ResponseEntity<Response> deleteUser(@PathVariable long userId) {
@@ -157,7 +157,7 @@ public class UserController {
 		Page<Users> users = repository.GetAllDeleted(searchName,paging);
 		List<Users>user=users.getContent();
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new UserResponse("status", users.getContent()));
+				.body(new UserResponse("status", users.getContent(),users.getTotalPages()));
 	}
 
 	

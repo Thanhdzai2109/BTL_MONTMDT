@@ -1,6 +1,7 @@
 package com.bridgelabz.bookstore.response;
 
 import com.bridgelabz.bookstore.entity.Users;
+import io.swagger.models.auth.In;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 
@@ -12,12 +13,25 @@ public class UserResponse {
 	private HttpStatus status;
 	private Object obj;
 	private List<Users>users;
+	private Integer total;
 
+	public Integer getTotal() {
+		return total;
+	}
 
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
 
+	public UserResponse(Integer total) {
+		this.total = total;
+	}
 
-
-
+	public UserResponse(String message, Object obj, Integer total) {
+		Message = message;
+		this.obj = obj;
+		this.total = total;
+	}
 
 	public UserResponse(String message, Object obj) {
 		super();
