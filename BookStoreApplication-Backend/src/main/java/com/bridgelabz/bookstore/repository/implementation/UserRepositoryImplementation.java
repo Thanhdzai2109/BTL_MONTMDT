@@ -7,9 +7,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import com.bridgelabz.bookstore.entity.Book;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.bridgelabz.bookstore.entity.Users;
@@ -105,6 +108,14 @@ public class UserRepositoryImplementation implements IUserRepository {
 		Session currentsession = entityManager.unwrap(Session.class);
 		List<Users> usersList = currentsession.createQuery("from Users where active=0").getResultList();
 		return  usersList;
+	}
+
+	@Override
+	public Page<Users> findByBookName(String name, Pageable pageable) {
+		Session currentsession = entityManager.unwrap(Session.class);
+		Page<Users> usersList = (Page<Users>) currentsession.createQuery("from Users where active=1 and name like %?1% ").getResultList();
+		return  usersList;
+//		@org.springframework.data.jpa.repository.Query( value = "select * from bookinfo where book_name like %?1% AND status='approved'", nativeQuery = true)
 	}
 
 }

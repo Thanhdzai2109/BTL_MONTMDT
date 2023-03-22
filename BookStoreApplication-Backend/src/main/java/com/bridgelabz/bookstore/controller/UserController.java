@@ -1,7 +1,11 @@
 package com.bridgelabz.bookstore.controller;
+import com.bridgelabz.bookstore.repository.UserRepository;
 import com.bridgelabz.bookstore.response.BookResponse;
 import com.bridgelabz.bookstore.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
@@ -19,6 +23,7 @@ import com.bridgelabz.bookstore.service.UserServices;
 import com.bridgelabz.bookstore.util.JwtGenerator;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -27,7 +32,8 @@ public class UserController {
 	@Autowired
 	private UserServices service;
 	
-
+	@Autowired
+	private UserRepository repository;
 	@Autowired
 	private JwtGenerator generate;
 
@@ -116,12 +122,15 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
 				.body(new Response("user is", 200, user));
 	}
-	@GetMapping("user/getAll")
-	public ResponseEntity<UserResponse> getAllUsers() {
-		List<Users> users = service.getUsers();
-//		User users=service.getSingleUser(token);
+	@GetMapping("user/getUsers")
+	public ResponseEntity<UserResponse> getUsers(@RequestParam(value = "keyword", required = false) String searchName,
+												 @RequestParam(defaultValue = "0") int currentPage, @RequestParam(defaultValue = "10") int perPage
+												) {
+		Pageable paging = PageRequest.of(currentPage, perPage);
+		Page<Users> users = repository.GetAll(searchName, paging);
+		List<Users>user=users.getContent();
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new UserResponse("status", users));
+				.body(new UserResponse("status", users.getContent()));
 	}
 	@PutMapping("DeleteUser/{userId}")
 	public ResponseEntity<Response> deleteUser(@PathVariable long userId) {
@@ -140,11 +149,15 @@ public class UserController {
 				.body(new Response("delete",200,user));
 	}
 	@GetMapping("user/getUsersDeleted")
-	public ResponseEntity<UserResponse> getAllUsersDeleted() {
-		List<Users> users = service.getUsersDeleted();
-//		User users=service.getSingleUser(token);
+	public ResponseEntity<UserResponse> getAllUsersDeleted(@RequestParam(value = "keyword", required = false) String searchName,
+														   @RequestParam(defaultValue = "0") int currentPage, @RequestParam(defaultValue = "10") int perPage
+														   )
+														   {
+		Pageable paging = PageRequest.of(currentPage, perPage);
+		Page<Users> users = repository.GetAllDeleted(searchName,paging);
+		List<Users>user=users.getContent();
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(new UserResponse("status", users));
+				.body(new UserResponse("status", users.getContent()));
 	}
 
 	

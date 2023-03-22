@@ -1,6 +1,7 @@
 package com.bridgelabz.bookstore.response;
 
 import com.bridgelabz.bookstore.entity.Users;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
@@ -12,7 +13,21 @@ public class UserResponse {
 	private Object obj;
 	private List<Users>users;
 
-	public UserResponse(String message, Object obj,HttpStatus status) {
+
+
+
+
+
+
+	public UserResponse(String message, Object obj) {
+		super();
+		Message = message;
+		this.obj = obj;
+	}
+
+
+
+	public UserResponse(String message, Object obj, HttpStatus status) {
 		super();
 		this.status = status;
 		Message = message;

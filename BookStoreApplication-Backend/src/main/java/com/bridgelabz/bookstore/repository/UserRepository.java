@@ -1,12 +1,13 @@
 package com.bridgelabz.bookstore.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.bridgelabz.bookstore.entity.Users;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -32,10 +33,12 @@ public interface UserRepository extends CrudRepository<Users, Long>{
 
 //   @Query(value="delete from cart_details where cart_id=?;",nativeQuery=true)
 //   CartDetails deleteCart(Long id);
-@Query(value = "select * from user where user_id=?", nativeQuery = true)
+@Query(value = "select * from users where user_id=?", nativeQuery = true)
 Optional<Users> findUserById(Long id);
-    @Query(value = "select * from user where active=1", nativeQuery = true)
-    List<Users> GetAll();
-    @Query(value = "select * from user where active=0", nativeQuery = true)
-    List<Users> GetAllDeleted();
+    @Query(value = "select * from users u where active=1 and (?1 is null or name like %?1%)", nativeQuery = true)
+    Page<Users> GetAll(String name, Pageable pageable);
+    @Query(value = "select * from users where ?1 is null or active=0 and name like %?1%", nativeQuery = true)
+    Page<Users> GetAllDeleted(String name, Pageable pageable);
+
+
 }
