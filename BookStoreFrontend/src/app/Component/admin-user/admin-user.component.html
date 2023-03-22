@@ -1,7 +1,6 @@
 <div style="width: 100%;" style="height: 11%;">
-    <app-toolbar flexLayout="row" (toggleEvent)="nameEventHander($event)">
-    </app-toolbar>
-    <!-- <app-toolbar flexLayout="row"></app-toolbar> -->
+    <app-toolbar-user flexLayout="row" (toggleEvent)="nameEventHander($event)">
+    </app-toolbar-user>    <!-- <app-toolbar flexLayout="row"></app-toolbar> -->
 </div>
 <div class="dashboard-content" style="height: 84%; margin-left: 0%; padding-left: 0%;">
     <div class="sidenav-div" *ngIf="isAdmin || isSeller">
@@ -13,6 +12,11 @@
 
             <mat-sidenav-content class="sidenav-content">
                 <div *ngIf="isAdmin">
+                  <div class="w-full p-2" style="text-align: center;">
+                    <mat-toolbar class="place-content-between rounded-l mat-elevation-z1">
+                        <span>Danh sách tài khoản</span>
+                    </mat-toolbar>
+                </div>
                     <div class="mat-elevation-z8">
                         <table mat-table [dataSource]="dataSource">
                       

@@ -53,7 +53,8 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { ChartComponent } from './Component/chart/chart.component';
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 import { AdminUserComponent } from './Component/admin-user/admin-user.component';
-import {MatTableModule} from '@angular/material/table'
+import {MatTableModule} from '@angular/material/table';
+import { ToolbarUserComponent } from './Component/toolbar-user/toolbar-user.component'
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     WishComponent,
     CanvasJSChart,
     ChartComponent,
-    AdminUserComponent
+    AdminUserComponent,
+    ToolbarUserComponent
 
   ],
   imports: [
