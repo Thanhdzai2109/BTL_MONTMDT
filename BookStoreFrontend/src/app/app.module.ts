@@ -25,7 +25,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { OrdergreetingComponent } from './Component/ordergreeting/ordergreeting.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
+import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
 import { ForgetPasswordComponent } from './Component/auth/forget-password/forget-password.component';
@@ -123,4 +123,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
   bootstrap: [AppComponent],
 
 })
-export class AppModule { }
+export class AppModule {
+  constructor(matIconRegistry: MatIconRegistry) {
+    matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+  }
+ }

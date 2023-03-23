@@ -13,4 +13,5 @@ body {
 *:focus {
     outline: 0 !important;
 }
-
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import '~font-awesome/css/font-awesome.css';
