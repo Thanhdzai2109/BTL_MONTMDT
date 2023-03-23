@@ -54,9 +54,7 @@
     </div>
 
 </div>
-<div *ngIf="isSeller">
+<div *ngIf="!isAdmin">
 <app-footer></app-footer>
 </div>
-<div *ngIf="isUser">
-    <app-footer></app-footer>
-</div>
+
