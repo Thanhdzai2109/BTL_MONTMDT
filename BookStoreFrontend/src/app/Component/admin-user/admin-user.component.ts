@@ -11,7 +11,7 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  
+
 ];
 @Component({
   selector: 'app-admin-user',
@@ -63,5 +63,11 @@ export class AdminUserComponent implements OnInit {
         this.dataSource=res;
     })
   }
+
+  deleteItem() {
+
+      }
+
+
 
 }
