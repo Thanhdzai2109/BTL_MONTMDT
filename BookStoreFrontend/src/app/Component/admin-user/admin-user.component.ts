@@ -26,7 +26,7 @@ export class AdminUserComponent implements OnInit {
   isSeller = false;
   isAdmin = false;
   datalist:any =[]
-  displayedColumns: string[] = ['position', 'name','email', 'weight', 'symbol','thaoTac'];
+  displayedColumns: string[] = ['position', 'name','email','chucnang', 'weight', 'symbol','thaoTac'];
   dataSource:any = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   name :string
   @ViewChild(MatPaginator) paginator: MatPaginator;
