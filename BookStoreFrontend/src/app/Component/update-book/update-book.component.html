@@ -1,5 +1,5 @@
 <div class="container">
-    <div style="background-color: #A03037; width: 100%; margin-bottom: 10px;">
+    <div style="background-color: #4430A0; width: 100%; margin-bottom: 10px;">
         <h2 style="color: white; text-align: center;padding-top: 10px;">Update Book</h2>
     </div>
     <br>
@@ -44,6 +44,7 @@
     </form>
 
     <div class="submit">
-        <button  id="submit" mat-button [disabled]="!data.bookDetails"  (click)="updateBook()">UPDATE  </button>
+        <button  id="submit" mat-button [disabled]="!data.bookDetails"  (click)="updateBook()">
+            <i class="fa fa-save"></i> Lưu</button>
     </div>
 </div>

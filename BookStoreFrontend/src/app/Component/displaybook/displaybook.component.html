@@ -50,7 +50,7 @@
 
                         <div class="authorname ">by {{ book.authorName }}</div>
                         <div class="price ">Rs. {{ book.price }}</div>
-                        <div class="availablity " style="color: rgb(163, 43, 6); "
+                        <div class="availablity " style="color: rgb(79, 6, 163); "
                             *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
                             Only {{ book.noOfBooks }} left hurry up
                         </div>

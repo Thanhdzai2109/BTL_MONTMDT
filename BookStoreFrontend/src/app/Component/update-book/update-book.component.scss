@@ -11,7 +11,7 @@
     flex-direction: column;
   }
   button {
-    background-color: rgba(131, 4, 4, 0.8);
+    background-color: rgba(4, 15, 131, 0.8);
     font-size: 1rem;
     color: white;
     height: auto;
@@ -70,7 +70,7 @@
   }
   .login-wrapper .btn-block3 {
     font-size: 18px;
-    color: #a03037;
+    color: #4830a0;
   }
   .login-wrapper .btn-block1 {
     font-size: 18px;
@@ -79,7 +79,7 @@
     font-size: 18px;
     text-align: center;
     color: white;
-    background-color: #a03037;
+    background-color: #3046a0;
     border-radius: 3px;
     border: none;
     opacity: 1;
@@ -93,7 +93,7 @@
     font-size: 18px;
     text-align: center;
     color: white;
-    background-color: #a03037;
+    background-color: #3430a0;
     border-radius: 3px;
     border: none;
     opacity: 1;
@@ -141,14 +141,14 @@
     min-height: 70vh;
   }
   ::ng-deep {
-    $custom-main-color: red;
+    $custom-main-color: rgb(34, 0, 255);
     $custom-label-color: rgba(0, 0, 0, 0.6);
   
     // mat-icon-stepper selected color change
     .mat-step-header .mat-step-icon-selected,
     .mat-step-header .mat-step-icon-state-done,
     .mat-step-header .mat-step-icon-state-edit {
-      background-color: #a03037 !important;
+      background-color: #3052a0 !important;
     }
   
     // input outline color
