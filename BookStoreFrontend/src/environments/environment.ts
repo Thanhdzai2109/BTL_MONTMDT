@@ -59,7 +59,7 @@ export const environment = {
   GET_REVIEWS: 'books/ratingreviews/?bookId=',
   UserSearch:'user/SearchData',
   ratereview: 'books/getratereviews/?bookId=',
-
+  ActiveUser:'ActiveUser',
   adminUrl: 'http://localhost:8080/',
   approveBook: 'admin/update/',
   rejectBook: 'admin/update/',

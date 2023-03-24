@@ -5,6 +5,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { UserService } from "src/app/Service/user.service";
 import { MatDialog } from "@angular/material/dialog";
 import { DilalogUnlockComponent } from "../dilalog-unlock/dilalog-unlock.component";
+import { MatSnackBar } from "@angular/material/snack-bar";
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -40,6 +41,7 @@ export class AdminUserComponent implements OnInit {
   constructor(
     private titleService: Title,
     private dialog: MatDialog,
+    private matSnackBar: MatSnackBar,
     private userService: UserService
   ) {}
   isLogin = false;
@@ -71,15 +73,21 @@ export class AdminUserComponent implements OnInit {
       this.dataSource = res;
     });
   }
- 
-  openDialog($event) {
-    debugger
+
+  openDialog(id :number) {
     const dialogRef = this.dialog.open(DilalogUnlockComponent, {
       width: '25rem',
       panelClass: 'custom-dialog-container',
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+       this.userService.ActiveUser(id).subscribe(message=>{
+        if (message.statusCode === 200) {
+          this.matSnackBar.open('Cập nhật trạng thái thành công ', 'ok', {
+            duration: 4000,
+          });
+          this.doSearh()
+        }
+       })
     });
   }
 

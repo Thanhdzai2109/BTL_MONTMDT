@@ -137,16 +137,21 @@ public class UserController {
     public ResponseEntity<Response> deleteUser(@PathVariable long userId) {
         Users user = service.findById(userId);
         user.setActive(0);
-        service.save(user);
+        repository.save(user);
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new Response("delete", 200, user));
     }
 
-    @PutMapping("ActiveUser/{userId}")
+    @GetMapping("ActiveUser/{userId}")
     public ResponseEntity<Response> activeUser(@PathVariable long userId) {
         Users user = service.findById(userId);
-        user.setActive(1);
-        service.save(user);
+        if(user.getActive()==0) {
+            user.setActive(1);
+        }
+        else {
+            user.setActive(0);
+        }
+        repository.save(user);
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new Response("delete", 200, user));
     }

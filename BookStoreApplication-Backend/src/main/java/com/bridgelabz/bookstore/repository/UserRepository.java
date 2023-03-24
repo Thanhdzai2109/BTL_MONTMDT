@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 import com.bridgelabz.bookstore.entity.Users;
@@ -42,5 +43,6 @@ Optional<Users> findUserById(Long id);
     Page<Users> GetAllDeleted(String name, Pageable pageable);
    @Query("select u from  Users u where u.name =:name")
     List<Users> getdata(String name);
+
 
 }

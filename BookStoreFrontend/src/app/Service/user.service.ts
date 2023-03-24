@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { HttpserviceService } from './httpservice.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private  baseUrl = environment.BASE_URL;
-  constructor(private http: HttpClient ) { }
-
+  constructor(private http: HttpClient ,private httpService: HttpserviceService ) { }
+  private _autoRefresh$ = new Subject();
   private httpOtions = {
     headers: new HttpHeaders({ 'content-type': 'application/json' })
   };
@@ -43,5 +44,12 @@ export class UserService {
    }
   public SearchUser(data:any){
     return this.http.post(`${environment.BASE_URL}/${environment.UserSearch}`,data)
-  } 
+  }
+  public ActiveUser(userId: number) {
+    return this.httpService
+    // tslint:disable-next-line: max-line-length
+    .get(`${environment.BASE_URL}/${environment.ActiveUser}/${userId}`, {headers: new HttpHeaders({token: localStorage.token})})
+    .pipe(
+    );
+  }
 }
