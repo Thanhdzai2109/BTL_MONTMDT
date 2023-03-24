@@ -1,10 +1,12 @@
 <div class="container" *ngIf="isAdmin">
-  <div class="logo-name" fxFlex="15">
-    <div class="image" style="display: flex; justify-content: flex-start;">
-      <img src=".\assets\education.png"  />
-      <span class="mat-title" fxHide.xs="true">Bookstore</span>
+  <div style="overflow: hidden; height: 12em;">
+    <div style="margin-left: 6px;">
+        <img style="height: 60px; width: 60px ;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
     </div>
-  </div>
+    <div style="height: 60px; width: 60px; padding: 0px; margin: 0px;"  *ngIf="isLogin">
+        <h4 style="font-weight: bold;">{{name}}</h4>
+    </div>
+</div>
   <div>
     <button id="adminBookBtn" mat-button class="navbutton" (click)="Home()">
       <span class="fa fa-home"> Trang chủ</span>
@@ -33,6 +35,14 @@
   </div>
 </div>
 <div class="container" *ngIf="isSeller">
+  <div style="overflow: hidden; height: 12em;">
+    <div style="margin-left: 6px;">
+        <img style="height: 60px; width: 60px ;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
+    </div>
+    <div style="height: 60px; width: 60px; padding: 0px; margin: 0px;"  *ngIf="isLogin">
+        <h4 style="font-weight: bold;">{{name}}</h4>
+    </div>
+</div>
   <div>
     <button id="orderStatusBookBtn" mat-button class="navbutton" (click)="sellerBook()">
       <span class="fa fa-book"> Sách đã bán</span>
