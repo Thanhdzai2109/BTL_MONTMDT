@@ -54,7 +54,8 @@ import { ChartComponent } from './Component/chart/chart.component';
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 import { AdminUserComponent } from './Component/admin-user/admin-user.component';
 import {MatTableModule} from '@angular/material/table';
-import { ToolbarUserComponent } from './Component/toolbar-user/toolbar-user.component'
+import { ToolbarUserComponent } from './Component/toolbar-user/toolbar-user.component';
+import { DilalogUnlockComponent } from './Component/dilalog-unlock/dilalog-unlock.component'
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     CanvasJSChart,
     ChartComponent,
     AdminUserComponent,
-    ToolbarUserComponent
+    ToolbarUserComponent,
+    DilalogUnlockComponent
 
   ],
   imports: [

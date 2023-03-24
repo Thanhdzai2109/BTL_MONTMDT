@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import { UserService } from 'src/app/Service/user.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
+import { UserService } from "src/app/Service/user.service";
+import { MatDialog } from "@angular/material/dialog";
+import { DilalogUnlockComponent } from "../dilalog-unlock/dilalog-unlock.component";
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -10,65 +12,75 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-
-];
+const ELEMENT_DATA: PeriodicElement[] = [];
 @Component({
-  selector: 'app-admin-user',
-  templateUrl: './admin-user.component.html',
-  styleUrls: ['./admin-user.component.scss']
+  selector: "app-admin-user",
+  templateUrl: "./admin-user.component.html",
+  styleUrls: ["./admin-user.component.scss"],
 })
-
 export class AdminUserComponent implements OnInit {
   opened = true;
   public opened2 = false;
   isUser = false;
   isSeller = false;
   isAdmin = false;
-  datalist:any =[]
-  displayedColumns: string[] = ['position', 'name','email','chucnang', 'weight', 'symbol','thaoTac'];
-  dataSource:any = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  name :string
+  datalist: any = [];
+  displayedColumns: string[] = [
+    "position",
+    "name",
+    "email",
+    "chucnang",
+    "weight",
+    "symbol",
+    "thaoTac",
+  ];
+  dataSource: any = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private titleService: Title,
-    private userService :UserService
-  ) { }
+    private dialog: MatDialog,
+    private userService: UserService
+  ) {}
   isLogin = false;
   role: string;
   ngOnInit(): void {
-    this.role = localStorage.getItem('role');
-    this.setTitle('Bookstore');
-    console.log('role check toolbar', this.role);
-    if (this.role === 'admin') {
-     this.isAdmin = true;
-     this.isLogin = true;
-   }
-   this.dataSource.paginator = this.paginator;
+    this.role = localStorage.getItem("role");
+    this.setTitle("Bookstore");
+    console.log("role check toolbar", this.role);
+    if (this.role === "admin") {
+      this.isAdmin = true;
+      this.isLogin = true;
+    }
+    this.dataSource.paginator = this.paginator;
     this.doSearh();
   }
   nameEventHander($event: any) {
     this.opened2 = $event;
-    console.log('2', this.opened2);
+    console.log("2", this.opened2);
   }
 
-  public setTitle( dashboard: string) {
-    this.titleService.setTitle( dashboard );
+  public setTitle(dashboard: string) {
+    this.titleService.setTitle(dashboard);
   }
-  doSearh(){
-    let data ={
-      name:this.name
-    }
-    this.userService.SearchUser(data).subscribe(res=>{
-        this.dataSource=res;
-    })
+  doSearh() {
+    let data = {
+      name: this.name,
+    };
+    this.userService.SearchUser(data).subscribe((res) => {
+      this.dataSource = res;
+    });
   }
-
-
-  deleteItem() {
-
-      }
-
-
+ 
+  openDialog($event) {
+    debugger
+    const dialogRef = this.dialog.open(DilalogUnlockComponent, {
+      width: '25rem',
+      panelClass: 'custom-dialog-container',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
+  }
 
 }
