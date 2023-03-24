@@ -74,21 +74,24 @@ export class AdminUserComponent implements OnInit {
     });
   }
 
-  openDialog(id :number) {
+  openDialog(id: number) {
     const dialogRef = this.dialog.open(DilalogUnlockComponent, {
-      width: '25rem',
-      panelClass: 'custom-dialog-container',
+      width: "auto",
+      height: "auto",
+      // panelClass: 'custom-dialog-container',
+      disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {
-       this.userService.ActiveUser(id).subscribe(message=>{
-        if (message.statusCode === 200) {
-          this.matSnackBar.open('Cập nhật trạng thái thành công ', 'ok', {
-            duration: 4000,
-          });
-          this.doSearh()
-        }
-       })
+      if (result) {
+        this.userService.ActiveUser(id).subscribe((message) => {
+          if (message.statusCode === 200) {
+            this.matSnackBar.open("Cập nhật trạng thái thành công ", "ok", {
+              duration: 4000,
+            });
+            this.doSearh();
+          }
+        });
+      }
     });
   }
-
 }
