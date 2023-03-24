@@ -1,5 +1,10 @@
 <div class="container" *ngIf="isAdmin">
   <div>
+    <button id="adminBookBtn" mat-button class="navbutton" (click)="Home()">
+      <span class="fa fa-home"> Trang chủ</span>
+    </button>
+  </div>
+  <div>
     <button id="adminBookBtn" mat-button class="navbutton" (click)="books()">
       <span class="fa fa-book"> Danh sách cuốn sách</span>
     </button>
