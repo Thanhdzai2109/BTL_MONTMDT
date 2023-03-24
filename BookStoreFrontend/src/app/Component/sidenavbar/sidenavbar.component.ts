@@ -12,12 +12,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   templateUrl: './sidenavbar.component.html',
   styleUrls: ['./sidenavbar.component.scss']
 })
+
 export class SidenavbarComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenavModule;
   isSeller = false;
   isAdmin=false;
   role:string;
-
+  
   constructor(private router:Router,private route:ActivatedRoute,) { }
 
 
@@ -72,3 +73,4 @@ this.router.navigate(['books'],{queryParams:{book:'order'}});
   }
   
 }
+

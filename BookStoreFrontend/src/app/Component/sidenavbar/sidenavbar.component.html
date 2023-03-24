@@ -1,4 +1,10 @@
 <div class="container" *ngIf="isAdmin">
+  <div class="logo-name" fxFlex="15">
+    <div class="image" style="display: flex; justify-content: flex-start;">
+      <img src=".\assets\education.png"  />
+      <span class="mat-title" fxHide.xs="true">Bookstore</span>
+    </div>
+  </div>
   <div>
     <button id="adminBookBtn" mat-button class="navbutton" (click)="Home()">
       <span class="fa fa-home"> Trang chủ</span>
@@ -25,8 +31,6 @@
       <span class="fa fa-user-circle-o"> Quản lý tài khoản</span>
     </button>
   </div>
-
-
 </div>
 <div class="container" *ngIf="isSeller">
   <div>
