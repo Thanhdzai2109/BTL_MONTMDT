@@ -160,7 +160,7 @@ mat-card-title {
 // }
 .ngx-pagination .current {
     padding: 0.1875rem 0.625rem;
-    background: rgba(143, 43, 47, 1) !important;
+    background: rgb(51, 43, 143) !important;
     color: #fefefe;
     cursor: default;
 }
@@ -202,7 +202,7 @@ mat-card-title {
 // }
 .ngx-pagination .current {
     padding: 0.1875rem 0.625rem;
-    background: rgba(143, 43, 47, 1) !important;
+    background: rgb(53, 43, 143) !important;
     color: #fefefe;
     cursor: default;
 }
@@ -230,7 +230,7 @@ mat-card:hover {
 }
 
 .pagination a.active {
-    background-color: #8F2B2F;
+    background-color: #2b378f;
 }
 
 .pagination a:hover:not(.active) {

@@ -41,12 +41,16 @@
                 <!-- </div> -->
 
                 <div fxLayout="row wrap" fxLayoutAlign="end end">
-                    <button  id="approveBtn" mat-raised-button class="button" (click)="approveBooks(book.bookId,'approved')">
-              APPROVE
-            </button>
-                    <button id="rejectBtn" mat-raised-button class="button" style="background-color: #f44336;" (click)="rejectBooks(book.bookId,'rejected')">
-              REJECT
-            </button>
+                    <button id="approveBtn" mat-raised-button class="button"
+                        (click)="approveBooks(book.bookId,'approved')">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Duyệt
+                    </button>
+                    <button id="rejectBtn" mat-raised-button class="button" style="background-color: #f44336;"
+                        (click)="rejectBooks(book.bookId,'rejected')">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        Từ chối
+                    </button>
 
 
                 </div>

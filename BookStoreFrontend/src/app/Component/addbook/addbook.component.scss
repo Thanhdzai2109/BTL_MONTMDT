@@ -48,9 +48,9 @@
     width: auto;
   }
   button {
-    background-color: rgba(131, 4, 4, 0.8);
+    background-color: rgba(4, 70, 131, 0.8);
     font-size: 1rem;
-    color: white;
+    color: rgba(255, 255, 255, 0.956);
     height: auto;
     width: auto;
   }
@@ -64,7 +64,7 @@
   }
   ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    color: rgba(61, 60, 61, 0.692);
+    color: rgba(60, 61, 60, 0.692);
     font-size: medium;
     // font-weight: bolder;
   }

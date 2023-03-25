@@ -1,8 +1,8 @@
 <div class="container">
 
 
-    <div style="background-color: #A03037; width: 100%; margin-bottom: 10px;">
-        <h2 style="color: white; text-align: center;padding-top: 10px;">Add Book</h2>
+    <div style="background-color: #303DA0; width: 100%; margin-bottom: 10px;">
+        <h2 style="color: white; text-align: center;padding-top: 10px;">  <i class="fa fa-plus"></i> Thêm mới</h2>
     </div>
 
 
@@ -60,7 +60,8 @@
         </div>
         <div class="submit">
             <button mat-button id="submit" [disabled]=" bookName.invalid || authorName.invalid || price.invalid || noOfBooks.invalid" type="submit" style="border: none;border-radius: 0px; outline: none;" (click)="onClickaddBook()">
-                Add Book
+                <i class="fa fa-save"></i>
+                Lưu
             </button>
         </div>
     </form>

@@ -60,6 +60,7 @@ export const environment = {
   UserSearch:'user/SearchData',
   ratereview: 'books/getratereviews/?bookId=',
   ActiveUser:'ActiveUser',
+  DeleteUser:'DeleteUser',
   adminUrl: 'http://localhost:8080/',
   approveBook: 'admin/update/',
   rejectBook: 'admin/update/',
