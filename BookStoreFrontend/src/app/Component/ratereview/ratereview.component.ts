@@ -4,6 +4,8 @@ import { BookService } from 'src/app/Service/book.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { CartService } from 'src/app/Service/cart.service';
+import { WishlistService } from 'src/app/Service/wishlist.service';
 
 
 @Component({
@@ -18,8 +20,10 @@ export class RatereviewComponent implements OnInit {
     private bookService: BookService,
     private router: Router,
     private data: BookService,
+    private cartService: CartService,
     public dialog: MatDialog,
     private matSnackBar: MatSnackBar,
+    private wishlistService: WishlistService,
     private route: ActivatedRoute,
   ) { }
   bookId: any;
@@ -133,20 +137,20 @@ export class RatereviewComponent implements OnInit {
     this.ngOnInit();
 
     // if (this.visible) {
-    //   this.bookService.addToCart(this.bookId).subscribe((response: any) => {
-    //     this.data.changeMessage("count");
-    //     console.log(response["obj"]);
-    //     this.isAdded = response.obj;
-    //     this._matSnackBar.open("Book added to cart", "ok", {
-    //       duration: 1000,
-    //     });
-    //   });
+      this.cartService.addToCart(this.bookId).subscribe((response: any) => {
+        // this.data.changeMessage("count");
+        console.log(response["obj"]);
+        this.isAdded = response.obj;
+        this.matSnackBar.open("Book added to cart", "ok", {
+          duration: 1000,
+        });
+      });
     // } else {
-    //   const dialogRef = this.dialog.open(LoginComponent);
-    //   dialogRef.afterClosed().subscribe((result) => {
-    //     window.location.reload();
-    //   });
-    //   this._matSnackBar.open("please login", "ok", {
+      // const dialogRef = this.dialog.open(LoginComponent);
+      // dialogRef.afterClosed().subscribe((result) => {
+      //   window.location.reload();
+      // });
+    //   this.matSnackBar.open("please login", "ok", {
     //     duration: 1000,
     //   });
     // }
@@ -155,13 +159,13 @@ export class RatereviewComponent implements OnInit {
   // adding book to wish list if user login
   addToWishlist() {
     // if (this.visible) {
-    //   this.bookService.addToWishList(this.bookId).subscribe((response: any) => {
-    //     console.log(response["obj"]);
-    //     this.isListed = response["obj"];
-    //     this._matSnackBar.open("Book added to wishlist", "ok", {
-    //       duration: 1000,
-    //     });
-    //   });
+      this.wishlistService.addToWishlist(this.bookId).subscribe((response: any) => {
+        console.log(response["obj"]);
+        this.isListed = response["obj"];
+        this.matSnackBar.open("Book added to wishlist", "ok", {
+          duration: 1000,
+        });
+      });
     // } else {
     //   const dialogRef = this.dialog.open(LoginComponent);
     //   dialogRef.afterClosed().subscribe((result) => {
