@@ -24,8 +24,17 @@ public class Users  {
 		private boolean isVerified;
 		private String role;
 		private Integer active;
-		
-		@OneToMany(cascade = CascadeType.ALL, targetEntity = Address.class)
+		private  Integer isdelete;
+
+	public Integer getIsdelete() {
+		return isdelete;
+	}
+
+	public void setIsdelete(Integer isdelete) {
+		this.isdelete = isdelete;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Address.class)
 		@JoinColumn(name = "userId")
 		private List<Address> address;
 
@@ -64,6 +73,23 @@ public class Users  {
 		this.isVerified = isVerified;
 		this.role = role;
 		this.active = active;
+		this.address = address;
+		this.cartBooks = cartBooks;
+		this.wishlistBook = wishlistBook;
+		this.orderBookDetails = orderBookDetails;
+	}
+
+	public Users(long userId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, boolean isVerified, String role, Integer active, Integer isdelete, List<Address> address, List<CartItem> cartBooks, List<WishlistBook> wishlistBook, List<Order> orderBookDetails) {
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.mobileNumber = mobileNumber;
+		this.createdDate = createdDate;
+		this.isVerified = isVerified;
+		this.role = role;
+		this.active = active;
+		this.isdelete = isdelete;
 		this.address = address;
 		this.cartBooks = cartBooks;
 		this.wishlistBook = wishlistBook;

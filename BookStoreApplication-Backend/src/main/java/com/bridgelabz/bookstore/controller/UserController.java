@@ -136,7 +136,7 @@ public class UserController {
     @PutMapping("DeleteUser/{userId}")
     public ResponseEntity<Response> deleteUser(@PathVariable long userId) {
         Users user = service.findById(userId);
-        user.setActive(0);
+        user.setIsdelete(1);
         repository.save(user);
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new Response("delete", 200, user));
