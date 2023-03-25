@@ -6,6 +6,7 @@ import { UserService } from "src/app/Service/user.service";
 import { MatDialog } from "@angular/material/dialog";
 import { DilalogUnlockComponent } from "../dilalog-unlock/dilalog-unlock.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { DialalogDeleteComponent } from "../dialalog-delete/dialalog-delete.component";
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -86,6 +87,25 @@ export class AdminUserComponent implements OnInit {
         this.userService.ActiveUser(id).subscribe((message) => {
           if (message.statusCode === 200) {
             this.matSnackBar.open("Cập nhật trạng thái thành công ", "ok", {
+              duration: 4000,
+            });
+            this.doSearh();
+          }
+        });
+      }
+    });
+  }
+  deleteDilag(id:number){
+    const dialogRef = this.dialog.open(DialalogDeleteComponent, {
+      width: "auto",
+      height: "auto",
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.userService.DeleteUser(id).subscribe((message) => {
+          if (message.statusCode === 200) {
+            this.matSnackBar.open("Xóa thành công ", "ok", {
               duration: 4000,
             });
             this.doSearh();

@@ -1,35 +1,35 @@
 <div class="container" *ngIf="isAdmin">
   <div style="overflow: hidden; height: 12em;">
     <div style="margin-left: 6px;">
-        <img style="height: 60px; width: 60px ;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
+        <img style="height: 125px; width: 144px ;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
     </div>
     <div style="height: 60px; width: 60px; padding: 0px; margin: 0px;"  *ngIf="isLogin">
         <h4 style="font-weight: bold;">{{name}}</h4>
     </div>
 </div>
   <div>
-    <button id="adminBookBtn" mat-button class="navbutton" (click)="Home()">
+    <button id="adminBookBtn" mat-button class="navbutton" (click)="Home()" style="font-size: 24px;">
       <span class="fa fa-home"> Trang chủ</span>
     </button>
   </div>
   <div>
-    <button id="adminBookBtn" mat-button class="navbutton" (click)="books()">
+    <button id="adminBookBtn" mat-button class="navbutton" (click)="books()"style="font-size: 24px;">
       <span class="fa fa-book"> Danh sách cuốn sách</span>
     </button>
   </div>
   <div>
-    <button id="sellerBookBtn" mat-button class="navbutton" (click)="sellerBooks()">
+    <button id="sellerBookBtn" mat-button class="navbutton" (click)="sellerBooks()"style="font-size: 24px;">
       <span class="fa fa-tasks"> Quản lý Sách</span>
     </button>
   </div>
   <div>
-    <button id="orderStatusBookBtn" mat-button class="navbutton" (click)="orders()">
+    <button id="orderStatusBookBtn" mat-button class="navbutton" (click)="orders()"style="font-size: 24px;">
       <span class="fa fa-first-order"> Quản lý đơn hàng</span>
     </button>
   </div>
   <div>
 
-    <button id="User" mat-button class="navbutton" (click)="User()">
+    <button id="User" mat-button class="navbutton" (click)="User()"style="font-size: 24px;">
       <span class="fa fa-user-circle-o"> Quản lý tài khoản</span>
     </button>
   </div>
@@ -37,20 +37,20 @@
 <div class="container" *ngIf="isSeller">
   <div style="overflow: hidden; height: 12em;">
     <div style="margin-left: 6px;">
-        <img style="height: 60px; width: 60px ;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
+        <img style="height: 125px; width: 144px;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
     </div>
     <div style="height: 60px; width: 60px; padding: 0px; margin: 0px;"  *ngIf="isLogin">
         <h4 style="font-weight: bold;">{{name}}</h4>
     </div>
 </div>
   <div>
-    <button id="orderStatusBookBtn" mat-button class="navbutton" (click)="sellerBook()">
+    <button id="orderStatusBookBtn" mat-button class="navbutton" (click)="sellerBook()" style="font-size: 24px;">
       <span class="fa fa-book"> Sách đã bán</span>
     </button>
   </div>
   <div>
 
-    <button id="User" mat-button class="navbutton" (click)="orderStatus()">
+    <button id="User" mat-button class="navbutton" (click)="orderStatus()"style="font-size: 24px;">
       <span class="fa fa-first-order"> Đơn hàng</span>
     </button>
   </div>

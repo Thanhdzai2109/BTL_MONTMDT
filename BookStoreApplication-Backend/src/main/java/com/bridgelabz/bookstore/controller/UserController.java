@@ -133,11 +133,10 @@ public class UserController {
                 .body(new UserResponse("status", users.getContent(), users.getTotalPages()));
     }
 
-    @PutMapping("DeleteUser/{userId}")
+    @GetMapping("DeleteUser/{userId}")
     public ResponseEntity<Response> deleteUser(@PathVariable long userId) {
         Users user = service.findById(userId);
-        user.setActive(0);
-        repository.save(user);
+        repository.deleteById(userId);
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new Response("delete", 200, user));
     }
