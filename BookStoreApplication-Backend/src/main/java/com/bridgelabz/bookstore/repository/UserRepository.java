@@ -41,8 +41,9 @@ Optional<Users> findUserById(Long id);
     Page<Users> GetAll(String name, Pageable pageable);
     @Query(value = "select * from users where ?1 is null or active=0 and name like %?1%", nativeQuery = true)
     Page<Users> GetAllDeleted(String name, Pageable pageable);
-   @Query("select u from  Users u where u.name =:name and u.isdelete=:null")
+   @Query("select u from  Users u where u.name =:name and u.isdelete is null")
     List<Users> getdata(String name);
-
+    @Query("select u from  Users u where u.isdelete is null ")
+    List<Users>getAll();
 
 }
