@@ -26,8 +26,7 @@
             </div>
         </div>
         <br>
-        <div class="alert alert-danger text-justify" *ngIf="bookList.length==0">There is not any books to display please
-            add some book and approved it</div>
+        <div class="alert alert-danger text-justify" *ngIf="bookList.length==0">Không có sản phẩm nào</div>
 
         <div class="list-books">
 
@@ -39,7 +38,7 @@
                       margin-left: 55px; margin-right: 55px; padding-top: 20px; padding-bottom: 20px; " />
                     </mat-card-title>
                     <mat-card-content style="width: 16em; ">
-                        <div class="out-of-stock " *ngIf="!book.noOfBooks ">Out Of stock</div>
+                        <div class="out-of-stock " *ngIf="!book.noOfBooks " style="color: aliceblue; background-color: #EE0000; font-family:revert ;">Hết hàng</div>
                         <div class="bookname ">{{ book.bookName }}</div>
 
 
@@ -63,7 +62,7 @@
                         <div class="cart-buttons " *ngIf="book.noOfBooks && value[book.bookId] !=book.bookId ">
                             <div>
                                 <button class="addtobag " (output)="getUpdatedNotes($event)"
-                                    (click)="addtobag(book.bookId)" #clickState mat-button>ADD TO BAG <i class="mat-icon-rtl-mirror" svgIcon="thumb-up"></i></button>
+                                    (click)="addtobag(book.bookId)" #clickState mat-button matTooltip="Thêm vào giỏ"> <i class="fa fa-cart-plus" aria-hidden="true" style="font-size: 24px;"></i></button>
                             </div>
                             <div>
                                 <button (click)="addtoWish(book.bookId)" style="border: 1px solid #e0d6d6;
@@ -71,7 +70,7 @@
                               width: 83px;
                               height: 35px;
                               background-color: white;
-                              border-radius: 3px;">Yêu thích </button>
+                              border-radius: 3px;" matTooltip="Yêu thích"><i class="fa fa-heart-o" style="color:red ;font-size: 24px;"></i></button>
                             </div>
                         </div>
                         <div class="addedbtn " *ngIf="book.noOfBooks && value[book.bookId]==book.bookId ">
@@ -83,9 +82,9 @@
                         <div class="addedbtn " (click)="addtoWish(book.bookId)" *ngIf="!book.noOfBooks">
                             <button style=" height: 34px; width: 191px; border-radius: 0px; display: flex;
                           align-items: center; justify-content: center;
-                          border: 1px solid #e0d6d6;
+                          border: 1px solid #e0d6dca8;
                               outline: none; border-radius: 2px;
-                            opacity: 1; " mat-button>Yêu thích</button>
+                            opacity: 1; " mat-button matTooltip="Yêu thích"> <i class="fa fa-heart-o" style="color:red ;font-size: 24px;"></i></button>
                         </div>
                     </mat-card-content>
                 </mat-card>
