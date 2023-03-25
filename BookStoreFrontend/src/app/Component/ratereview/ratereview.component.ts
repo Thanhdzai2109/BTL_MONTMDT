@@ -137,14 +137,20 @@ export class RatereviewComponent implements OnInit {
     this.ngOnInit();
 
     // if (this.visible) {
-      this.cartService.addToCart(this.bookId).subscribe((response: any) => {
-        // this.data.changeMessage("count");
-        console.log(response["obj"]);
-        this.isAdded = response.obj;
-        this.matSnackBar.open("Book added to cart", "ok", {
+      if(this.book.noOfBooks>0){
+        this.cartService.addToCart(this.bookId).subscribe((response: any) => {
+          // this.data.changeMessage("count");
+          console.log(response["obj"]);
+          this.isAdded = response.obj;
+          this.matSnackBar.open("Book added to cart", "ok", {
+            duration: 1000,
+          });
+        });
+      }else{
+        this.matSnackBar.open("Sản phẩm đã hết hàng", "ok", {
           duration: 1000,
         });
-      });
+      }
     // } else {
       // const dialogRef = this.dialog.open(LoginComponent);
       // dialogRef.afterClosed().subscribe((result) => {
