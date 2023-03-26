@@ -109,7 +109,10 @@ getSearchBookData() {
       this.bookSearch = message.books;
     });
   }
-
+	
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
 
   SetPage(i, event: any) {
     event.preventDefault();
