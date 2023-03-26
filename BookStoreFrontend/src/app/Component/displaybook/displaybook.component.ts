@@ -38,7 +38,7 @@ export class DisplaybookComponent implements OnInit {
   lengths = 0;
   CurrentPageNo: 0;
   totalPage: Array<number>;
-
+  public opened2 = false;
   s: any; selectoption: any;
   value: any = [];
   @Output() output: EventEmitter<any> = new EventEmitter();
@@ -59,6 +59,10 @@ export class DisplaybookComponent implements OnInit {
       console.log('key ::' + key);
     }
     console.log(this.value);
+  }
+  nameEventHander($event: any) {
+    this.opened2 = $event;
+    console.log('2', this.opened2);
   }
 
   onChange(deviceValue) {
