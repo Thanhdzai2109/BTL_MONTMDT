@@ -23,7 +23,7 @@
                             <div class="authorname">Author name : {{ book.authorName }}</div>
                             <div class="price">Rs. {{ book.price }}</div>
                             <div class="noofbooks">No of books : {{ book.noOfBooks }}</div>
-                            <div class="status" *ngIf="book.status == 'OnHold'">Status : <label style="color: yellow;">{{ book.status }}</label> </div>
+                            <div class="status" *ngIf="book.status == 'OnHold'">Status : <label style="color: black;">{{book.status }}</label> </div>
                             <div class="status" *ngIf="book.status == 'approved'">Status : <label style="color: green;">{{ book.status }}</label> </div>
                             <div class="status" *ngIf="book.status == 'rejected'">Status : <label style="color: red;">{{ book.status }}</label> </div>
                             <div class="description">Description : {{ book.bookDetails }}</div>

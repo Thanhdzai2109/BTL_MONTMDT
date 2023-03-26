@@ -48,6 +48,7 @@ public class OrderServiceImp implements IOrderServices {
 
 	public Order placeOrder(String token, Long bookId, Long addressId) {
 		Long id = generate.parseJWT(token);
+		System.out.println("token"+id);
 		Users userdetails = userRepo.findById(id).get();
 		if (userdetails != null) {
 			Order orderDetails = new Order();
@@ -116,13 +117,13 @@ public class OrderServiceImp implements IOrderServices {
 	 				+ "<center>Bookstore</center> "
 	 				+ "</h3>\n "
 	 				+ "<body  style=\"background-color:#FAF3F1;\">\n"+
-	 				"<img src=\"E:\\git merge ideation\\final front\\BookStoreFrontend\\src\\assets\\bookimage/"
+	 				"<img src=\"D:\\BTLTMDT\\BookStoreFrontend\\src\\assets\\bookimage\\"
 	 				+book.getImage()+ "\" alt=\"bookImage\">"
 	 				
 	 			 +userdetails.getEmail()+
 	 				" <br>"+"order details <br>"+" \n"+data+"\n"
 	 				+"please rate us below link<br>"+"\n"
-	 		+"http://localhost:4200/books/ratingreview<br>"
+	 		+"http://localhost:4200/books/rateandreview/"+bookId+"/"+token
 	
 	 		+ "</body>"
 	 		+ " </html>" ;

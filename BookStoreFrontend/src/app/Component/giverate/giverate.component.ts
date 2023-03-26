@@ -79,6 +79,7 @@ export class GiverateComponent implements OnInit {
   }
 
   submitRate() {
+    debugger
     const data = {
       rating: this.rating,
       review: this.review,
@@ -86,14 +87,14 @@ export class GiverateComponent implements OnInit {
     console.log('rating is', data.rating);
     console.log('review is ', data.review);
     this.bookService
-      .ratingandreview(this.bookId, data , this.token)
+      .ratingandreview(this.bookId, data ,this.token)
       .subscribe((response: any) => {
         console.log('submit rate response:', response);
         this.snackBar.open(response.response, 'ok', { duration: 2000 });
         this.router.navigateByUrl('books');
       },
       (error: any) => {
-        this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
+        this.snackBar.open('Lỗi ', 'ok', { duration: 2000 });
       }
 
       );
