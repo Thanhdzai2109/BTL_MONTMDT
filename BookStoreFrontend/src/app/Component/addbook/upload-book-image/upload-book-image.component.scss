@@ -4,6 +4,7 @@
   }
   .submit{
       display: flex;
+      font-size: initial;
       justify-content: flex-end;
   }
   input {
@@ -15,6 +16,6 @@
     outline: none;
     height: auto;
     width: 5rem;
-    background-color: rgba(131, 4, 4, 0.8);
+    background-color: #3032A0;
     color: whitesmoke;
   }
