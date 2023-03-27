@@ -25,13 +25,13 @@ export class AddbookComponent implements OnInit {
     Validators.required,
     Validators.minLength(3),
     Validators.maxLength(25),
-    Validators.pattern("[a-zA-Z ]*"),
+    // Validators.pattern("[a-zA-Z ]*"),
   ]);
   authorName = new FormControl(this.addbooks.authorName, [
     Validators.required,
     Validators.minLength(5),
     Validators.maxLength(25),
-    Validators.pattern("[a-zA-Z ]*"),
+    // Validators.pattern("[a-zA-Z ]*"),
   ]);
   price = new FormControl(this.addbooks.price, [
     Validators.required,
@@ -46,7 +46,7 @@ export class AddbookComponent implements OnInit {
   bookDetails = new FormControl(this.addbooks.bookDetails, [
     Validators.required,
     Validators.minLength(20),
-    Validators.pattern("[a-zA-Z ]*"),
+    // Validators.pattern("[a-zA-Z ]*"),
   ]);
 
 
@@ -73,15 +73,15 @@ export class AddbookComponent implements OnInit {
         return;
       }
     }
-    
+
     bookNameValidation() {
-      return this.bookName.hasError("required") ? "Book Name must be required" : 
-             this.bookName.hasError("minlength") ? "Minimum 3 character must be present" : 
+      return this.bookName.hasError("required") ? "Book Name must be required" :
+             this.bookName.hasError("minlength") ? "Minimum 3 character must be present" :
              this.bookName.hasError("maxlength") ? "Maximum 25 character allowed" : "";
     }
     bookAuthorValidation() {
-      return this.authorName.hasError("required") ? "Author name must be required" : 
-             this.authorName.hasError("minlength") ? "Minimum 5 character must be present" : 
+      return this.authorName.hasError("required") ? "Author name must be required" :
+             this.authorName.hasError("minlength") ? "Minimum 5 character must be present" :
              this.authorName.hasError("maxlength") ? "Maximum 25 character allowed" : "";
     }
     bookPriceValidation() {
@@ -90,7 +90,7 @@ export class AddbookComponent implements OnInit {
              this.price.hasError("minlength") ? "Minimum 1 digit must be there" :"";
     }
     noOfBooksValidation() {
-      return this.noOfBooks.hasError("required") ? "Total Number of must be required" : 
+      return this.noOfBooks.hasError("required") ? "Total Number of must be required" :
              this.noOfBooks.hasError('pattern')? "Only numbers allowed":
              this.noOfBooks.hasError("minlength") ? "Minimum 1 digit must be there" :"";
     }
@@ -98,5 +98,5 @@ export class AddbookComponent implements OnInit {
       return this.bookDetails.hasError("required") ? "Book Description must required" :
              this.bookDetails.hasError("minlength") ? "Minimum 20 characters  must be there" :"";
     }
-   
+
 }
