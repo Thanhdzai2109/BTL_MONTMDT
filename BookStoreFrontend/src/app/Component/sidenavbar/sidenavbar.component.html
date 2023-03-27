@@ -5,6 +5,9 @@
 <div style="height: 60px; width: 60px; padding: 0px; margin: 0px;"  *ngIf="isLogin">
     <h4 style="font-weight: bold;">{{name}}</h4>
 </div>
+<div *ngIf="isLogin">
+  <h4 style="font-weight: inherit;">{{email}}</h4>
+</div>
 <mat-divider></mat-divider>
   <button mat-button class="menu-button" (click)="Home()">
     <mat-icon>home</mat-icon>

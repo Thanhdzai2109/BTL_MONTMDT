@@ -31,6 +31,7 @@ export class AdminUserComponent implements OnInit {
     "position",
     "name",
     "email",
+    "ngaytao",
     "chucnang",
     "weight",
     "symbol",

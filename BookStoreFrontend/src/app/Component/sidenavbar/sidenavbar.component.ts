@@ -23,6 +23,7 @@ export class SidenavbarComponent implements OnInit {
   role:string;
   isLogin = false;
   name: any;
+  email:any;
   length: any;
   wishlistLength: number;
   constructor(private router:Router,private route:ActivatedRoute, private wishlistService: WishlistService, private cartService: CartService,) { }
@@ -47,6 +48,8 @@ export class SidenavbarComponent implements OnInit {
     this.getCartItemCount();
     this.name = localStorage.getItem('Name');
     this.role = localStorage.getItem('role');
+    this.email=localStorage.getItem('email');
+    console.log("email",this.email)
     console.log('role check toolbar', this.role);
     if (this.role === 'admin') {
      this.isAdmin = true;
