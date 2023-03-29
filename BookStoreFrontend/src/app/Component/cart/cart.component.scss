@@ -248,7 +248,7 @@ mat-form-field {
     margin-left: 0%;
     display: flexbox;
     //float: right;
-    border-radius: 2px;
+    border-radius: 10px;
     opacity: 1;
     margin-bottom: 7%;
     font-size: 14px;
@@ -289,6 +289,7 @@ mat-form-field {
     width: 131px;
     height: 35px;
     background-color: #3371B5;
+    border-radius: 10px;
     color: white;
 }
 

@@ -60,15 +60,15 @@
                         </div>
                     </div>
                     <div fxLayout="row" style="margin-left: -25px;">
-                        <button *ngIf="!isAdded; else added" mat-button class="add" (click)="addToCart(book.bookId)" style="color: white; background-color: #3371b5;">
+                        <button *ngIf="!isAdded; else added" mat-button class="add" (click)="addToCart(book.bookId)" style="color: white; background-color: #3371b5; border-radius: 10px;">
                             <i class="fa fa-cart-plus" aria-hidden="true" style="font-size: 24px;"></i> Thêm vào giỏ hàng 
               </button>
                         <ng-template #added>
-                            <button mat-button class="add" style="color: white; background-color: #3371b5;">
+                            <button mat-button class="add" style="color: white; background-color: #3371b5; border-radius: 10px;">
                  Đã thêm vào giỏ hàng
                 </button>
                         </ng-template>
-                        <button mat-button *ngIf="!isListed" class="add" (click)="addToWishlist()" style="color: #0a0102; background-color: white;">
+                        <button mat-button *ngIf="!isListed" class="add" (click)="addToWishlist()" style="color: #0a0102; background-color: white; border-radius: 10px;">
                             <i class="fa fa-heart" aria-hidden="true" style="color: deeppink;"></i>  Thêm vào hàng yêu thích
               </button>
                         <!-- <button mat-button class="add" style="color: white; background-color: #3371b5;">
