@@ -113,7 +113,7 @@ public class OrderServiceImp implements IOrderServices {
 	 		String body="<html> \n"
 	 				
 	 			
-	 				+"<h3 ; style=\"background-color:#990000;color:#ffffff;\" >\n "
+	 				+"<h3 ; style=\"background-color:#0047AB;color:#ffffff;\" >\n "
 	 				+ "<center>Bookstore</center> "
 	 				+ "</h3>\n "
 	 				+ "<body  style=\"background-color:#FAF3F1;\">\n"+
