@@ -27,7 +27,7 @@
                              
                                 <div *ngIf="isAdmin">
                                     <button id="updateOrderStatusBtn" [disabled]="book.orderStatus === 'in shipment' || book.orderStatus === 'delivered' || book.orderStatus === 'in progress'" 
-                                    [hidden]="book.orderStatus === 'in shipment' || book.orderStatus === 'delivered' || book.orderStatus === 'in progress'" style="width: 10rem; margin-left: 0px; margin-top:auto; color: white; outline: none; border-radius: 0px; background-color: rgba(4, 29, 131, 0.8);"  (click)="updateOrderAdmin(book.orderId,'in progress')"  mat-button>
+                                    [hidden]="book.orderStatus === 'in shipment' || book.orderStatus === 'delivered' || book.orderStatus === 'in progress'" style="width: 10rem; margin-left: 0px; margin-top:auto; color: white; outline: none; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);"  (click)="updateOrderAdmin(book.orderId,'in progress')"  mat-button>
                                     <i class="fa fa-refresh" aria-hidden="true"></i>
                               Cập nhật trạng thái 
                           </button>
@@ -64,7 +64,7 @@
                              
                                
                                 <div *ngIf="book.orderStatus != 'delivered'" >
-                                    <mat-form-field>
+                                    <mat-form-field appearance="fill">
                                         <mat-label>Update Order Status</mat-label>
                                         <mat-select disableRipple>
                                         <mat-option [disabled]="book.orderStatus === 'in shipment' || book.orderStatus === 'delivered'" (click)="updateOrderSeller(book.orderId,'in shipment')" >In Shipment</mat-option>

@@ -30,19 +30,19 @@
 
                             <div style="display: flex; justify-content: flex-start; margin-left: 10px;">
                                 <div style="margin-left: 10px;">
-                                    <button id="editBtn" matTooltip="Edit Book" style="width: 5rem; outline: none;color: rgb(255, 255, 255);border-radius: 0px; background-color: rgba(4, 23, 131, 0.8);" (click)="editBook(book)" mat-button>
+                                    <button id="editBtn" matTooltip="Edit Book" style="width: 5rem; outline: none;color: rgb(255, 255, 255);border-radius: 10px; background-color: rgba(4, 23, 131, 0.8);" (click)="editBook(book)" mat-button>
                                         <i class='fa fa-edit' style="font-size:24px"></i>
                                         Sửa 
                                     </button>
                                 </div>
                                 <div style="margin-left: 10px;">
-                                    <button matTooltip="Delete Book" id="deleteBtn" style="width: 5rem; color: white; outline: none; border-radius: 0px; background-color: rgba(131, 4, 4, 0.8);" (click)="deleteBook(book.bookId)" mat-button>
+                                    <button matTooltip="Delete Book" id="deleteBtn" style="width: 5rem; color: white; outline: none; border-radius: 10px; background-color: rgba(131, 4, 4, 0.8);" (click)="deleteBook(book.bookId)" mat-button>
                                         <i class='fa fa-trash-o' style="font-size:24px"></i>
                                         Xóa
                                     </button>
                                 </div>
                                 <div style="margin-left: 10px;" *ngIf="book.status != 'approved' && book.status != 'OnHold' ">
-                                    <button matTooltip="Verify Book" id="verifyBtn" style="width: 5rem; color: white; outline: none; border-radius: 0px; background-color: rgba(4, 131, 49, 0.8);" (click)="verifyBook(book.bookId)" mat-button>
+                                    <button matTooltip="Verify Book" id="verifyBtn" style="width: 5rem; color: white; outline: none; border-radius: 10px; background-color: rgba(4, 131, 49, 0.8);" (click)="verifyBook(book.bookId)" mat-button>
                                         <i class="fa fa-check-circle" style="font-size:24px"></i>
                                         Verify
                                     </button>
