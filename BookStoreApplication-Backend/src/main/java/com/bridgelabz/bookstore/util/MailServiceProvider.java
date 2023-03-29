@@ -20,7 +20,7 @@ public class MailServiceProvider {
 	public static void sendEmail(String toEmail, String subject, String body) {
 
 		String fromEmail ="thanhcuto2109@gmail.com";
-		String password ="zoudvxkntkemlhpx";
+		String password ="prwiguevxrzxvbva";
 
 		Properties prop = new Properties();
 		prop.put("mail.smtp.auth", "true");

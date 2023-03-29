@@ -20,7 +20,7 @@ public class EmailProviderService{
 	public  void sendMail(String emailContact, String emailSubject, String body) {
 
 		String fromEmail ="thanhcuto2109@gmail.com";
-		String password ="zoudvxkntkemlhpx";
+		String password ="prwiguevxrzxvbva";
 		Properties property = new Properties();
 		property.put("mail.smtp.auth", "true");
 		property.put("mail.smtp.starttls.enable", "true");
