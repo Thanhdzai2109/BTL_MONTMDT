@@ -57,7 +57,7 @@ public class UserController {
     public ResponseEntity<UsersDetailRes> login(@RequestBody LoginInformation information) {
 
         Users users = service.login(information);
-        if (users != null && users.getActive() == 1) {
+        if (users != null && users.getActive() == 1&&users.getIsdelete()==null) {
             String token = generate.jwtToken(users.getUserId());
             return ResponseEntity.status(HttpStatus.ACCEPTED).header("login successfull", information.getEmail())
                     .body(new UsersDetailRes(token, 200, users));
