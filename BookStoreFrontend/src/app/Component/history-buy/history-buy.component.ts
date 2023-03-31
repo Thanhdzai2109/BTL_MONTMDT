@@ -14,6 +14,7 @@ export class HistoryBuyComponent implements OnInit {
   isSeller = false;
   isAdmin = false;
   role: string;
+  public opened2 = false;
   wishlistLength: number;
   isLogin = false;
   length: any;
@@ -45,6 +46,10 @@ export class HistoryBuyComponent implements OnInit {
     console.log("email",this.email)
     console.log('role check toolbar', this.role);
     this.doSearh()
+  }
+  nameEventHander($event: any) {
+    this.opened2 = $event;
+    console.log("2", this.opened2);
   }
   doSearh() {
     let data = {

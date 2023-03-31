@@ -1,6 +1,6 @@
 <div class="main-container">
     <div class="main-container">
-        <div style="  
+        <div style="
     border: none;
     cursor: pointer;
     opacity: 0.8;
@@ -9,10 +9,7 @@
     right: -173px;
     width: 350px;">
             <div style="width: 500%;">
-                <a id="btnZaloChat" href="https://zalo.me/0962983469" target="_blank" rel="noopener"
-                    class="animatedbounce"><img src="https://cdn2.cellphones.com.vn/x/media/icons/icon-zalo.png"
-                        class="a" alt="Zalo Button" width="3%"
-                        style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ; color: black;"></a>
+                <a id="btnZaloChat" href="https://zalo.me/0962983469" target="_blank" rel="noopener" class="animatedbounce"><img src="https://cdn2.cellphones.com.vn/x/media/icons/icon-zalo.png" class="a" alt="Zalo Button" width="3%" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ; color: black;"></a>
             </div>
         </div>
         <div style="
@@ -24,20 +21,13 @@
     right: -173px;
     width: 350px;">
             <div style="width: 500%;">
-                <a id="btnMess" href="https://www.messenger.com/t/100008063413243" target="_blank" rel="noopener"><img
-                        src="assets\248323495_327656939175726_192057552778184696_n.png" class="a" alt="Zalo Button"
-                        width="3%"
-                        style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ; color: black;"></a>
+                <a id="btnMess" href="https://www.messenger.com/t/100008063413243" target="_blank" rel="noopener"><img src="assets\248323495_327656939175726_192057552778184696_n.png" class="a" alt="Zalo Button" width="3%" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ; color: black;"></a>
             </div>
         </div>
         <div class="main-container">
             <div class="container">
-                <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="6000" color="accent" maxWidth="auto"
-                    proportion="25" slides="5" [loop]="true" [hideArrows]="false" [hideIndicators]="false"
-                    [useKeyboard]="true" [useMouseWheel]="false" orientation="ltr">
-                    <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index"
-                        [image]="slide.image" overlayColor="#00000040" [hideOverlay]="false"
-                        style="width: 84%; height: 100%;"></mat-carousel-slide>
+                <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="6000" color="accent" maxWidth="auto" proportion="25" slides="5" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true" [useMouseWheel]="false" orientation="ltr">
+                    <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image" overlayColor="#00000040" [hideOverlay]="false" style="width: 84%; height: 100%;"></mat-carousel-slide>
                 </mat-carousel>
             </div>
             <div class="container">
@@ -73,8 +63,7 @@
                       margin-left: 55px; margin-right: 55px; padding-top: 20px; padding-bottom: 20px; " />
                             </mat-card-title>
                             <mat-card-content style="width: 16em; ">
-                                <div class="out-of-stock " *ngIf="!book.noOfBooks "
-                                    style="color: aliceblue; background-color: #EE0000; font-family:revert ;">Hết hàng
+                                <div class="out-of-stock " *ngIf="!book.noOfBooks " style="color: aliceblue; background-color: #EE0000; font-family:revert ;">Hết hàng
                                 </div>
                                 <div class="bookname ">{{ book.bookName }}</div>
 
@@ -84,23 +73,20 @@
                                     {{ book.bookDetails }}
                                 </span>
 
-                                <div class="authorname ">by {{ book.authorName }}</div>
-                                <div class="price ">Rs. {{ book.price }}</div>
-                                <div class="availablity " style="color: rgb(79, 6, 163); "
-                                    *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
+                                <div class="authorname ">Tác giả : {{ book.authorName }}</div>
+                                <div class="price " style="color: #EE0000 ;font-size: 24px;"> {{ book.price }} vnđ</div>
+                                <div class="availablity " style="color: rgb(79, 6, 163); " *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
                                     Only {{ book.noOfBooks }} left hurry up
                                 </div>
                                 <ng-template #elsecondition>
                                     <div class="availablity " style="color: rgb(2, 110, 2); " *ngIf="book.noOfBooks ">
-                                        Available Books: {{ book.noOfBooks }}
+                                        Hiện có: {{ book.noOfBooks }}
                                     </div>
                                     <div style="height: 26px; " *ngIf="!book.noOfBooks "></div>
                                 </ng-template>
                                 <div class="cart-buttons " *ngIf="book.noOfBooks && value[book.bookId] !=book.bookId ">
                                     <div>
-                                        <button class="addtobag " (output)="getUpdatedNotes($event)"
-                                            (click)="addtobag(book.bookId)" #clickState mat-button
-                                            matTooltip="Thêm vào giỏ"> <i class="fa fa-cart-plus" aria-hidden="true"
+                                        <button class="addtobag " (output)="getUpdatedNotes($event)" (click)="addtobag(book.bookId)" #clickState mat-button matTooltip="Thêm vào giỏ"> <i class="fa fa-cart-plus" aria-hidden="true"
                                                 style="font-size: 24px;"></i></button>
                                     </div>
                                     <div>
@@ -135,15 +121,10 @@
             </div>
             <div class="container text-center">
                 <div class="pagination" *ngIf="bookList.length!=0">
-                    <a (click)="previos($event)" style=" margin-right: 12px; padding-right: 10px; border-radius: 50px;"
-                        href="#" href="#">
+                    <a (click)="previos($event)" style=" margin-right: 12px; padding-right: 10px; border-radius: 50px;" href="#" href="#">
                         < </a>
-                            <a *ngFor="let p of totalPage; let i=index " href="" fxFlexAlign="center"
-                                (click)="SetPage(i,$event)" [ngClass]="{'active':i==page}"
-                                style="color: black;">{{i+1}}</a>
-                            <a (click)="next($event)"
-                                style=" margin-right: 12px; padding-right: 10px; border-radius: 50px;" href="#"
-                                href="#">> </a>
+                            <a *ngFor="let p of totalPage; let i=index " href="" fxFlexAlign="center" (click)="SetPage(i,$event)" [ngClass]="{'active':i==page}" style="color: black;">{{i+1}}</a>
+                            <a (click)="next($event)" style=" margin-right: 12px; padding-right: 10px; border-radius: 50px;" href="#" href="#">> </a>
                 </div>
             </div>
         </div>
