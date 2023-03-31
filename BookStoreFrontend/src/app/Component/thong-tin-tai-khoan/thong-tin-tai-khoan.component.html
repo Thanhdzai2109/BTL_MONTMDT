@@ -1,0 +1,34 @@
+<app-toolbar></app-toolbar>
+
+<mat-card-content>
+    <mat-card fxFlex="35" style="margin: 0px 537px;">
+        <mat-toolbar class="place-content-between rounded-l mat-elevation-z1">
+            <span>Thông Tin tài khoản</span>
+        </mat-toolbar>
+        <form [formGroup]="formBCTKCC">
+            <mat-form-field class="w98">
+                <mat-label>Email<sup style="color: red;">*</sup></mat-label>
+                <textarea matInput type="text" formControlName="Email"cdkFocusInitial></textarea>
+                <mat-error> Vui lòng nhập thông tin </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w98">
+                <mat-label>Mật khẩu<sup style="color: red;">*</sup></mat-label>
+                <textarea matInput type="password" formControlName="Password"></textarea>
+                <mat-error> Vui lòng nhập thông tin </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w98">
+                <mat-label>Họ tên<sup style="color: red;">*</sup></mat-label>
+                <textarea matInput type="text" formControlName="Name"></textarea>
+                <mat-error> Vui lòng nhập thông tin </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w98">
+                <mat-label>Số điện thoại<sup style="color: red;">*</sup></mat-label>
+                <textarea matInput type="text" formControlName="SDT"></textarea>
+                <mat-error> Vui lòng nhập thông tin </mat-error>
+            </mat-form-field>
+        </form>
+        <button mat-raised-button color="primary" class="margin-r10 button-defaul" style="border-radius: 10px;margin: 0 554px;">
+            <span><i class="fa fa-save"></i> Lưu</span>
+        </button>
+    </mat-card>
+</mat-card-content>

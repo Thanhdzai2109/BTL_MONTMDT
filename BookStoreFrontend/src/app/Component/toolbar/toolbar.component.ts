@@ -33,6 +33,7 @@ export class ToolbarComponent implements OnInit {
   isUser = false;
   isSeller = false;
   isAdmin = false;
+  userId:any;
   role: string;
   length: any;
   bookName: string;
@@ -67,6 +68,8 @@ export class ToolbarComponent implements OnInit {
 
     this.getCartItemCount();
     this.name = localStorage.getItem('Name');
+    this.userId=localStorage.getItem('id');
+    console.log('idUser',this.userId)
     this.role = localStorage.getItem('role');
     console.log('role check toolbar', this.role);
     if (this.role === 'admin') {
@@ -109,6 +112,10 @@ export class ToolbarComponent implements OnInit {
       this.wishlistLength = response.obj;
       console.log('total number wishBook are' + response.obj);
      });
+  }
+  detailUser(){
+    console.log('Redirected to page no ' + this.userId);
+    this.route.navigateByUrl('userid/' + this.userId);
   }
 
 

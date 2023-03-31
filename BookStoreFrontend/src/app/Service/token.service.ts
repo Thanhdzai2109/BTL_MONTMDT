@@ -16,6 +16,7 @@ export class TokenService {
     localStorage.setItem('email', data.obj.email);
     localStorage.setItem('Name', data.obj.name);
     localStorage.setItem('phone', data.obj.mobileNumber);
+    localStorage.setItem('id',data.obj.userId)
   }
   // getting token from the local storage
  public get() {
@@ -28,6 +29,7 @@ export class TokenService {
     localStorage.removeItem('Name');
     localStorage.removeItem('role');
     localStorage.removeItem('phone');
+    localStorage.removeItem('userid');
     sessionStorage.clear();
   }
   logedIn(value: boolean) {

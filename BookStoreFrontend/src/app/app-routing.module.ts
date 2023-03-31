@@ -20,6 +20,7 @@ import { ChartComponent } from './Component/chart/chart.component';
 import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
 import { AdminUserComponent } from './Component/admin-user/admin-user.component';
 import { HistoryBuyComponent } from './Component/history-buy/history-buy.component';
+import { ThongTinTaiKhoanComponent } from './Component/thong-tin-tai-khoan/thong-tin-tai-khoan.component';
 
 const routes: Routes = [
 
@@ -51,6 +52,7 @@ const routes: Routes = [
   {path: 'bookreviews', component: BookreviewsComponent},
   {path:'chart' ,component:ChartComponent},
   {path:'user',component:AdminUserComponent},
+  {path:'userid/:userId',component:ThongTinTaiKhoanComponent},
   {path: '**', component: PagenotfoundComponent},
 ];
 
