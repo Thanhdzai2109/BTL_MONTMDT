@@ -19,6 +19,7 @@ import { WishComponent } from './Component/wish/wish.component';
 import { ChartComponent } from './Component/chart/chart.component';
 import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
 import { AdminUserComponent } from './Component/admin-user/admin-user.component';
+import { HistoryBuyComponent } from './Component/history-buy/history-buy.component';
 
 const routes: Routes = [
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   },
   {path: 'books', component: DashboardComponent},
   {path: 'cart', component: CartComponent},
+  {path:'history',component:HistoryBuyComponent},
   {path: 'greeting', component: OrdergreetingComponent},
   {path: 'update-password/:token', component: ResetPasswordComponent},
   {path: 'forget-password', component: ForgetPasswordComponent},
