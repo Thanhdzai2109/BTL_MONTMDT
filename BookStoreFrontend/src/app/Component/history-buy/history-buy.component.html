@@ -1,4 +1,4 @@
-<div style="width: 100%;" style="height: 11%;">
+<div style="width: 100%;" style="height: 15%;">
     <app-toolbar flexLayout="row" (toggleEvent)="nameEventHander($event)">
     </app-toolbar>
 
@@ -18,7 +18,7 @@
                         <div class="authorname">Author name : {{ book.authorName }}</div>
                         <div class="description">Description : {{ book.bookDetails }}</div>
                         <div class="description">Quantity of book : {{ book.quantityOfBook }}</div>
-                        <div class="price">Total Price : {{"₹ "+book.price }}</div>
+                        <div class="price">Total Price : {{"Vnd "+book.price }}</div>
 
                         <div class="status">Order Status : <label style="color: green;">{{ book.status }}</label> </div>
 
