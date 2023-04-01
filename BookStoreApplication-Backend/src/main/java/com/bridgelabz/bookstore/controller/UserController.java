@@ -167,16 +167,26 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new Response("delete", 200, user));
     }
-    @PutMapping("updatePassword/{userId}")
-    public ResponseEntity<Response> updatePassword(@RequestBody UserDto info){
+    @PutMapping("updateInfo")
+    public ResponseEntity<Response> updateInfo(@RequestBody UserDto info){
+        //ko đổi đc info email
         Users user = urepository.getUser(info.getEmail());
         user.setName(info.getName());
         user.setMobileNumber(info.getMobileNumber());
-        String epassword = encryption.encode(info.getPassword());
-        user.setPassword(epassword);
         repository.save(user);
             return ResponseEntity.status(HttpStatus.ACCEPTED)
                     .body(new Response("cập nhật thông tin thành công", 200));
+    }
+    @PutMapping("updatePassword/{userId}")
+    public ResponseEntity<Response> updatePassword(@PathVariable Long id,@RequestParam String password){
+        //ko đổi đc info email
+
+       Users users=repository.findUserById(id).get();
+        String epassword = encryption.encode(password);
+        users.setPassword(epassword);
+        repository.save(users);
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new Response("cập nhật thông tin thành công", 200));
     }
 
 
