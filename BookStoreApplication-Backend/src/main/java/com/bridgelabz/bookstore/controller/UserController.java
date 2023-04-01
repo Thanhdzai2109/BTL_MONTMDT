@@ -155,6 +155,23 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new Response("delete", 200, user));
     }
+    @GetMapping("DetailUser/{userId}")
+    public ResponseEntity<Response> detailUser(@PathVariable long userId) {
+        Users user = service.findById(userId);
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new Response("delete", 200, user));
+    }
+    @PutMapping("updatePassword/{userId}")
+    public ResponseEntity<Response> updatePassword(@PathVariable long userId, @RequestBody String update){
+        Users user = service.findById(userId);
+        user.setPassword(update);
+        service.save(user);
+            return ResponseEntity.status(HttpStatus.ACCEPTED)
+                    .body(new Response("password updated successfully", 200));
+
+
+    }
+
 
     @GetMapping("user/getUsersDeleted")
     public ResponseEntity<UserResponse> getAllUsersDeleted(@RequestParam(value = "keyword", required = false) String searchName,
@@ -171,4 +188,5 @@ public class UserController {
     public List<Users> searchData(@RequestBody Users users) {
         return service.searchData(users.getName());
     }
+
 }
