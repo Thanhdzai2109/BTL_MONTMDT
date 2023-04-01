@@ -177,8 +177,8 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.ACCEPTED)
                     .body(new Response("cập nhật thông tin thành công", 200));
     }
-    @PutMapping("updatePassword/{userId}")
-    public ResponseEntity<Response> updatePassword(@PathVariable Long id,@RequestParam String password){
+    @PutMapping("updatePassword/{id}")
+    public ResponseEntity<Response> updatePassword(@PathVariable Long id,@RequestBody String password){
         //ko đổi đc info email
 
        Users users=repository.findUserById(id).get();
