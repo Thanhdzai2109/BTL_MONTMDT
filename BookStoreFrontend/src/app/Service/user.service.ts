@@ -66,4 +66,10 @@ export class UserService {
     .pipe(
     );
   }
+
+  public UpdatepassWord(userId:number,data:any){
+    return this.http
+    .put(`${environment.BASE_URL}/${environment.UpdatePassword}/${userId}`, data, {headers: new HttpHeaders({token: localStorage.token})});
+   }
+  
 }

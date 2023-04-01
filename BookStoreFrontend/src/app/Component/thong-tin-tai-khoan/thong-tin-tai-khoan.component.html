@@ -1,7 +1,7 @@
 <app-toolbar></app-toolbar>
 
 <mat-card-content>
-    <mat-card fxFlex="35" style="margin: 0px 537px;">
+    <mat-card fxFlex="35" style="margin: 131px 537px; max-width: 37;">
         <mat-toolbar class="place-content-between rounded-l mat-elevation-z1">
             <span>Thông Tin tài khoản</span>
         </mat-toolbar>
@@ -13,7 +13,7 @@
             </mat-form-field>
             <mat-form-field class="w98">
                 <mat-label>Mật khẩu<sup style="color: red;" >*</sup></mat-label>
-                <input matInput type="password" formControlName="Password">
+                <input matInput type="password" formControlName="Password" autofocus>
                 <mat-error> Vui lòng nhập thông tin </mat-error>
             </mat-form-field>
             <mat-form-field class="w98">
@@ -27,7 +27,7 @@
                 <mat-error> Vui lòng nhập thông tin </mat-error>
             </mat-form-field>
         </form>
-        <button mat-raised-button color="primary" class="margin-r10 button-defaul" style="border-radius: 10px;margin: 0 500px;">
+        <button mat-raised-button color="primary" class="margin-r10 button-defaul" style="border-radius: 10px;margin: 0 500px;" (click)="doUpdate()">
             <span><i class="fa fa-save"></i> Đổi mật khẩu</span>
         </button>
     </mat-card>

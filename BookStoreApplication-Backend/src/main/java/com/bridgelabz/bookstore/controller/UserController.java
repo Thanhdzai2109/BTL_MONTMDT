@@ -167,7 +167,7 @@ public class UserController {
         user.setPassword(update);
         service.save(user);
             return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body(new Response("password updated successfully", 200));
+                    .body(new Response("Đổi mật khẩu thành công", 200));
 
 
     }
