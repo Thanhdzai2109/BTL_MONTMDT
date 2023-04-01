@@ -74,6 +74,7 @@ export const environment = {
   getSortedBookByRate: 'books/sortbyrate',
   GetUsser:'DetailUser',
   UpdatePassword:'updatePassword',
+  Updateinfor:'updateInfo',
   WISHLIST_ADD: 'bookstore/v3/wishlist/addbookWishlist',
   WISHLIST_GET: 'bookstore/v3/wishlist/getwishbooks',
   WISHLIST_COUNT: 'bookstore/v3/wishlist/wishlistcount',

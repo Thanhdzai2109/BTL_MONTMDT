@@ -71,5 +71,9 @@ export class UserService {
     return this.http
     .put(`${environment.BASE_URL}/${environment.UpdatePassword}/${userId}`, data, {headers: new HttpHeaders({token: localStorage.token})});
    }
+   public UpdateInfor(data:any){
+    return this.http
+    .put(`${environment.BASE_URL}/${environment.Updateinfor}`, data, {headers: new HttpHeaders({token: localStorage.token})});
+   }
   
 }

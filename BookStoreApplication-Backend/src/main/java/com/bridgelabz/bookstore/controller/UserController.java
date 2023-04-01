@@ -186,7 +186,7 @@ public class UserController {
         users.setPassword(epassword);
         repository.save(users);
         return ResponseEntity.status(HttpStatus.ACCEPTED)
-                .body(new Response("cập nhật thông tin thành công", 200));
+                .body(new Response("Đổi mật khẩu thành công", 200));
     }
 
 
