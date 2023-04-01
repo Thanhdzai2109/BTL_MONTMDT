@@ -40,7 +40,10 @@ export class ThongTinTaiKhoanComponent implements OnInit {
   }
   doUpdate(){
     let data={
-      password:this.formBCTKCC.get('Password').value
+      email:this.formBCTKCC.get('Email').value,
+      password:this.formBCTKCC.get('Password').value,
+      mobileNumber:this.formBCTKCC.get('SDT').value,
+      name:this.formBCTKCC.get('Name').value
     }
     this.userService.UpdatepassWord(this.userId,data).subscribe((res :any)=>{
           if (res.statusCode==200){
