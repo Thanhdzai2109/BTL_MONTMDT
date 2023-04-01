@@ -1,5 +1,6 @@
 package com.bridgelabz.bookstore.controller;
 
+import com.bridgelabz.bookstore.repository.IUserRepository;
 import com.bridgelabz.bookstore.repository.UserRepository;
 import com.bridgelabz.bookstore.response.BookResponse;
 import com.bridgelabz.bookstore.response.UserResponse;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.bridgelabz.bookstore.dto.UserDto;
@@ -37,6 +39,10 @@ public class UserController {
     private UserRepository repository;
     @Autowired
     private JwtGenerator generate;
+    @Autowired
+    private IUserRepository urepository;
+    @Autowired
+    private BCryptPasswordEncoder encryption;
 
     @PostMapping("/registration")
     @ResponseBody
@@ -162,14 +168,15 @@ public class UserController {
                 .body(new Response("delete", 200, user));
     }
     @PutMapping("updatePassword/{userId}")
-    public ResponseEntity<Response> updatePassword(@PathVariable long userId, @RequestBody String update){
-        Users user = service.findById(userId);
-        user.setPassword(update);
-        service.save(user);
+    public ResponseEntity<Response> updatePassword(@RequestBody UserDto info){
+        Users user = urepository.getUser(info.getEmail());
+        user.setName(info.getName());
+        user.setMobileNumber(info.getMobileNumber());
+        String epassword = encryption.encode(info.getPassword());
+        user.setPassword(epassword);
+        repository.save(user);
             return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body(new Response("Đổi mật khẩu thành công", 200));
-
-
+                    .body(new Response("cập nhật thông tin thành công", 200));
     }
 
 
