@@ -8,12 +8,12 @@
         <form [formGroup]="formBCTKCC">
             <mat-form-field class="w98">
                 <mat-label>Email<sup style="color: red;">*</sup></mat-label>
-                <textarea matInput type="text" formControlName="Email" autofocus></textarea>
+                <textarea matInput type="text" formControlName="Email" readonly="true"></textarea>
                 <mat-error> Vui lòng nhập thông tin </mat-error>
             </mat-form-field>
             <mat-form-field class="w98">
                 <mat-label>Họ tên<sup style="color: red;">*</sup></mat-label>
-                <textarea matInput type="text" formControlName="Name" ></textarea>
+                <textarea matInput type="text" formControlName="Name" autofocus></textarea>
                 <mat-error> Vui lòng nhập thông tin </mat-error>
             </mat-form-field>
             <mat-form-field class="w98">

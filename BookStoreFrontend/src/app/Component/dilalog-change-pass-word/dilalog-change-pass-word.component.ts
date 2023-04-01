@@ -11,6 +11,7 @@ import { UserService } from "src/app/Service/user.service";
 })
 export class DilalogChangePassWordComponent implements OnInit {
   userId: any;
+  hide = true;
   constructor(
     private fromBuilder: FormBuilder,
     private route: ActivatedRoute,
