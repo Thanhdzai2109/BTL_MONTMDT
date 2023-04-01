@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute } from "@angular/router";
 import { UserService } from "src/app/Service/user.service";
@@ -19,7 +19,7 @@ export class DilalogChangePassWordComponent implements OnInit {
     private userService: UserService
   ) {}
   formBCTKCC: FormGroup = this.fromBuilder.group({
-    Password: [],
+    Password: [null,[Validators.required]],
   });
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get("userId");
