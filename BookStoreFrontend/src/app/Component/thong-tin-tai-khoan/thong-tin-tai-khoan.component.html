@@ -8,27 +8,27 @@
         <form [formGroup]="formBCTKCC">
             <mat-form-field class="w98">
                 <mat-label>Email<sup style="color: red;">*</sup></mat-label>
-                <textarea matInput type="text" formControlName="Email"cdkFocusInitial></textarea>
+                <textarea matInput type="text" formControlName="Email" readonly="true"></textarea>
                 <mat-error> Vui lòng nhập thông tin </mat-error>
             </mat-form-field>
             <mat-form-field class="w98">
-                <mat-label>Mật khẩu<sup style="color: red;">*</sup></mat-label>
-                <textarea matInput type="password" formControlName="Password"></textarea>
+                <mat-label>Mật khẩu<sup style="color: red;" >*</sup></mat-label>
+                <input matInput type="password" formControlName="Password">
                 <mat-error> Vui lòng nhập thông tin </mat-error>
             </mat-form-field>
             <mat-form-field class="w98">
                 <mat-label>Họ tên<sup style="color: red;">*</sup></mat-label>
-                <textarea matInput type="text" formControlName="Name"></textarea>
+                <textarea matInput type="text" formControlName="Name" readonly="true"></textarea>
                 <mat-error> Vui lòng nhập thông tin </mat-error>
             </mat-form-field>
             <mat-form-field class="w98">
                 <mat-label>Số điện thoại<sup style="color: red;">*</sup></mat-label>
-                <textarea matInput type="text" formControlName="SDT"></textarea>
+                <textarea matInput type="text" formControlName="SDT" readonly="true"></textarea>
                 <mat-error> Vui lòng nhập thông tin </mat-error>
             </mat-form-field>
         </form>
-        <button mat-raised-button color="primary" class="margin-r10 button-defaul" style="border-radius: 10px;margin: 0 554px;">
-            <span><i class="fa fa-save"></i> Lưu</span>
+        <button mat-raised-button color="primary" class="margin-r10 button-defaul" style="border-radius: 10px;margin: 0 500px;">
+            <span><i class="fa fa-save"></i> Đổi mật khẩu</span>
         </button>
     </mat-card>
 </mat-card-content>

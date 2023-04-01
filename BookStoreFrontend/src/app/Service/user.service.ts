@@ -59,4 +59,11 @@ export class UserService {
     .pipe(
     );
   }
+  public DetailUser(userId:number){
+    return this.httpService
+    // tslint:disable-next-line: max-line-length
+    .get(`${environment.BASE_URL}/${environment.GetUsser}/${userId}`, {headers: new HttpHeaders({token: localStorage.token})})
+    .pipe(
+    );
+  }
 }
