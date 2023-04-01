@@ -101,20 +101,17 @@
         </div>
 </mat-toolbar>
 <mat-toolbar style="background-color: rgba(4, 25, 131, 0.829);" fxLayout="row" xLayoutAlign="space-between center" fullscreen *ngIf="!isAdmin && !isSeller">
-   <div class="row">
+   <div class="row" style="margin: 0 -5px;">
     <div class="col-1">
-    <a  [routerLink]="['']"><span style="color: #fff; font-size: medium; margin:0 515px ;">Trang chủ</span></a>
+   <a href="/history"><span style="color: #fff; font-size: medium; margin:0 538px" >Lịch sử giao dịch </span></a>
     </div>
-    <div class="col-1">
-   <a href="/history"><span style="color: #fff; font-size: medium; margin:0 474px" >Lịch sử giao dịch </span></a>
-    </div>
-    <div class="col-1" style="margin:0 491px ;">
+    <div class="col-1" style="margin:0 571px ;">
     <a href="/cart">  <span style="color: #fff; font-size: medium; ">Giỏ hàng</span></a>
       <button mat-icon-button routerLink="/cart" >
             <mat-icon matBadge="{{ length }}" matBadgeSize="small">add_shopping_cart</mat-icon>
        </button>
     </div>
-    <div class="col-1" style="margin: 0 -488px;">
+    <div class="col-1" style="margin: 0 -556px;">
        <a href="/wish"><span style="color: #fff; font-size: medium;">Sản phẩm yêu thích</span></a>
         <button mat-icon-button  routerLink="/wish" matTooltip="Wishlist">
         <mat-icon matBadge="{{wishlistLength}}" matBadgeSize="small" >favorite_border</mat-icon>
