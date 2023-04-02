@@ -201,9 +201,11 @@ public class UserController {
                 .body(new UserResponse("status", users.getContent(), users.getTotalPages()));
     }
 
-    @PostMapping("user/SearchData")
-    public List<Users> searchData(@RequestBody Users users) {
-        return service.searchData(users.getName());
-    }
 
+    @PostMapping("user/SearchData")
+    public  ResponseEntity<UserResponse>search(@RequestBody Users users) {
+        List<Users> u= service.searchData(users.getName());
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new UserResponse("status", service.searchData(users.getName())));
+    }
 }

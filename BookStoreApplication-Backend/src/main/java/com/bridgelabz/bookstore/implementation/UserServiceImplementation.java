@@ -275,8 +275,8 @@ public class UserServiceImplementation implements UserServices {
 
 	@Override
 	public List<Users> searchData(String name) {
-		if(name==null){
-			return (List<Users>) userRepository.getAll();
+		if(name==""){
+			return userRepository.getAll();
 		}
 		return  userRepository.getdata(name);
 	}

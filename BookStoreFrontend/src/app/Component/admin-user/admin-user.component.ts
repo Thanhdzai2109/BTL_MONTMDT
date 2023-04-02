@@ -49,6 +49,7 @@ export class AdminUserComponent implements OnInit {
   isLogin = false;
   role: string;
   ngOnInit(): void {
+    this.doSearh();
     this.role = localStorage.getItem("role");
     this.setTitle("Bookstore");
     console.log("role check toolbar", this.role);
@@ -57,7 +58,7 @@ export class AdminUserComponent implements OnInit {
       this.isLogin = true;
     }
     this.dataSource.paginator = this.paginator;
-    this.doSearh();
+  
   }
   nameEventHander($event: any) {
     this.opened2 = $event;
@@ -69,10 +70,10 @@ export class AdminUserComponent implements OnInit {
   }
   doSearh() {
     let data = {
-      name: this.name,
+      name: this.name==undefined?"":this.name
     };
-    this.userService.SearchUser(data).subscribe((res) => {
-      this.dataSource = res;
+    this.userService.SearchUser(data).subscribe((res:any) => {
+      this.dataSource = res.users;
     });
   }
 
