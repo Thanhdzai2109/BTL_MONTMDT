@@ -56,7 +56,7 @@ export class HistoryBuyComponent implements OnInit {
       name: this.email,
     };
     this.userService.SearchUser(data).subscribe((res:any) => {
-      this.dataSource = res.users;
+      this.dataSource = res.obj;
        this.dataLisst=this.dataSource[0].orderBookDetails;
        for (let i=0;i<this.dataSource[0].orderBookDetails.length;i++){
         const obj = this.dataSource[0].orderBookDetails[i].booksList.reduce((acc, currentValue, index) => {

@@ -206,6 +206,6 @@ public class UserController {
     public  ResponseEntity<UserResponse>search(@RequestBody Users users) {
         List<Users> u= service.searchData(users.getName());
         return ResponseEntity.status(HttpStatus.ACCEPTED)
-                .body(new UserResponse("status", service.searchData(users.getName())));
+                .body(new UserResponse("status", service.searchData(users.getName()),u.size()));
     }
 }

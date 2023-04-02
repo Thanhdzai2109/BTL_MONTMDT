@@ -26,7 +26,9 @@ export class AdminUserComponent implements OnInit {
   isUser = false;
   isSeller = false;
   isAdmin = false;
-  datalist: any = [];
+  pageSize:number=10;
+  page: number = 0;
+  totalItems: number = 0;
   displayedColumns: string[] = [
     "position",
     "name",
@@ -58,7 +60,7 @@ export class AdminUserComponent implements OnInit {
       this.isLogin = true;
     }
     this.dataSource.paginator = this.paginator;
-  
+
   }
   nameEventHander($event: any) {
     this.opened2 = $event;
@@ -73,7 +75,8 @@ export class AdminUserComponent implements OnInit {
       name: this.name==undefined?"":this.name
     };
     this.userService.SearchUser(data).subscribe((res:any) => {
-      this.dataSource = res.users;
+      this.dataSource = res.obj;
+      this.totalItems=res.total;
     });
   }
 
@@ -115,5 +118,10 @@ export class AdminUserComponent implements OnInit {
         });
       }
     });
+  }
+  onChangePage(event: any) {
+    this.pageSize = event.pageSize;
+    this.page = event.pageIndex;
+    this.doSearh();
   }
 }

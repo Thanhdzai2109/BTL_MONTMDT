@@ -109,9 +109,8 @@
                             </ng-template>
                         </tr>
                     </table>
-                    <mat-paginator [length]="dataSource.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
-                        aria-label="Select page">
-                    </mat-paginator>
+                  <mat-paginator [pageSizeOptions]="[10,25,50,100]" showFirstLastButtons [pageSize]="pageSize"
+                                 [length]="totalItems" (page)=" onChangePage($event)"></mat-paginator>
                 </div>
 
             </mat-sidenav-content>
