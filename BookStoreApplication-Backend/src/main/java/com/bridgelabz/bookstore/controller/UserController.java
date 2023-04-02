@@ -178,11 +178,11 @@ public class UserController {
                     .body(new Response("cập nhật thông tin thành công", 200));
     }
     @PutMapping("updatePassword/{id}")
-    public ResponseEntity<Response> updatePassword(@PathVariable Long id,@RequestBody String password){
+    public ResponseEntity<Response> updatePassword(@PathVariable Long id,@RequestBody UserDto info){
         //ko đổi đc info email
 
        Users users=repository.findUserById(id).get();
-        String epassword = encryption.encode(password);
+        String epassword = encryption.encode(info.getPassword());
         users.setPassword(epassword);
         repository.save(users);
         return ResponseEntity.status(HttpStatus.ACCEPTED)

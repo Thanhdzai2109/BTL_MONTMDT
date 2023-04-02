@@ -30,7 +30,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get("userId");
     this.getUser();
-    console.log("id2", this.user.email);
+
   }
   getUser() {
     this.userService.DetailUser(this.userId).subscribe((response: any) => {
