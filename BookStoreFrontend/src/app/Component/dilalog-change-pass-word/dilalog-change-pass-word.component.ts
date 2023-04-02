@@ -23,7 +23,7 @@ export class DilalogChangePassWordComponent implements OnInit {
   }
 
   formBCTKCC: FormGroup = this.fromBuilder.group({
-    Password: [null, [Validators.required]],
+    Password: [null, [Validators.required, Validators.minLength(8)]],
   });
 
   ngOnInit(): void {
