@@ -36,24 +36,22 @@
             class="bookimage"
           />
           <br />
-          <div class="details" fxLayout="row">
-            <span style="margin-left: 11%; padding-top: 2em; font-size: 14px">{{
+          <div class="details" fxLayout="column">
+            <span style="margin-left: 6px; font-size: 14px">{{
               books.booksList[0].bookName
             }}</span>
             <h2
               style="
-                margin-left: -4em;
+                margin-left: 6px;
                 font-size: 10px;
                 color: slategrey;
-                padding-top: 70px;
               "
             >
               by:{{ books.booksList[0].authorName }}
             </h2>
             <h3
               style="
-                margin-left: -2.3em;
-                padding-top: 90px;
+                margin-left: 6px;
                 font-size: 17px;
                 font-weight: 600;
               "
@@ -374,10 +372,10 @@
           />
           <br />
           <div class="details">
-            <div style="margin-left: 1%; padding-top: 0em; font-size: 16px">
+            <div style="padding-top: 0em; font-size: 16px">
               <span>{{ books.booksList[0].bookName }}</span>
             </div>
-            <div style="padding-top: 17px; margin-left: -69px">
+            <div>
               <h2 style="font-size: 10px; color: slategrey">
                 by: {{ books.booksList[0].authorName }}
               </h2>
@@ -385,8 +383,6 @@
             <div>
               <h1
                 style="
-                  margin-left: -41px;
-                  padding-top: 42px;
                   font-size: 16px;
                   font-weight: 500;
                 "
@@ -408,5 +404,5 @@
       </div>
     </div>
   </div>
- 
+
 </div>
