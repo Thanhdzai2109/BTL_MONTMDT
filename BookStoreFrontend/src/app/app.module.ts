@@ -60,7 +60,8 @@ import { DilalogUnlockComponent } from './Component/dilalog-unlock/dilalog-unloc
 import { DialalogDeleteComponent } from './Component/dialalog-delete/dialalog-delete.component';
 import { HistoryBuyComponent } from './Component/history-buy/history-buy.component';
 import { ThongTinTaiKhoanComponent } from './Component/thong-tin-tai-khoan/thong-tin-tai-khoan.component';
-import { DilalogChangePassWordComponent } from './Component/dilalog-change-pass-word/dilalog-change-pass-word.component'
+import { DilalogChangePassWordComponent } from './Component/dilalog-change-pass-word/dilalog-change-pass-word.component';
+import { SliderComponent } from './Component/slider/slider.component'
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     DialalogDeleteComponent,
     HistoryBuyComponent,
     ThongTinTaiKhoanComponent,
-    DilalogChangePassWordComponent
+    DilalogChangePassWordComponent,
+    SliderComponent
 
   ],
   imports: [

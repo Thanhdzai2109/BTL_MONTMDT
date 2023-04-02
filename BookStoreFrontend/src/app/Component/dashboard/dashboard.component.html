@@ -41,6 +41,7 @@
       </mat-sidenav-container>
   </div> -->
     <div *ngIf="!isSeller && !isAdmin">
+        <app-slider></app-slider>
         <app-displaybook></app-displaybook>
         <router-outlet></router-outlet>
     </div>
