@@ -54,6 +54,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
         this.matSnackBar.open(res.message, "ok", {
           duration: 4000,
         });
+        this.route1.navigateByUrl('books');
       }
     });
   }
