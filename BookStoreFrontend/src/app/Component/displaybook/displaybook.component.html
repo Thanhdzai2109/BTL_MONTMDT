@@ -54,16 +54,16 @@
           <div *ngFor="let book of bookList| booksearchpipe:bookSearch">
 
             <mat-card style="height: 22.5em; width: 220px;  margin-right: 40px;" class="tooltip1">
-              <mat-card-title matTooltip="Book Image" (click)="Deatails(book.bookId)">
+              <mat-card-title matTooltip="Book Image" (click)="Deatails(book.bookId)" style="height: 117px;">
                 <img src="assets\bookimage\{{book.image}}" style="height: 150px; width: 90px;
                       margin-left: 55px; margin-right: 55px; padding-top: 20px; padding-bottom: 20px; "/>
               </mat-card-title>
-              <mat-card-content style="width: 16em; ">
+              <mat-card-content style="width: 16em;">
                 <div class="out-of-stock " *ngIf="!book.noOfBooks "
-                     style="color: aliceblue; background-color: #EE0000; font-family:revert ;">Hết hàng
+                     style="color: aliceblue; background-color: #EE0000; font-family:revert ;margin: -25px 11px">Hết hàng
                 </div>
-                <div class="sale" 
-                style="color: aliceblue; background-color: 	#FF0000; font-family:revert ;">Sale
+                <div class="sale" *ngIf="book.priceSale>0"
+                style="color: #EE0000; background-color: 	#F2FF00; font-family:revert ;">Sale {{(book.price-book.priceSale)/book.price*100}} %
                 </div>
                 <div class="bookname ">{{ book.bookName }}</div>
 
@@ -74,7 +74,9 @@
                                 </span>
 
                 <div class="authorname ">Tác giả : {{ book.authorName }}</div>
-                <div class="price " style="color: #EE0000 ;font-size: 24px;"> {{ book.price }} vnđ</div>
+                <div class="price " style="color: #EE0000 ;font-size: 24px;text-decoration:line-through;" *ngIf="book.priceSale>0"> {{ book.price }} vnđ</div>
+                <div class="price " style="color: #EE0000 ;font-size: 24px;"*ngIf="book.priceSale==null"> {{ book.price }} vnđ</div>
+                <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale>0"> {{ book.priceSale }} vnđ</div>
                 <div class="availablity " style="color: rgb(79, 6, 163); "
                      *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
                   Only {{ book.noOfBooks }} left hurry up
