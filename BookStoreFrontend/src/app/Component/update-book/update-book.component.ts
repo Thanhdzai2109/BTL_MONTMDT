@@ -16,6 +16,7 @@ export class UpdateBookComponent implements OnInit {
   bookName = new FormControl(this.data.bookName, [Validators.required]);
   authorName = new FormControl(this.data.authorName, [Validators.required]);
   price = new FormControl(this.data.price, [Validators.required]);
+  priceSale=new FormControl(this.data.priceSale);
   noOfBooks = new FormControl(this.data.noOfBooks, [Validators.required]);
   bookDetails = new FormControl(this.data.bookDetails, [Validators.required, ]);
   private imageFile: string;
@@ -44,30 +45,38 @@ export class UpdateBookComponent implements OnInit {
     this.updatebook.price = this.data.price;
     this.updatebook.noOfBooks = this.data.noOfBooks;
     this.updatebook.bookDetails = this.data.bookDetails;
+    this.updatebook.priceSale  =this.data.priceSale;
     // this.dialogRef.close();
 
     setTimeout(() => {
-      this.bookservice.updateBook(this.data.bookId, this.updatebook).subscribe(
-        (response: any) => {
-          if (response.statusCode === 200) {
-            this.dialogRef.close({ data: this.updatebook });
-            this.matSnackBar.open(response.response, 'undo', {
-              duration: 3000,
-            });
-          } else {
+      if(this.updatebook.priceSale> this.updatebook.price){
+        this.matSnackBar.open('Giá gốc phải lớn hơn giá còn lại', 'ok',{
+          duration: 2500,
+        });
+        
+      }else{
+        this.bookservice.updateBook(this.data.bookId, this.updatebook).subscribe(
+          (response: any) => {
+            if (response.statusCode === 200) {
+              this.dialogRef.close({ data: this.updatebook });
+              this.matSnackBar.open(response.response, 'undo', {
+                duration: 3000,
+              });
+            } else {
+              this.dialogRef.close();
+              this.matSnackBar.open('Book not updated...try again', 'undo', {
+                duration: 2500,
+              });
+            }
+          },
+          (error: any) => {
             this.dialogRef.close();
-            this.matSnackBar.open('Book not updated...try again', 'undo', {
+            this.matSnackBar.open('something went wrong.....!', 'undo', {
               duration: 2500,
             });
           }
-        },
-        (error: any) => {
-          this.dialogRef.close();
-          this.matSnackBar.open('something went wrong.....!', 'undo', {
-            duration: 2500,
-          });
-        }
-      );
-    }, 3000); // spinner
+        );
+      }
+    }, 30); // spinner
   }
 }

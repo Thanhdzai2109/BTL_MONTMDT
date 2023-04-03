@@ -18,6 +18,7 @@ export class BookModule {
   authorName: string;
   bookName: string;
   price: number;
+  priceSale:number;
   noOfBooks: number;
   image: string;
   createdDateAndTime: Date;
