@@ -6,7 +6,8 @@
 <div class="main-container">
     <div class="container">
         <div *ngIf="bookListdata.length==0" >
-            <h1 style="text-align: center; margin: 200px;">không có sản phẩm nào!</h1>
+          <img src="assets\no-product.jpg" style="margin: 0 369px">
+          <h1 style="text-align: center; margin: 200px;">không có sản phẩm nào!</h1>
         </div>
         <div *ngFor=" let book of bookListdata">
             <mat-card style="display: flex;flex-direction: row;  padding: 1rem;">
