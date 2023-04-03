@@ -105,7 +105,7 @@ public class CartServiceImplimentation implements ICartService {
 		ArrayList<Quantity> quantitydetails = new ArrayList<Quantity>();
 		qunatityofbook.setQuantityOfBook(quantity);
 
-		qunatityofbook.setTotalprice(book.getPrice());
+		qunatityofbook.setTotalprice(book.getPriceSale());
 
 		quantitydetails.add(qunatityofbook);
 		cart.setQuantityOfBook(quantitydetails);
@@ -199,7 +199,7 @@ public class CartServiceImplimentation implements ICartService {
 			Book book = bookRepository.findById(bookId).get();
 			if (book != null) {
 
-				double totalprice = book.getPrice() * (quantity + 1);
+				double totalprice = book.getPriceSale() * (quantity + 1);
 				boolean notExist = false;
 				for (CartItem cartt : user.getCartBooks()) {
 					if (!cartt.getBooksList().isEmpty()) {
@@ -243,7 +243,7 @@ public class CartServiceImplimentation implements ICartService {
 		if (user != null) {
 			Book book = bookRepository.findById(bookId).get();
 			if (book != null) {
-				double totalprice = book.getPrice() * (quantity - 1);
+				double totalprice = book.getPriceSale() * (quantity - 1);
 				boolean notExist = false;
 				for (CartItem cartt : user.getCartBooks()) {
 					if (!cartt.getBooksList().isEmpty()) {

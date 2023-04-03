@@ -8,6 +8,26 @@ public class BookDto {
 	private String image;
 	private String bookDetails;
 	private String userId;
+	private Double Discount;
+
+	public Double getPriceSale() {
+		return priceSale;
+	}
+
+	public void setPriceSale(Double priceSale) {
+		this.priceSale = priceSale;
+	}
+
+	private Double priceSale;
+
+	public Double getDiscount() {
+		return Discount;
+	}
+
+	public void setDiscount(Double discount) {
+		Discount = discount;
+	}
+
 	public String getBookName() {
 		return bookName;
 	}

@@ -75,28 +75,28 @@ export class AddbookComponent implements OnInit {
     }
 
     bookNameValidation() {
-      return this.bookName.hasError("required") ? "Book Name must be required" :
-             this.bookName.hasError("minlength") ? "Minimum 3 character must be present" :
-             this.bookName.hasError("maxlength") ? "Maximum 25 character allowed" : "";
+      return this.bookName.hasError("required") ? "Nhập tên sách" :
+             this.bookName.hasError("minlength") ? "Phải có tối thiểu 3 ký tự" :
+             this.bookName.hasError("maxlength") ? "Cho phép tối đa 25 ký tự" : "";
     }
     bookAuthorValidation() {
-      return this.authorName.hasError("required") ? "Author name must be required" :
-             this.authorName.hasError("minlength") ? "Minimum 5 character must be present" :
-             this.authorName.hasError("maxlength") ? "Maximum 25 character allowed" : "";
+      return this.authorName.hasError("required") ? "Nhập tên tác giả" :
+             this.authorName.hasError("minlength") ? "tối thiểu 5 kí tự" :
+             this.authorName.hasError("maxlength") ? "Cho phép tối đa 25 ký tự" : "";
     }
     bookPriceValidation() {
-      return this.price.hasError("required") ? "Price must be required" :
-             this.price.hasError('pattern')? "Only numbers allowed":
-             this.price.hasError("minlength") ? "Minimum 1 digit must be there" :"";
+      return this.price.hasError("required") ? "Nhập giá" :
+             this.price.hasError('pattern')? "Chỉ số được phép":
+             this.price.hasError("minlength") ? "Phải có tối thiểu 1 chữ số" :"";
     }
     noOfBooksValidation() {
-      return this.noOfBooks.hasError("required") ? "Total Number of must be required" :
-             this.noOfBooks.hasError('pattern')? "Only numbers allowed":
-             this.noOfBooks.hasError("minlength") ? "Minimum 1 digit must be there" :"";
+      return this.noOfBooks.hasError("required") ? "Nhập số lương" :
+             this.noOfBooks.hasError('pattern')? "Chỉ số được phép":
+             this.noOfBooks.hasError("minlength") ? "Phải có tối thiểu 1 chữ số" :"";
     }
     bookDescriptionValidation() {
-      return this.bookDetails.hasError("required") ? "Book Description must required" :
-             this.bookDetails.hasError("minlength") ? "Minimum 20 characters  must be there" :"";
+      return this.bookDetails.hasError("required") ? "Mô tả sách buộc nhập" :
+             this.bookDetails.hasError("minlength") ? "Phải có tối thiểu 20 ký tự" :"";
     }
 
 }

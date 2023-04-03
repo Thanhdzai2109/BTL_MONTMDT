@@ -27,8 +27,17 @@ public class Book implements Serializable {
     private String bookDetails;
     private LocalDateTime createdDateAndTime;
     private LocalDateTime updatedDateAndTime;
+    private Double discount;
     private String status;
     private String image;
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
 
     public Long getBookId() {
         return bookId;
