@@ -199,7 +199,12 @@ public class CartServiceImplimentation implements ICartService {
 			Book book = bookRepository.findById(bookId).get();
 			if (book != null) {
 
-				double totalprice = book.getPriceSale() * (quantity + 1);
+				double totalprice ;
+				if(book.getPriceSale()==null){
+					totalprice=book.getPrice()*(quantity + 1);
+				}else{
+					totalprice = book.getPriceSale() * (quantity + 1);
+				}
 				boolean notExist = false;
 				for (CartItem cartt : user.getCartBooks()) {
 					if (!cartt.getBooksList().isEmpty()) {

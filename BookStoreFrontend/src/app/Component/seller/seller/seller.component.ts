@@ -115,6 +115,7 @@ export class SellerComponent implements OnInit {
         bookName: book.bookName,
         authorName: book.authorName,
         price: book.price,
+        priceSale:book.priceSale,
         noOfBooks: book.noOfBooks,
         bookDetails: book.bookDetails,
         bookId: book.bookId,

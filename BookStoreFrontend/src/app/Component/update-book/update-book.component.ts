@@ -16,7 +16,7 @@ export class UpdateBookComponent implements OnInit {
   bookName = new FormControl(this.data.bookName, [Validators.required]);
   authorName = new FormControl(this.data.authorName, [Validators.required]);
   price = new FormControl(this.data.price, [Validators.required]);
-  priceSale=new FormControl(this.data.priceSale);
+  priceSale=new FormControl(this.data.priceSale,[Validators.required]);
   noOfBooks = new FormControl(this.data.noOfBooks, [Validators.required]);
   bookDetails = new FormControl(this.data.bookDetails, [Validators.required, ]);
   private imageFile: string;
@@ -39,7 +39,7 @@ export class UpdateBookComponent implements OnInit {
     }
   }
   updateBook() {
-
+    debugger
     this.updatebook.bookName = this.data.bookName;
     this.updatebook.authorName = this.data.authorName;
     this.updatebook.price = this.data.price;
