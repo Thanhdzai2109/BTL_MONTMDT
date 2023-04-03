@@ -90,9 +90,9 @@ public class BookServiceImplementation implements IBookService {
 						bookinformation.setCreatedDateAndTime(LocalDateTime.now());
 						bookinformation.setUserId(id);
 						bookinformation.setDiscount(information.getDiscount());
-						Double number=bookinformation.getPrice()-information.getDiscount()*bookinformation.getPrice()/100;
-						Double roundedNumber = Double.valueOf(Math.round(number));
-						bookinformation.setPriceSale(roundedNumber);
+//						Double number=bookinformation.getPrice()-information.getDiscount()*bookinformation.getPrice()/100;
+//						Double roundedNumber = Double.valueOf(Math.round(number));
+//						bookinformation.setPriceSale(roundedNumber);
 						repository.save(bookinformation);
 						return true;
 					}

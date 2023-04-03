@@ -17,8 +17,14 @@
                 <div class="sub" style="word-wrap: break-word; margin-bottom: 4%;">
                     by {{book.authorName }}
                 </div>
-                <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px;">
-                    <Strong>Rs.{{ book.price }}</Strong>
+                <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px; color: red;"*ngIf="book.priceSale==null">
+                    <Strong>{{ book.price }} VNĐ</Strong>
+                </div>
+                <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px;text-decoration:line-through;color: red;" *ngIf="book.priceSale!=null">
+                    <Strong>{{ book.price }} VNĐ</Strong>
+                </div>
+                <div style="margin-bottom: 4%; font-size: 18px; margin-left: -25px;color: red;"*ngIf="book.priceSale!=null">
+                    <Strong>{{ book.priceSale }} VNĐ</Strong>
                 </div>
                 <div style="margin-bottom: 5%; font-size: 14px; margin-left: -25px;">
                     <strong>Seller:</strong>{{ " Dwayne Johnson" }}
