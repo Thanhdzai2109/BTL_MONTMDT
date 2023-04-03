@@ -47,14 +47,15 @@ export class WishComponent implements OnInit {
       console.log('image : ' +  Response.obj[0].booksList[0].image);
       console.log('price : ' +  Response.obj[0].booksList[0].price);
       console.log('bookId : ' +  Response.obj[0].booksList[0].bookId);
-
+      console.log('pricess : ' +  Response.obj[0].booksList[0].priceSale);
       console.log('books are ' + this.books);
 
       const p = {bookName: Response.obj[i].booksList[0].bookName , bookDetails: Response.obj[i].bookDetails,
          authorName: Response.obj[i].booksList[0].authorName,
         noOfBooks: Response.obj[i].booksList[0].noOfBooks,
         image: Response.obj[i].booksList[0].image,  price: Response.obj[i].booksList[0].price ,
-        bookId: Response.obj[i].booksList[0].bookId
+        bookId: Response.obj[i].booksList[0].bookId,
+        priceSale:Response.obj[0].booksList[0].priceSale
       };
 
       this.WishListdetails.push(p);

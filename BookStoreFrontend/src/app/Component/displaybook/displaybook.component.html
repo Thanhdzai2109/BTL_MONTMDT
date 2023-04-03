@@ -38,7 +38,7 @@
                         </span>
           </div>
           <div>
-            <mat-label class="col-3 form-label">Sắp xếp sách :</mat-label>
+            <button style="font-size: 24px;" mat-raised-button><i class="fa fa-filter" aria-hidden="true"></i> Lọc</button>
             <mat-form-field appearance="fill" class="col-4">
               <mat-select [(ngModel)]="selectedValue" (ngModelChange)="onChange($event)">
                 <mat-option *ngFor="let dv of selected" [value]="dv.value">{{dv.name}}</mat-option>

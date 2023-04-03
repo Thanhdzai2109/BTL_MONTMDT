@@ -55,9 +55,18 @@
                 font-size: 17px;
                 font-weight: 600;
               "
-            >
-              Rs.{{ books.booksList[0].price }}
+             *ngIf="books.booksList[0].priceSale==null">
+              {{ books.booksList[0].price }}vnđ
             </h3>
+            <h3
+            style="
+              margin-left: 1px;
+              font-size: 15px;
+              font-weight: 600;
+            "
+           *ngIf="books.booksList[0].priceSale!=null">
+            {{ books.booksList[0].priceSale }} vnđ
+          </h3>
           </div>
           <div
             style="
@@ -387,7 +396,7 @@
                   font-weight: 500;
                 "
               >
-                Total Price Rs.{{ books.quantityOfBook[0].totalprice }}
+                Tổng: {{ books.quantityOfBook[0].totalprice }}vnđ
               </h1>
             </div>
           </div>
