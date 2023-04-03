@@ -18,10 +18,15 @@
                         <div class="sub" style="word-wrap: break-word;">
                             {{ book.authorName }}
                         </div>
-                        <div class="price" style="word-wrap: break-word;">
-                            <!-- Rs. 1500 -->
-                            Rs. {{ book.price }}
+                        <div class="price" style="word-wrap: break-word;" *ngIf="book.priceSale==null">
+                             {{ book.price }} Vnđ
                         </div>
+                        <div class="price" style="word-wrap: break-word;  text-decoration:line-through;" *ngIf=" book.priceSale!=null">
+                           {{ book.price }} Vnđ
+                        </div>
+                        <div class="priceSale" style="word-wrap: break-word; margin: -23px -46px;;" *ngIf=" book.priceSale!=null">
+                          {{ book.priceSale }} Vnđ
+                       </div>
                     </div>
                 </div>
             </div>
