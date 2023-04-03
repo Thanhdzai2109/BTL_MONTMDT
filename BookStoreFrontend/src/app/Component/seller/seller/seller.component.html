@@ -21,7 +21,9 @@
                             <div class="out-of-stock" *ngIf="!book.noOfBooks">Out Of stock</div>
                             <div class="bookname">Book Name : {{ book.bookName }}</div>
                             <div class="authorname">Author name : {{ book.authorName }}</div>
-                            <div class="price">Rs. {{ book.price }}</div>
+                            <div class="price" *ngIf="book.priceSale==null">{{ book.price }} VNĐ</div>
+                            <div class="price" style="text-decoration:line-through" *ngIf="book.priceSale!=null">{{ book.price }} VNĐ</div>
+                            <div class="price" *ngIf="book.priceSale!=null">{{book.priceSale}}VNĐ</div>
                             <div class="noofbooks">No of books : {{ book.noOfBooks }}</div>
                             <div class="status" *ngIf="book.status == 'OnHold'">Status : <label style="color: black;">{{book.status }}</label> </div>
                             <div class="status" *ngIf="book.status == 'approved'">Status : <label style="color: green;">{{ book.status }}</label> </div>
