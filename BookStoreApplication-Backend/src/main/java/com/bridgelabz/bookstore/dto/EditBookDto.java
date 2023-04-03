@@ -10,6 +10,16 @@ public class EditBookDto {
 	private String image;
 	private String bookDetails;
 	private LocalDateTime updatedAt;
+	private Double priceSale;
+
+	public Double getPriceSale() {
+		return priceSale;
+	}
+
+	public void setPriceSale(Double priceSale) {
+		this.priceSale = priceSale;
+	}
+
 	public String getBookName() {
 		return bookName;
 	}

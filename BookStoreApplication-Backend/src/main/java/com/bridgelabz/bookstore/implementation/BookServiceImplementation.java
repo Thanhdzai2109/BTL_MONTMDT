@@ -234,6 +234,7 @@ public class BookServiceImplementation implements IBookService {
 						info.setPrice(information.getPrice());
 						info.setAuthorName(information.getAuthorName());
 						info.setBookDetails(information.getBookDetails());
+						info.setPriceSale(information.getPriceSale());
 //						info.setImage(imageName);
 						info.setUpdatedDateAndTime(information.getUpdatedAt());
 					
