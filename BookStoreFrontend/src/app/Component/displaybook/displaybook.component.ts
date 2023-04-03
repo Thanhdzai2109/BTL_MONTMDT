@@ -1,12 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { BookService } from 'src/app/Service/book.service';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {BookService} from 'src/app/Service/book.service';
 import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
-import { BookModule } from 'src/app/Model/book/book.module';
-import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
-import { CartService } from 'src/app/Service/cart.service';
-import { WishlistService } from 'src/app/Service/wishlist.service';
-import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
+import {BookModule} from 'src/app/Model/book/book.module';
+import {PageEvent} from '@angular/material/paginator';
+import {Router} from '@angular/router';
+import {CartService} from 'src/app/Service/cart.service';
+import {WishlistService} from 'src/app/Service/wishlist.service';
+import {MatCarousel, MatCarouselComponent} from '@ngmodule/material-carousel';
+
 @Component({
   selector: 'app-displaybook',
   templateUrl: './displaybook.component.html',
@@ -14,7 +15,7 @@ import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 })
 export class DisplaybookComponent implements OnInit {
   bookSearch: any;
-  selectedValue = 'relevance';
+  selectedValue = 'mod3';
   orderBy = 'asc';
   boo: any;
   error = null;
@@ -34,15 +35,23 @@ export class DisplaybookComponent implements OnInit {
   CurrentPageNo: 0;
   totalPage: Array<number>;
   public opened2 = false;
-  s: any; selectoption: any;
+  s: any;
+  selectoption: any;
   value: any = [];
+  selected: any = [
+    {name: 'Từ cao đến thấp', value: 'mod1'},
+    {name: 'Từ thấp đến cao ', value: 'mod2'},
+    {name: 'Bán chạy', value: 'mod3'},
+  ]
   @Output() output: EventEmitter<any> = new EventEmitter();
   leng: any;
-  constructor( private service: BookService,
-               private matSnackBar: MatSnackBar,
-               private route: Router,
-               private cartService: CartService,
-               private wishlistService: WishlistService) { }
+
+  constructor(private service: BookService,
+              private matSnackBar: MatSnackBar,
+              private route: Router,
+              private cartService: CartService,
+              private wishlistService: WishlistService) {
+  }
 
   ngOnInit() {
     this.getallApprovedBooks();
@@ -55,6 +64,7 @@ export class DisplaybookComponent implements OnInit {
     }
     console.log(this.value);
   }
+
   nameEventHander($event: any) {
     this.opened2 = $event;
     console.log('2', this.opened2);
@@ -65,10 +75,10 @@ export class DisplaybookComponent implements OnInit {
     console.log(' this is tha value of drope down ' + deviceValue);
     switch (this.selectedValue) {
       case 'mod1':
-         console.log('vikash kumar1');
-         this.approvedBookServiceMethod(this.page, 'price', 'des');
-         console.log('Books are from 1  ', this.bookList);
-         break;
+        console.log('vikash kumar1');
+        this.approvedBookServiceMethod(this.page, 'price', 'des');
+        console.log('Books are from 1  ', this.bookList);
+        break;
       case 'mod2':
         this.approvedBookServiceMethod(this.page, 'price', 'asc');
         console.log('Books are from 2  ', this.bookList);
@@ -78,7 +88,7 @@ export class DisplaybookComponent implements OnInit {
         console.log('Books are from 3  ', this.bookList);
         break;
     }
-}
+  }
 
   getallApprovedBooks() {
     this.approvedBookServiceMethod(this.page, 'book_id', 'asc');
@@ -98,7 +108,8 @@ export class DisplaybookComponent implements OnInit {
       console.log('Books are  ', this.bookList.length);
     });
   }
-getSearchBookData() {
+
+  getSearchBookData() {
     this.service.getSearchBookData().subscribe((message) => {
       console.log('search data', message.books);
       this.bookSearch = message.books;
@@ -116,78 +127,82 @@ getSearchBookData() {
     this.getallApprovedBooks();
   }
 
-   previos(event: any) {
+  previos(event: any) {
     event.preventDefault();
     this.page = this.page - 1;
     console.log('current page from previous' + 'next' + this.page);
     this.getallApprovedBooks();
-   }
+  }
 
-   next(event: any) {
+  next(event: any) {
     event.preventDefault();
     this.page = this.page + 1;
     console.log('current page from next ' + 'next' + this.page);
     this.getallApprovedBooks();
-   }
-
-  addtobag( bookId: any) {
-  if (localStorage.getItem('token') === null) {
-    this.matSnackBar.open('Please Login first', 'ok', {
-      duration: 5000
-    });
-    this.route.navigateByUrl('login');
-    return;
   }
-  sessionStorage.setItem(bookId, bookId);
-  this.ngOnInit();
-  this.cartService.addToCart(bookId).subscribe(
-    data => this.handleResponse(data),
-    error => this.handleError(error)
-  );
-}
+
+  addtobag(bookId: any) {
+    if (localStorage.getItem('token') === null) {
+      this.matSnackBar.open('Please Login first', 'ok', {
+        duration: 5000
+      });
+      this.route.navigateByUrl('login');
+      return;
+    }
+    sessionStorage.setItem(bookId, bookId);
+    this.ngOnInit();
+    this.cartService.addToCart(bookId).subscribe(
+      data => this.handleResponse(data),
+      error => this.handleError(error)
+    );
+  }
 
   handleResponse(data: any) {
     console.log(data);
-    this.matSnackBar.open('Book added successfully Into Cart' , 'ok', {
-    duration: 5000
-  });
-}
-handleWishResponse(wishdata: any) {
-  console.log(wishdata);
-  this.matSnackBar.open('Book is added successfully to wishlist' , 'ok', {
-  duration: 5000
-});
-}
+    this.matSnackBar.open('Book added successfully Into Cart', 'ok', {
+      duration: 5000
+    });
+  }
+
+  handleWishResponse(wishdata: any) {
+    console.log(wishdata);
+    this.matSnackBar.open('Book is added successfully to wishlist', 'ok', {
+      duration: 5000
+    });
+  }
 
 
   handleError(error: any) {
     this.error = error.error.message;
     console.log(error);
     this.matSnackBar.open(this.error, 'ok', {
-    duration: 5000
-  });
+      duration: 5000
+    });
   }
+
   getOutput() {
   }
+
   Deatails(bookId) {
     console.log('Redirected to page no ' + bookId);
     this.route.navigateByUrl('books/info/' + bookId);
 
   }
+
   getUpdatedNotes(event) {
     this.ngOnInit();
-    }
+  }
 
-    addtoWish( bookId: any) {
-      if (localStorage.getItem('token') === null) {
-        this.matSnackBar.open('Please Login first', 'ok', {
-          duration: 5000
-        });
-        this.route.navigateByUrl('login');
-      }
-      this.wishlistService.addToWishlist(bookId).subscribe(
-        wishdata => this.handleWishResponse(wishdata),
-        error => this.handleError(error)
-      );
+  addtoWish(bookId: any) {
+    if (localStorage.getItem('token') === null) {
+      this.matSnackBar.open('Please Login first', 'ok', {
+        duration: 5000
+      });
+      this.route.navigateByUrl('login');
     }
+    this.wishlistService.addToWishlist(bookId).subscribe(
+      wishdata => this.handleWishResponse(wishdata),
+      error => this.handleError(error)
+    );
+  }
 }
