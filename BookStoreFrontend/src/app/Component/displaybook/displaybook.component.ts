@@ -15,7 +15,7 @@ import {MatCarousel, MatCarouselComponent} from '@ngmodule/material-carousel';
 })
 export class DisplaybookComponent implements OnInit {
   bookSearch: any;
-  selectedValue = 'mod3';
+  selectedValue = 'mod1';
   orderBy = 'asc';
   boo: any;
   error = null;
