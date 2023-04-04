@@ -205,4 +205,7 @@ export class DisplaybookComponent implements OnInit {
       error => this.handleError(error)
     );
   }
+  matGrout(book:any){
+     return Math.round((book.price-book.priceSale)/book.price*100);
+  }
 }
