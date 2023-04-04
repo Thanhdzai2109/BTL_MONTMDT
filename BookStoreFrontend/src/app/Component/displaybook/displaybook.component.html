@@ -71,9 +71,9 @@
                 </span>
 
                                 <div class="authorname ">Tác giả : {{ book.authorName }}</div>
-                                <div class="price " style="color: #EE0000 ;font-size: 24px;text-decoration:line-through;" *ngIf="book.priceSale>0"> {{ book.price }} vnđ</div>
-                                <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale==null"> {{ book.price }} vnđ</div>
-                                <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale>0"> {{ book.priceSale }} vnđ</div>
+                                <div class="price " style="color: rgb(170, 163, 163) ;font-size: 24px;text-decoration:line-through;" *ngIf="book.priceSale>0"> {{ book.price }} đ</div>
+                                <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale==null"> {{ book.price }} đ</div>
+                                <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale>0"> {{ book.priceSale }} đ</div>
                                 <div class="availablity " style="color: rgb(79, 6, 163); " *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
                                     Only {{ book.noOfBooks }} left hurry up
                                 </div>
