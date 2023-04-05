@@ -94,7 +94,7 @@ getallUserOrderedBooks() {
     var p = {orderId:response.obj[i].orderId, orderStatus:response.obj[i].orderStatus, bookName:response.obj[i].booksList[0].bookName,
       bookDetails:response.obj[i].booksList[0].bookDetails, authorName:response.obj[i].booksList[0].authorName,
       image:response.obj[i].booksList[0].image,  totalprice:response.obj[i].quantityOfBooks[0].totalprice,
-      quantityOfBook:response.obj[i].quantityOfBooks[0].quantityOfBook
+      quantityOfBook:response.obj[i].quantityOfBooks[0].quantityOfBook,address:response.obj[i].address, city:response.obj[i].city,
     };
 
       this.orderdetails.push(p);
@@ -133,7 +133,7 @@ updateOrderSeller(orderId:any,status:any) {
   );
 }
 doExport(){
-  debugger
+
   this.getallUserOrderedBooks();
 
   let headerTTThietHai: any[] = [
@@ -141,7 +141,6 @@ doExport(){
     'Mã đơn',
     'Tên sách',
     'Số lượng',
-    'Ngày đặt',
     'Giá tiền',
     'Địa chỉ',
 ];
@@ -156,19 +155,22 @@ let keyTTThietHai: any[] = [
     'MDH',
     'Tensach',
     'Soluong',
-    'Ngaydat',
     'Giatien',
     'DiaCHi', 
 ];
 
 
 let dataTemp: any[] = [];
-  dataTemp=this.orderedBooks.booksList
 
-  this.orderedBooks.forEach((element, index) => {
+  this.orderdetails.forEach((element, index) => {
     let item={
        "TT":index+1,
        "MDH":element.orderId,
+       'DiaCHi':element.address, 
+       'Tensach':element.bookName,
+       'Soluong':element.quantityOfBook,
+       'Giatien':element.totalprice,
+       
     }
     dataTemp.push(item)
   })
@@ -176,9 +178,9 @@ let dataTemp: any[] = [];
 
 
 
-let widthThietHai: any[] = [8, 30, 10, 10, 10, 10, 10, 10, 10, 20];
+let widthThietHai: any[] = [8, 10, 20, 8, 10, 40,];
 let excelTTThietHai: Excel = {
-    title: 'Phân loại vi phạm trong HLALĐCA',
+    title: 'Thống kê hóa đơn',
     subTitle: null,
     workSheet: null,
     keys: keyTTThietHai,
@@ -186,7 +188,7 @@ let excelTTThietHai: Excel = {
     data: dataTemp,
     groupHeaders: null,
     groupMerge: null,
-    sheetName: 'Phân loại vi phạm trong HLALĐCA',
+    sheetName: 'Hóa đơn',
     headers: headerTTThietHai,
 };
 let arrayExcel = [];
@@ -194,7 +196,7 @@ arrayExcel.push(excelTTThietHai);
 
 let timeSpan = new Date().toISOString();
 this._exporHelperService.generateExcel(
-    'Vi-pham-hlat' + timeSpan,
+    'Hoa-don' + timeSpan,
     arrayExcel,
 );
 }
