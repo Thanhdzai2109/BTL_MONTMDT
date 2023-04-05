@@ -78,8 +78,7 @@ public class OrderController {
 	@ApiOperation(value = "get allorder detrails for admin")
 	@GetMapping(value = "bookstore/getOrdersByAdmin")
 	public ResponseEntity<Response> getallOrders() throws Exception {
-		
-		List<OrderDto> orderinfo = repository.getOrderByAdmin();
+		List<OrderDto> orderinfo = orderService.getOrderByAdmin();
 		System.out.println("order ids: "+orderinfo);
 			return ResponseEntity.status(HttpStatus.OK).body(new Response(" orders list ",200,orderinfo));
 		

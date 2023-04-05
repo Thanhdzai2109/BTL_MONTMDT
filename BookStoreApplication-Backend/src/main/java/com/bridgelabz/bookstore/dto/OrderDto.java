@@ -1,5 +1,10 @@
 package com.bridgelabz.bookstore.dto;
 
+import com.bridgelabz.bookstore.entity.Book;
+import com.bridgelabz.bookstore.entity.Quantity;
+
+import java.util.List;
+
 public class OrderDto {
 	
 	private Long orderId;
@@ -7,6 +12,34 @@ public class OrderDto {
 	private String orderStatus;
 	private Double totalPrice;
 	private String address;
+	private List<Quantity> QuantityOfBooks;
+	private List<Book> BooksList;
+
+	public List<Quantity> getQuantityOfBooks() {
+		return QuantityOfBooks;
+	}
+
+	public OrderDto(Long orderId, String orderStatus, Double totalPrice, String address, List<Quantity> quantityOfBooks, List<Book> booksList, String city) {
+		this.orderId = orderId;
+		this.orderStatus = orderStatus;
+		this.totalPrice = totalPrice;
+		this.address = address;
+		QuantityOfBooks = quantityOfBooks;
+		BooksList = booksList;
+		this.city = city;
+	}
+
+	public void setQuantityOfBooks(List<Quantity> quantityOfBooks) {
+		QuantityOfBooks = quantityOfBooks;
+	}
+
+	public List<Book> getBooksList() {
+		return BooksList;
+	}
+
+	public void setBooksList(List<Book> booksList) {
+		BooksList = booksList;
+	}
 
 	public OrderDto(Long orderId, String orderStatus, Double totalPrice, String address, String city) {
 		this.orderId = orderId;

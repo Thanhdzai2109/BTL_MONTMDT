@@ -2,11 +2,13 @@ package com.bridgelabz.bookstore.implementation;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
 import javax.transaction.Transactional;
 
+import com.bridgelabz.bookstore.dto.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -248,5 +250,19 @@ public class OrderServiceImp implements IOrderServices {
 		List<Order> inProgressOrder = orderRepository.getInProgressOrder();
 		return inProgressOrder;
 	}
-	
+
+	@Override
+	public List<OrderDto> getOrderByAdmin() {
+		List<OrderDto> orderinfo = orderRepository.getOrderByAdmin();
+		List<Order> orderinfo1 = orderRepository.getorder();
+		for (int i = 0; i < orderinfo.size(); i++) {
+			orderinfo.get(i).setBooksList(new ArrayList<Book>());
+			orderinfo.get(i).setQuantityOfBooks(new ArrayList<Quantity>());
+			orderinfo.get(i).getBooksList().addAll(orderinfo1.get(i).getBooksList());
+			orderinfo.get(i).getQuantityOfBooks().addAll(orderinfo1.get(i).getQuantityOfBooks());
+
+		}
+		return orderinfo;
+	}
+
 }
