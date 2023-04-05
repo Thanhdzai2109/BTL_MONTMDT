@@ -173,7 +173,7 @@ let dataTemp: any[] = [];
        'Tensach':element.bookName,
        'Soluong':element.quantityOfBook,
        'NgayMua':formatDate(element.ngayMua, 'dd/MM/yyyy', 'en-US'),
-       'Giatien':element.totalprice,
+       'Giatien':element.totalprice+' '+'đ',
        
     }
     dataTemp.push(item)
@@ -182,7 +182,7 @@ let dataTemp: any[] = [];
 
 
 
-let widthThietHai: any[] = [8, 10, 20, 8, 10,14, 40];
+let widthThietHai: any[] = [8, 10, 20, 8, 10,14,40];
 let excelTTThietHai: Excel = {
     title: 'Thống kê hóa đơn',
     subTitle: null,
