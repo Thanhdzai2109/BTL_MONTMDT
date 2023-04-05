@@ -9,7 +9,7 @@ import { BookModule } from 'src/app/Model/book/book.module';
 import { Order} from 'src/app/Model/order.model';
 import { AdminService } from 'src/app/Service/admin.service';
 import { Excel, ExcelService } from 'src/app/Service/excel.service';
-
+import {formatDate} from '@angular/common';
 interface Food {
   value: string;
   viewValue: string;
@@ -95,6 +95,7 @@ getallUserOrderedBooks() {
       bookDetails:response.obj[i].booksList[0].bookDetails, authorName:response.obj[i].booksList[0].authorName,
       image:response.obj[i].booksList[0].image,  totalprice:response.obj[i].quantityOfBooks[0].totalprice,
       quantityOfBook:response.obj[i].quantityOfBooks[0].quantityOfBook,address:response.obj[i].address, city:response.obj[i].city,
+      ngayMua:response.obj[i].orderPlacedTime
     };
 
       this.orderdetails.push(p);
@@ -142,6 +143,7 @@ doExport(){
     'Tên sách',
     'Số lượng',
     'Giá tiền',
+    'Ngày mua',
     'Địa chỉ',
 ];
 let groupHeaderTTThietHai: any[] = [];
@@ -156,6 +158,7 @@ let keyTTThietHai: any[] = [
     'Tensach',
     'Soluong',
     'Giatien',
+    'NgayMua',
     'DiaCHi', 
 ];
 
@@ -169,6 +172,7 @@ let dataTemp: any[] = [];
        'DiaCHi':element.address, 
        'Tensach':element.bookName,
        'Soluong':element.quantityOfBook,
+       'NgayMua':formatDate(element.ngayMua, 'dd/MM/yyyy', 'en-US'),
        'Giatien':element.totalprice,
        
     }
@@ -178,7 +182,7 @@ let dataTemp: any[] = [];
 
 
 
-let widthThietHai: any[] = [8, 10, 20, 8, 10, 40,];
+let widthThietHai: any[] = [8, 10, 20, 8, 10,14, 40];
 let excelTTThietHai: Excel = {
     title: 'Thống kê hóa đơn',
     subTitle: null,
