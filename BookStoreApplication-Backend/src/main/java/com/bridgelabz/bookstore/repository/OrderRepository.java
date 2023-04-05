@@ -26,7 +26,7 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
 
 	@Query( value = "select * from order_details ", nativeQuery = true)
     List<Order> getorder();
-	@Query( value = "select new  com.bridgelabz.bookstore.dto.OrderDto(o.orderId,o.orderStatus,o.totalPrice,a.address,a.city) FROM Order o LEFT JOIN Address a on o.addressId=a.addressId")
+	@Query( value = "select new  com.bridgelabz.bookstore.dto.OrderDto(o.orderId,o.orderStatus,o.totalPrice,a.address,o.orderPlacedTime,a.city) FROM Order o LEFT JOIN Address a on o.addressId=a.addressId")
 	List<OrderDto> getOrderByAdmin();
 	@Query( value = "select * from order_details where order_status='in progress'", nativeQuery = true)
     List<Order> getInProgressOrder();
