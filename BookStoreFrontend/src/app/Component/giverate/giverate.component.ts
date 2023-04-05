@@ -79,7 +79,6 @@ export class GiverateComponent implements OnInit {
   }
 
   submitRate() {
-    debugger
     const data = {
       rating: this.rating,
       review: this.review,

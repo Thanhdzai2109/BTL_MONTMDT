@@ -51,7 +51,6 @@ export class ExcelService {
 
 //dumv
 generateExcelWithTotalRow(fileName: string, excelArray: Excel[], keyTotal,nameKeyTotal,nameToTal) {
-    debugger
     var options = {
         filename: './streamed-workbook.xlsx',
         useStyles: true,

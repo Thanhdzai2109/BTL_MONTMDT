@@ -39,7 +39,6 @@ export class UpdateBookComponent implements OnInit {
     }
   }
   updateBook() {
-    debugger
     this.updatebook.bookName = this.data.bookName;
     this.updatebook.authorName = this.data.authorName;
     this.updatebook.price = this.data.price;
