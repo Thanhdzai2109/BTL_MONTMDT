@@ -44,12 +44,13 @@ role:string;
 isAdmin:boolean=false;
 isSeller:boolean=false;
 ngOnInit(): void {
-
+  
   this.role = localStorage.getItem('role');
   if(this.role==='admin'){
     this.isAdmin=true;
     this.isSeller=false;
     this.getallUserOrderedBooks();
+    
   }
   else if(this.role==='seller'){
     this.isAdmin=false;
@@ -65,6 +66,7 @@ ngOnInit(): void {
       this.getallUserOrderedBooks();
     }
  });
+
   
 }
 
@@ -131,84 +133,47 @@ updateOrderSeller(orderId:any,status:any) {
   );
 }
 doExport(){
+  debugger
+  this.getallUserOrderedBooks();
 
   let headerTTThietHai: any[] = [
-    '',
-    '',
-    '500KV',
-    '220kv',
-    '110KV',
-    '35kv',
-    '22kv',
-    '10kv',
-    '6kv',
-    'Tổng',
+    'STT',
+    'Mã đơn',
+    'Tên sách',
+    'Số lượng',
+    'Ngày đặt',
+    'Giá tiền',
+    'Địa chỉ',
 ];
 let groupHeaderTTThietHai: any[] = [];
 let groupHeaderTTThietHai_row1: any[] = [
-    'TT',
-    'Tên đơn vị',
-    'Phân loại theo cấp điện áp',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    'Tổng',
+    
 ];
-groupHeaderTTThietHai.push(groupHeaderTTThietHai_row1);
-let groupMergerTTThietHai: any[] = ['A3:A4', 'B3:B4', 'C3:I3', 'J3:J4'];
+
+let groupMergerTTThietHai: any[] = [];
 let keyTTThietHai: any[] = [
     'TT',
-    'DV',
-    '500',
-    '220',
-    '110',
-    '35',
-    '22',
-    '10',
-    '6',
-    'TONG',
+    'MDH',
+    'Tensach',
+    'Soluong',
+    'Ngaydat',
+    'Giatien',
+    'DiaCHi', 
 ];
-let keyTotal: any[] = [
-    '',
-    '',
-    '500',
-    '220',
-    '110',
-    '35',
-    '22',
-    '10',
-    '6',
-    'TONG',
-];
-let nameKeyTotal ="DV";
-let nameTotal="EVN"
-let dataTemp: any[] = [];
-this.orderedBooks.forEach((element, index) => {
-//   const sum=(this.analyticsDataDetail(element,"500kv") == null ?0:this.analyticsDataDetail(element,"500kv"))+
-//   (this.analyticsDataDetail(element,"220kv") == null ?0:this.analyticsDataDetail(element,"220kv"))+
-//   (this.analyticsDataDetail(element,"110kv") == null ?0:this.analyticsDataDetail(element,"110kv"))+
-//  (this.analyticsDataDetail(element,"35kv") == null ?0:this.analyticsDataDetail(element,"35kv"))+
-//  ( this.analyticsDataDetail(element,"22kv") == null ?0:this.analyticsDataDetail(element,"22kv"))+
-//  ( this.analyticsDataDetail(element,"10kv") == null ?0:this.analyticsDataDetail(element,"10kv"))+
-//  ( this.analyticsDataDetail(element,"6kv") == null ?0:this.analyticsDataDetail(element,"6kv"))
 
-  let item={
-    // "TT":index+1,
-    // "DV":element.orgName,
-    // "500":this.analyticsDataDetail(element,"500kv") == null ?0:this.analyticsDataDetail(element,"500kv"),
-    // "220":this.analyticsDataDetail(element,"220kv") == null ?0:this.analyticsDataDetail(element,"220kv"),
-    // "110":this.analyticsDataDetail(element,"110kv")==null?0:this.analyticsDataDetail(element,"110kv"),
-    // "35":this.analyticsDataDetail(element,"35kv")==null?0:this.analyticsDataDetail(element,"35kv"),
-    // "22":this.analyticsDataDetail(element,"22kv")==null?0:this.analyticsDataDetail(element,"22kv"),
-    // "10":this.analyticsDataDetail(element,"10kv")==null?0:this.analyticsDataDetail(element,"10kv"),
-    // "6":this.analyticsDataDetail(element,"6kv")==null?0:this.analyticsDataDetail(element,"6kv"),
-    // "TONG":sum
-  }
-  dataTemp.push(item)
-})
+
+let dataTemp: any[] = [];
+  dataTemp=this.orderedBooks.booksList
+
+  this.orderedBooks.forEach((element, index) => {
+    let item={
+       "TT":index+1,
+       "MDH":element.orderId,
+    }
+    dataTemp.push(item)
+  })
+
+
 
 
 let widthThietHai: any[] = [8, 30, 10, 10, 10, 10, 10, 10, 10, 20];
@@ -219,8 +184,8 @@ let excelTTThietHai: Excel = {
     keys: keyTTThietHai,
     widths: widthThietHai,
     data: dataTemp,
-    groupHeaders: groupHeaderTTThietHai,
-    groupMerge: groupMergerTTThietHai,
+    groupHeaders: null,
+    groupMerge: null,
     sheetName: 'Phân loại vi phạm trong HLALĐCA',
     headers: headerTTThietHai,
 };
@@ -228,12 +193,9 @@ let arrayExcel = [];
 arrayExcel.push(excelTTThietHai);
 
 let timeSpan = new Date().toISOString();
-this._exporHelperService.generateExcelWithTotalRow(
+this._exporHelperService.generateExcel(
     'Vi-pham-hlat' + timeSpan,
     arrayExcel,
-    keyTotal,
-    nameKeyTotal,
-    nameTotal
 );
 }
 
