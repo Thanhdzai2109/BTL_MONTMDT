@@ -1,4 +1,7 @@
 <div class="main-container">
+    <div class="row">
+        <button style="width: 8rem;  color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);; margin: 0 811px;" (click)="doExport()" mat-button><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel</button>
+    </div>
     <div class="container">
         <div class="list-books">
             <div *ngFor=" let book of orderdetails | booksearchpipe:bookSearch">
