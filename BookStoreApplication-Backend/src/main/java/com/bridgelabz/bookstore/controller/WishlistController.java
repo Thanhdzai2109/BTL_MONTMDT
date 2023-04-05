@@ -23,7 +23,6 @@ import com.bridgelabz.bookstore.service.IWishlistService;
 public class WishlistController {
 	@Autowired
 	private IWishlistService wishbookService;
-
 	@PostMapping("bookstore/v3/wishlist/addbookWishlist/{bookId}")
 	public ResponseEntity<Response> addBooksToWish(@RequestHeader String token, @PathVariable long bookId)
 			throws Exception {

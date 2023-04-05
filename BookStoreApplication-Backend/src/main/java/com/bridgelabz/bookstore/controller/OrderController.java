@@ -2,6 +2,8 @@ package com.bridgelabz.bookstore.controller;
 
 import java.util.List;
 
+import com.bridgelabz.bookstore.dto.OrderDto;
+import com.bridgelabz.bookstore.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ import io.swagger.annotations.ApiOperation;
 public class OrderController {
 	@Autowired
 	private IOrderServices orderService;
+	@Autowired
+	private OrderRepository repository;
 	
 //	@Autowired
 //	OrderServiceImp orderServiceimpl;
@@ -75,7 +79,7 @@ public class OrderController {
 	@GetMapping(value = "bookstore/getOrdersByAdmin")
 	public ResponseEntity<Response> getallOrders() throws Exception {
 		
-		List<Order> orderinfo = orderService.getallOrders();
+		List<OrderDto> orderinfo = repository.getOrderByAdmin();
 		System.out.println("order ids: "+orderinfo);
 			return ResponseEntity.status(HttpStatus.OK).body(new Response(" orders list ",200,orderinfo));
 		
