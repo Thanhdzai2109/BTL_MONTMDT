@@ -2,6 +2,7 @@ package com.bridgelabz.bookstore.dto;
 
 import com.bridgelabz.bookstore.entity.Book;
 import com.bridgelabz.bookstore.entity.Quantity;
+import org.springframework.security.core.userdetails.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,6 +17,40 @@ public class OrderDto {
 	private List<Quantity> QuantityOfBooks;
 	private List<Book> BooksList;
 	private LocalDateTime orderPlacedTime;
+	private String name;
+	private Long mobileNumber;
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+
+
+	public OrderDto(Long orderId, String orderStatus, Double totalPrice, String address, LocalDateTime orderPlacedTime, String name, Long mobileNumber, String city) {
+		this.orderId = orderId;
+		this.orderStatus = orderStatus;
+		this.totalPrice = totalPrice;
+		this.address = address;
+		this.orderPlacedTime = orderPlacedTime;
+		this.name = name;
+		this.mobileNumber = mobileNumber;
+		this.city = city;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Long getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(Long mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
 
 	public List<Quantity> getQuantityOfBooks() {
 		return QuantityOfBooks;

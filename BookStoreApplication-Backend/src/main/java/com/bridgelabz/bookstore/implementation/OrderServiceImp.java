@@ -39,6 +39,8 @@ public class OrderServiceImp implements IOrderServices {
 	private UserRepository userRepo;
 	@Autowired
 	private BookImple bookRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private EmailProviderService em;
@@ -255,12 +257,18 @@ public class OrderServiceImp implements IOrderServices {
 	public List<OrderDto> getOrderByAdmin() {
 		List<OrderDto> orderinfo = orderRepository.getOrderByAdmin();
 		List<Order> orderinfo1 = orderRepository.getorder();
+		List<Users>listUsers=userRepository.getAllUser();
 		for (int i = 0; i < orderinfo.size(); i++) {
 			orderinfo.get(i).setBooksList(new ArrayList<Book>());
 			orderinfo.get(i).setQuantityOfBooks(new ArrayList<Quantity>());
 			orderinfo.get(i).getBooksList().addAll(orderinfo1.get(i).getBooksList());
 			orderinfo.get(i).getQuantityOfBooks().addAll(orderinfo1.get(i).getQuantityOfBooks());
-
+			for (int j = 0; j < listUsers.size(); j++) {
+				if(listUsers.get(j).getOrderBookDetails().contains(orderinfo1.get(i))){
+					orderinfo.get(i).setName(listUsers.get(j).getName());
+					orderinfo.get(i).setMobileNumber(listUsers.get(j).getMobileNumber());
+				}
+			}
 		}
 		return orderinfo;
 	}
