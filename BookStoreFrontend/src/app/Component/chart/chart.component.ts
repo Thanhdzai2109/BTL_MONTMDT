@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/Service/admin.service';
-import { Title } from '@angular/platform-browser';
+import {Component, OnInit} from '@angular/core';
+import {AdminService} from 'src/app/Service/admin.service';
+import {Title} from '@angular/platform-browser';
 import {PeriodicElement} from '../admin-user/admin-user.component';
 import {MatTableDataSource} from '@angular/material/table';
+import {formatDate} from '@angular/common';
+import {Excel, ExcelService} from '../../Service/excel.service';
 
 @Component({
   selector: 'app-chart',
@@ -10,60 +12,64 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
-	count1:number
-	count2:number
-	public opened2 = false;
-	dataNB=[]
-	count3:number
-	isUser = false;
+  count1: number
+  count2: number
+  public opened2 = false;
+  dataNB = []
+  count3: number
+  isUser = false;
   isSeller = false;
   isAdmin = false;
   role: string;
   isLogin = false;
   dataSource: any = [
-    { label: "Jan", y: 250000 },
-    { label: "Feb", y: 431000 },
-    { label: "Mar", y: 646000 },
-    { label: "Apr", y: 522000 },
-    { label: "May", y: 464000 },
-    { label: "Jun", y: 470000 },
-    { label: "Jul", y: 534000 },
-    { label: "Aug", y: 407000 },
-    { label: "Sep", y: 484000 },
-    { label: "Oct", y: 465000 },
-    { label: "Nov", y: 424000 },
-    { label: "Dec", y: 231000 }
+    {label: 'Jan', y: 250000},
+    {label: 'Feb', y: 431000},
+    {label: 'Mar', y: 646000},
+    {label: 'Apr', y: 522000},
+    {label: 'May', y: 464000},
+    {label: 'Jun', y: 470000},
+    {label: 'Jul', y: 534000},
+    {label: 'Aug', y: 407000},
+    {label: 'Sep', y: 484000},
+    {label: 'Oct', y: 465000},
+    {label: 'Nov', y: 424000},
+    {label: 'Dec', y: 231000}
 
   ];
   displayedColumns: string[] = [
-     "stt",
+    'stt',
     'Thang',
     'Doanhthu',
   ];
+
   constructor(
-	private adminservice :AdminService,
-	private titleService: Title
-  ) { }
+    private adminservice: AdminService,
+    private _exporHelperService: ExcelService,
+    private titleService: Title
+  ) {
+  }
+
   chart: any;
 
   chartOptions = {
     animationEnabled: true,
-    theme: "light2",
-    title:{
-      text: "Revenue Analysis"
+    theme: 'light2',
+    title: {
+      text: 'Revenue Analysis'
     },
     axisY: {
-      title: "Number of Orders",
+      title: 'Number of Orders',
       includeZero: true
     },
     axisY2: {
-      title: "Total Revenue",
+      title: 'Total Revenue',
       includeZero: true,
-      labelFormatter: (e:any) => {
-        var suffixes = ["", "K", "M", "B"];
+      labelFormatter: (e: any) => {
+        var suffixes = ['', 'K', 'M', 'B'];
 
         var order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
-        if(order > suffixes.length - 1)
+        if (order > suffixes.length - 1)
           order = suffixes.length - 1;
 
         var suffix = suffixes[order];
@@ -74,9 +80,9 @@ export class ChartComponent implements OnInit {
       shared: true
     },
     legend: {
-      cursor: "pointer",
+      cursor: 'pointer',
       itemclick: function (e: any) {
-        if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        if (typeof (e.dataSeries.visible) === 'undefined' || e.dataSeries.visible) {
           e.dataSeries.visible = false;
         } else {
           e.dataSeries.visible = true;
@@ -85,68 +91,126 @@ export class ChartComponent implements OnInit {
       }
     },
     data: [{
-      type: "column",
+      type: 'column',
       showInLegend: true,
-      name: "Revenue",
-      axisYType: "secondary",
-      yValueFormatString: "$#,###",
+      name: 'Revenue',
+      axisYType: 'secondary',
+      yValueFormatString: '$#,###',
       dataPoints: [
-        { label: "Jan", y: 250000 },
-        { label: "Feb", y: 431000 },
-        { label: "Mar", y: 646000 },
-        { label: "Apr", y: 522000 },
-        { label: "May", y: 464000 },
-        { label: "Jun", y: 470000 },
-        { label: "Jul", y: 534000 },
-        { label: "Aug", y: 407000 },
-        { label: "Sep", y: 484000 },
-        { label: "Oct", y: 465000 },
-        { label: "Nov", y: 424000 },
-        { label: "Dec", y: 231000 }
+        {label: 'Jan', y: 250000},
+        {label: 'Feb', y: 431000},
+        {label: 'Mar', y: 646000},
+        {label: 'Apr', y: 522000},
+        {label: 'May', y: 464000},
+        {label: 'Jun', y: 470000},
+        {label: 'Jul', y: 534000},
+        {label: 'Aug', y: 407000},
+        {label: 'Sep', y: 484000},
+        {label: 'Oct', y: 465000},
+        {label: 'Nov', y: 424000},
+        {label: 'Dec', y: 231000}
       ]
-    },{
-      type: "spline",
+    }, {
+      type: 'spline',
       showInLegend: true,
-      name: "No of Orders",
+      name: 'No of Orders',
       dataPoints: [
-        { label: "Jan", y: 372 },
-        { label: "Feb", y: 412 },
-        { label: "Mar", y: 572 },
-        { label: "Apr", y: 224 },
-        { label: "May", y: 246 },
-        { label: "Jun", y: 601 },
-        { label: "Jul", y: 642 },
-        { label: "Aug", y: 590 },
-        { label: "Sep", y: 527 },
-        { label: "Oct", y: 273 },
-        { label: "Nov", y: 251 },
-        { label: "Dec", y: 331 }
+        {label: 'Jan', y: 372},
+        {label: 'Feb', y: 412},
+        {label: 'Mar', y: 572},
+        {label: 'Apr', y: 224},
+        {label: 'May', y: 246},
+        {label: 'Jun', y: 601},
+        {label: 'Jul', y: 642},
+        {label: 'Aug', y: 590},
+        {label: 'Sep', y: 527},
+        {label: 'Oct', y: 273},
+        {label: 'Nov', y: 251},
+        {label: 'Dec', y: 331}
       ]
     }]
   }
+
   ngOnInit(): void {
-	this.role = localStorage.getItem('role');
+    this.role = localStorage.getItem('role');
     this.setTitle('Bookstore');
     console.log('role check toolbar', this.role);
     if (this.role === 'admin') {
-     this.isAdmin = true;
-     this.isLogin = true;
-   }
+      this.isAdmin = true;
+      this.isLogin = true;
+    }
     if (this.role === 'seller') {
-     this.isSeller = true;
-     this.isLogin = true;
-   }
+      this.isSeller = true;
+      this.isLogin = true;
+    }
     if (this.role === 'user') {
-     this.isUser = true;
-     this.isLogin = true;
-     console.log('is user ', this.isUser);
-   }
+      this.isUser = true;
+      this.isLogin = true;
+      console.log('is user ', this.isUser);
+    }
   }
+
   nameEventHander($event: any) {
     this.opened2 = $event;
     console.log('2', this.opened2);
   }
-  public setTitle( dashboard: string) {
-    this.titleService.setTitle( dashboard );
-    }
+
+  public setTitle(dashboard: string) {
+    this.titleService.setTitle(dashboard);
+  }
+
+  doExport() {
+    let headerTTThietHai: any[] = [
+      'STT',
+      'Tháng',
+      'Doanh thu',
+
+    ];
+    let groupHeaderTTThietHai: any[] = [];
+    let groupHeaderTTThietHai_row1: any[] = [];
+
+    let groupMergerTTThietHai: any[] = [];
+    let keyTTThietHai: any[] = [
+      'TT',
+      'thang',
+      'Doanhthu'
+    ];
+
+
+    let dataTemp: any[] = [];
+
+    this.dataSource.forEach((element, index) => {
+      let item = {
+        'TT': index + 1,
+        'thang': element.label,
+        'Doanhthu': element.y +'đ',
+
+
+      }
+      dataTemp.push(item)
+    })
+
+
+    let widthThietHai: any[] = [8, 10, 40];
+    let excelTTThietHai: Excel = {
+      title: 'Thống kê Doanh thu cả năm',
+      subTitle: null,
+      workSheet: null,
+      keys: keyTTThietHai,
+      widths: widthThietHai,
+      data: dataTemp,
+      groupHeaders: null,
+      groupMerge: null,
+      sheetName: 'Hóa đơn',
+      headers: headerTTThietHai,
+    };
+    let arrayExcel = [];
+    arrayExcel.push(excelTTThietHai);
+
+    let timeSpan = new Date().toISOString();
+    this._exporHelperService.generateExcel(
+      'Doanh-thu' + timeSpan,
+      arrayExcel,
+    );
+  }
 }

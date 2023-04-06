@@ -23,6 +23,9 @@
               <mat-card-title>
                 <h2>Bảng thống kê doanh thu theo tháng</h2>
               </mat-card-title>
+              <div class="row">
+                <button (click)="doExport()" style="width: 10rem;  color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);; margin: 0 120px;"  mat-button><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel</button>
+              </div>
               <mat-card-content>
                 <table class="flex-auto bordered" mat-table [dataSource]="dataSource">
                   <ng-container matColumnDef="stt">
