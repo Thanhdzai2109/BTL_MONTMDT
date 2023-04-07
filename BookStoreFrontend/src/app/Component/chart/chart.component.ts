@@ -56,14 +56,14 @@ export class ChartComponent implements OnInit {
     animationEnabled: true,
     theme: 'light2',
     title: {
-      text: 'Revenue Analysis'
+      text: 'Phân tích doanh thu'
     },
     axisY: {
-      title: 'Number of Orders',
+      title: 'Số lượng đơn đặt hàng',
       includeZero: true
     },
     axisY2: {
-      title: 'Total Revenue',
+      title: 'Tổng doanh thu',
       includeZero: true,
       labelFormatter: (e: any) => {
         var suffixes = ['', 'K', 'M', 'B'];
@@ -73,7 +73,7 @@ export class ChartComponent implements OnInit {
           order = suffixes.length - 1;
 
         var suffix = suffixes[order];
-        return '$' + (e.value / Math.pow(1000, order)) + suffix;
+        return 'đ' + (e.value / Math.pow(1000, order)) + suffix;
       }
     },
     toolTip: {
@@ -93,7 +93,7 @@ export class ChartComponent implements OnInit {
     data: [{
       type: 'column',
       showInLegend: true,
-      name: 'Revenue',
+      name: 'Doanh thu',
       axisYType: 'secondary',
       yValueFormatString: '$#,###',
       dataPoints: [
@@ -113,7 +113,7 @@ export class ChartComponent implements OnInit {
     }, {
       type: 'spline',
       showInLegend: true,
-      name: 'No of Orders',
+      name: 'Số đơn đặt hàng',
       dataPoints: [
         {label: 'Jan', y: 372},
         {label: 'Feb', y: 412},
