@@ -95,7 +95,7 @@ getallUserOrderedBooks() {
       bookDetails:response.obj[i].booksList[0].bookDetails, authorName:response.obj[i].booksList[0].authorName,
       image:response.obj[i].booksList[0].image,  totalprice:response.obj[i].quantityOfBooks[0].totalprice,
       quantityOfBook:response.obj[i].quantityOfBooks[0].quantityOfBook,address:response.obj[i].address, city:response.obj[i].city,
-      ngayMua:response.obj[i].orderPlacedTime
+      ngayMua:response.obj[i].orderPlacedTime,name:response.obj[i].name, phone:response.obj[i].mobileNumber
     };
 
       this.orderdetails.push(p);
@@ -143,6 +143,8 @@ doExport(){
     'Tên sách',
     'Số lượng',
     'Giá tiền',
+    'Họ tên',
+    'Số điện thoại',
     'Ngày mua',
     'Địa chỉ',
 ];
@@ -158,6 +160,8 @@ let keyTTThietHai: any[] = [
     'Tensach',
     'Soluong',
     'Giatien',
+    'name',
+    'phone',
     'NgayMua',
     'DiaCHi', 
 ];
@@ -172,6 +176,8 @@ let dataTemp: any[] = [];
        'DiaCHi':element.address, 
        'Tensach':element.bookName,
        'Soluong':element.quantityOfBook,
+       'name':element.name,
+       'phone':element.phone,
        'NgayMua':formatDate(element.ngayMua, 'dd/MM/yyyy', 'en-US'),
        'Giatien':element.totalprice+' '+'đ',
        
@@ -182,7 +188,7 @@ let dataTemp: any[] = [];
 
 
 
-let widthThietHai: any[] = [8, 10, 20, 8, 10,14,40];
+let widthThietHai: any[] = [8, 10, 20, 8, 10,40,20,20,40];
 let excelTTThietHai: Excel = {
     title: 'Thống kê hóa đơn',
     subTitle: null,
