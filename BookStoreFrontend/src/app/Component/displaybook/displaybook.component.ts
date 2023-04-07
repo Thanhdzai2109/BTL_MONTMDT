@@ -192,7 +192,7 @@ export class DisplaybookComponent implements OnInit {
   getUpdatedNotes(event) {
     this.ngOnInit();
   }
-
+//test
   addtoWish(bookId: any) {
     if (localStorage.getItem('token') === null) {
       this.matSnackBar.open('Please Login first', 'ok', {
