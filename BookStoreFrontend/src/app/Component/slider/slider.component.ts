@@ -9,9 +9,9 @@ export class SliderComponent implements OnInit {
 
   constructor() { }
   slides = [
-    {'image': 'https://kenh14cdn.com/203336854389633024/2021/1/3/photo-1-16096337476961612322578.jpg','Title':'test'},
-    {'image': 'https://tacgia.vn/image/catalog/tin-tuc/Anh-dep-sach-tacgiavn.jpg','Title':'test1' },
-    {'image': 'https://images2.content-hci.com/commimg/myhotcourses/blog/post/myhc_99743.jpg','Title':'test2'},
+    {'image': 'https://img.thedailybeast.com/image/upload/v1552084297/afawwwfa_i2oq5t.jpg'},
+    {'image': 'https://www.mother.ly/wp-content/uploads/2021/12/ARTICLE-HERO-Viral-News-9.jpg' },
+    {'image': 'https://assets.penguinrandomhouse.com/wp-content/uploads/2021/11/29145422/Hidden-Gems_PRH_Site_1200x628.jpg'},
   ];
   ngOnInit(): void {
   }
