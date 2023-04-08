@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "src/app/Service/user.service";
-
+import { Location } from "@angular/common";
 @Component({
   selector: "app-thong-tin-tai-khoan",
   templateUrl: "./thong-tin-tai-khoan.component.html",
@@ -13,14 +13,19 @@ import { UserService } from "src/app/Service/user.service";
 export class ThongTinTaiKhoanComponent implements OnInit {
   userId: any;
   user: any;
+  private canGoBack: boolean = false;
   constructor(
     private fromBuilder: FormBuilder,
     private route: ActivatedRoute,
     private matSnackBar: MatSnackBar,
     private route1: Router,
     private dialog: MatDialog,
+    private router: Router,
+    private readonly location: Location,
     private userService: UserService
-  ) {}
+  ) {
+    this.canGoBack = !!this.router.getCurrentNavigation()?.previousNavigation;
+  }
   formBCTKCC: FormGroup = this.fromBuilder.group({
     Email: [null, [Validators.required, Validators.email]],
     SDT: [],
@@ -30,8 +35,8 @@ export class ThongTinTaiKhoanComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get("userId");
     this.getUser();
-
   }
+
   getUser() {
     this.userService.DetailUser(this.userId).subscribe((response: any) => {
       console.log(response);
@@ -54,11 +59,16 @@ export class ThongTinTaiKhoanComponent implements OnInit {
         this.matSnackBar.open(res.message, "ok", {
           duration: 4000,
         });
-        this.route1.navigateByUrl('books');
+        this.route1.navigateByUrl("books");
       }
     });
   }
   changePassword() {
     this.route1.navigateByUrl("passWord/" + this.userId);
+  }
+  goBack(): void {
+    if (this.canGoBack) {
+      this.location.back();
+    }
   }
 }
