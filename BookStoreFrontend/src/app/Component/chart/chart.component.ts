@@ -75,15 +75,22 @@ export class ChartComponent implements OnInit {
 	  data: [{
 		type: "doughnut",
 		yValueFormatString: "#,###.##'%'",
-		indexLabel: "{name}",
+		// indexLabel: "{name}",
 		dataPoints: [
-		  { y: 28, name: "Labour" },
-		  { y: 10, name: "Legal" },
-		  { y: 20, name: "Production" },
-		  { y: 15, name: "License" },
-		  { y: 23, name: "Facilities" },
-		  { y: 17, name: "Taxes" },
-		  { y: 12, name: "Insurance" }
+		  // { y: 28, name: "Labour" },
+		  // { y: 10, name: "Legal" },
+		  // { y: 20, name: "Production" },
+		  // { y: 15, name: "License" },
+		  // { y: 23, name: "Facilities" },
+		  // { y: 17, name: "Taxes" },
+		  // { y: 12, name: "Insurance" }
+      { y: 28,},
+      { y: 10,},
+      { y: 10,},
+      { y: 15,},
+      { y: 23,},
+      { y: 17,},
+      { y: 12,},
 		]
 	  }]
 	}	
