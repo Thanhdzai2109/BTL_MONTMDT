@@ -22,6 +22,20 @@ export class ChartComponent implements OnInit {
   isAdmin = false;
   role: string;
   isLogin = false;
+  dataSl:any=[
+    {label: 'Jan', y: 372},
+    {label: 'Feb', y: 412},
+    {label: 'Mar', y: 572},
+    {label: 'Apr', y: 224},
+    {label: 'May', y: 246},
+    {label: 'Jun', y: 601},
+    {label: 'Jul', y: 642},
+    {label: 'Aug', y: 590},
+    {label: 'Sep', y: 527},
+    {label: 'Oct', y: 273},
+    {label: 'Nov', y: 251},
+    {label: 'Dec', y: 331}
+  ]
   dataSource: any = [
     {label: 'Jan', y: 250000},
     {label: 'Feb', y: 431000},
@@ -42,7 +56,11 @@ export class ChartComponent implements OnInit {
     'Thang',
     'Doanhthu',
   ];
-
+  discolum:string[]=[
+    'stt',
+    'Thang',
+    'soDonhang',
+  ]
   constructor(
     private adminservice: AdminService,
     private _exporHelperService: ExcelService,
@@ -210,6 +228,60 @@ export class ChartComponent implements OnInit {
     let timeSpan = new Date().toISOString();
     this._exporHelperService.generateExcel(
       'Doanh-thu' + timeSpan,
+      arrayExcel,
+    );
+  }
+  doExport1(){
+    let headerTTThietHai: any[] = [
+      'STT',
+      'Tháng',
+      'Số lượng đơn',
+
+    ];
+    let groupHeaderTTThietHai: any[] = [];
+    let groupHeaderTTThietHai_row1: any[] = [];
+
+    let groupMergerTTThietHai: any[] = [];
+    let keyTTThietHai: any[] = [
+      'TT',
+      'thang',
+      'SL'
+    ];
+
+
+    let dataTemp: any[] = [];
+
+    this.dataSl.forEach((element, index) => {
+      let item = {
+        'TT': index + 1,
+        'thang': element.label,
+        'SL': element.y +' Đơn',
+
+
+      }
+      dataTemp.push(item)
+    })
+
+
+    let widthThietHai: any[] = [8, 10, 50];
+    let excelTTThietHai: Excel = {
+      title: 'Thống kê Số lượng đơn cả năm',
+      subTitle: null,
+      workSheet: null,
+      keys: keyTTThietHai,
+      widths: widthThietHai,
+      data: dataTemp,
+      groupHeaders: null,
+      groupMerge: null,
+      sheetName: 'Hóa đơn',
+      headers: headerTTThietHai,
+    };
+    let arrayExcel = [];
+    arrayExcel.push(excelTTThietHai);
+
+    let timeSpan = new Date().toISOString();
+    this._exporHelperService.generateExcel(
+      'Don-hang' + timeSpan,
       arrayExcel,
     );
   }
