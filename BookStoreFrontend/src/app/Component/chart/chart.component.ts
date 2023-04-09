@@ -69,7 +69,24 @@ export class ChartComponent implements OnInit {
   }
 
   chart: any;
+  chartOptions1 = {
+	  animationEnabled: true,
 
+	  data: [{
+		type: "doughnut",
+		yValueFormatString: "#,###.##'%'",
+		indexLabel: "{name}",
+		dataPoints: [
+		  { y: 28, name: "Labour" },
+		  { y: 10, name: "Legal" },
+		  { y: 20, name: "Production" },
+		  { y: 15, name: "License" },
+		  { y: 23, name: "Facilities" },
+		  { y: 17, name: "Taxes" },
+		  { y: 12, name: "Insurance" }
+		]
+	  }]
+	}	
   chartOptions = {
     animationEnabled: true,
     theme: 'light2',

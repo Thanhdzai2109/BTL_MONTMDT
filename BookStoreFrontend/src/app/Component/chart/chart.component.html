@@ -67,6 +67,13 @@
                 </mat-card-content>
               </mat-card>
             </div>
+            <div class="col-9" >
+              <mat-card style="margin: -579px 1176px;">
+                <div>
+                  <canvasjs-chart [options]="chartOptions1" [styles]="{width: '30%', height:'360px'}"></canvasjs-chart>    
+              </div>    
+              </mat-card>
+            </div>
           </div>
                     <div class="row">
                       <button (click)="doExport()" style="width: 10rem;  color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);;     margin: 19px 141px;"  mat-button><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel bảng 1</button>
