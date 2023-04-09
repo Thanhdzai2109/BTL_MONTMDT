@@ -132,18 +132,18 @@ export class ChartComponent implements OnInit {
       axisYType: 'secondary',
       yValueFormatString: '$#,###',
       dataPoints: [
-        {label: 'Jan', y: 250000},
-        {label: 'Feb', y: 431000},
-        {label: 'Mar', y: 646000},
-        {label: 'Apr', y: 522000},
-        {label: 'May', y: 464000},
-        {label: 'Jun', y: 470000},
-        {label: 'Jul', y: 534000},
-        {label: 'Aug', y: 407000},
-        {label: 'Sep', y: 484000},
-        {label: 'Oct', y: 465000},
-        {label: 'Nov', y: 424000},
-        {label: 'Dec', y: 231000}
+        {label: 'Jan', y: 25000000},
+        {label: 'Feb', y: 43100000},
+        {label: 'Mar', y: 64600000},
+        {label: 'Apr', y: 52200000},
+        {label: 'May', y: 46400000},
+        {label: 'Jun', y: 47000000},
+        {label: 'Jul', y: 53400000},
+        {label: 'Aug', y: 40700000},
+        {label: 'Sep', y: 48400000},
+        {label: 'Oct', y: 46500000},
+        {label: 'Nov', y: 42400000},
+        {label: 'Dec', y: 23100000}
       ]
     }, {
       type: 'spline',
