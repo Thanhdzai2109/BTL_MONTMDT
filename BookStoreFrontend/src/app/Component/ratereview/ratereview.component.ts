@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BookModule } from 'src/app/Model/book/book.module';
 import { BookService } from 'src/app/Service/book.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -26,6 +26,7 @@ export class RatereviewComponent implements OnInit {
     private wishlistService: WishlistService,
     private route: ActivatedRoute,
   ) { }
+  @Input('starCount')  starCount = 5;
   bookId: any;
   ratings: Array<any> = [];
   rate: any;
@@ -36,25 +37,32 @@ export class RatereviewComponent implements OnInit {
   bookImage: any;
   bookName: any;
   bookAuthor: any;
+  review: any;
   bookPrice: any;
   bookDescription: any;
   sellerName: any;
   show: boolean;
-
+  ratingArr = [];
+  token:any
   totalRate = 0;
   ratenumber: number=0;
   color: any;
   total: any;
+  rating: number;
   reviewList =new Array<any>();
   rev:string;
   user=new Array<any>();
 
   ngOnInit(): void {
     this.bookId = this.route.snapshot.paramMap.get('bookId');
+    this.token=localStorage.getItem('token')
     this.getBookById();
     this.getRatings();
     console.log('bookid ', this.bookId);
-    
+    console.log('token',this.token)
+    for (let index = 0; index < this.starCount; index++) {
+      this.ratingArr.push(index);
+    }
     // this.getRateOfBookById();
   }
 
@@ -109,13 +117,14 @@ export class RatereviewComponent implements OnInit {
       }
       if (this.ratenumber > 1) {
           this.totalRate = this.totalRate / this.ratenumber;
-          this.total = Number.parseFloat(this.totalRate + '').toFixed(1);
+          this.total = Number.parseInt(this.totalRate + '').toFixed(1);
+        
         }
       if (this.totalRate >= 3 || this.totalRate >= 2) {
           this.color = 'rgb(245, 182, 110)';
         }
       if (this.totalRate >= 4) {
-          this.color = 'rgb(16, 136, 16)';
+          this.color = 'white';
         }
       if (this.totalRate < 2) {
           this.color = 'rgb(216, 69, 59)';
@@ -188,5 +197,41 @@ export class RatereviewComponent implements OnInit {
     //   .subscribe((response: any) => {
     //     this.isListed = response["obj"];
     //   });
+  }
+
+  onClick(rating: any) {
+    this.matSnackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
+      duration: 2000,
+    });
+    this.rating = rating;
+    return false;
+  }
+  showIcon(index: number) {
+    if (this.rating >= index + 1) {
+      return 'star';
+    } else {
+      return 'star_border';
+    }
+  }
+  submitRate() {
+    const data = {
+      rating: this.rating,
+      review: this.review,
+    };
+    console.log('rating is', data.rating);
+    console.log('review is ', data.review);
+    this.bookService
+      .ratingandreview(this.bookId, data ,this.token)
+      .subscribe((response: any) => {
+        console.log('submit rate response:', response);
+        this.matSnackBar.open(response.response, 'ok', { duration: 2000 });
+        // this.router.navigateByUrl('books');
+        window.location.reload();
+      },
+      (error: any) => {
+        this.matSnackBar.open('Lỗi ', 'ok', { duration: 2000 });
+      }
+
+      );
   }
 }

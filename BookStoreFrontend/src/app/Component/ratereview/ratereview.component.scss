@@ -120,3 +120,26 @@
     padding-right: 1px;
     border-radius: 3px;
   }
+  .twocards {
+    width: 365px;
+}
+.singlecard {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+  width: 80%;
+}
+
+button {
+  
+  mat-icon {
+      color: rgb(255, 196, 0);
+  }
+}
+.reviewtext {
+  textarea {
+      width: 99%;
+      min-height: 60px;
+      outline: none;
+  }
+}
