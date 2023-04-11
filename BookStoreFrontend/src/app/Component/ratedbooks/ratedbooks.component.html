@@ -16,18 +16,13 @@
                 </mat-card-title>
                 <mat-card-content style="width: 17em; ">
                     <div class="out-of-stock " *ngIf="!book.noOfBooks " style=" background-color: #EE0000; color: aliceblue;font-family:revert">Hết hàng</div>
-                    <div class="sale" *ngIf="book.priceSale>0"
-                      style="color: #EE0000; background-color: 	#F2FF00; font-family:revert ;">Sale
-                      {{(book.price-book.priceSale)/book.price*100}} %
+                    <div class="sale" *ngIf="book.priceSale>0" style="color: #EE0000; background-color: 	#F2FF00; font-family:revert ;">Sale {{matGrout(book)}} %
                     </div>
                     <div class="bookname ">{{ book.bookName }}</div>
                     <div class="authorname ">by {{ book.authorName }}</div>
-                    <div class="price " style="color: #EE0000 ;font-size: 24px;text-decoration:line-through;"
-                    *ngIf="book.priceSale>0"> {{ book.price }} vnđ</div>
-                  <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale==null"> {{ book.price
-                    }} vnđ</div>
-                  <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale>0"> {{ book.priceSale
-                    }} vnđ</div>
+                    <div class="price " style="color: #EE0000 ;font-size: 24px;text-decoration:line-through;" *ngIf="book.priceSale>0"> {{ book.price }} vnđ</div>
+                    <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale==null"> {{ book.price }} vnđ</div>
+                    <div class="price " style="color: #EE0000 ;font-size: 24px;" *ngIf="book.priceSale>0"> {{ book.priceSale }} vnđ</div>
 
                     <div>
 

@@ -1,11 +1,11 @@
 <mat-toolbar style="background-color: rgba(4, 25, 131, 0.829);" fxLayout="row" xLayoutAlign="space-between center" fullscreen>
-  <span *ngIf="isAdmin || isSeller">
+    <span *ngIf="isAdmin || isSeller">
     <button id="menuBtn" mat-icon-button (click)="ontoggel(opened)" class="menu">
 
       <mat-icon matTooltip="Main menu">menu</mat-icon>
     </button>
 </span>
-  <!-- home -->
+    <!-- home -->
     <div class="home" fxFlex="10" fxLayoutGap="5%"></div>
     <!-- logo  name -->
     <div class="logo-name" fxFlex="15">
@@ -38,30 +38,32 @@
   </div>
   <!-- <div class="wish-list" align="center" *ngIf="!isAdmin && !isSeller">
     <span style="color: #fff; font-size: small;"></span>
-    <button mat-icon-button  routerLink="/wish" matTooltip="Wishlist">
+            <button mat-icon-button routerLink="/wish" matTooltip="Wishlist">
     <mat-icon matBadge="{{wishlistLength}}" matBadgeSize="small" >favorite_border</mat-icon>
     </button>
-    </div>   -->
-  <!-- Shooping cart -->
-  <!-- <div class="cart" align="center" *ngIf="!isAdmin && !isSeller">
+        </div> -->
+        <!-- Shooping cart -->
+        <!-- <div class="cart" align="center" *ngIf="!isAdmin && !isSeller">
     <span style="color: #fff; font-size: small;">Cart</span>
             <button mat-icon-button routerLink="/cart" matTooltip="Cart">
                   <mat-icon matBadge="{{ length }}" matBadgeSize="small">add_shopping_cart</mat-icon>
              </button>
-             
+
         </div> -->
         <!-- to give 1 space for mobile -->
         &nbsp;
         <!-- Profile -->
         <div class="profile" fxFlex="5" align="center" *ngIf="!isLogin">
-          <div class="row">
-            <div class="col-1">
-              <a href="/login"><span style="color: #fff; font-size: medium; margin: 0;"> Đăng nhập</span></a>  
+            <div class="row">
+                <div class="col-1">
+                    <a href="/login" style=" font-size: medium; margin: 0;"> Đăng nhập</a>
+                </div>
+                <div class="col-1">
+                    <a href="/register" style=" font-size: medium; margin: 0 61px">
+                         Đăng ký
+                    </a>
+                </div>
             </div>
-            <div class="col-1">
-              <a href="/register"><div class="col-1" style="color: #fff; font-size: medium; margin: 2px 40px;"> Đăng ký</div></a>
-            </div>
-          </div>
         </div>
         <div class="profile" fxFlex="5" align="center" *ngIf="isLogin">
             <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -86,7 +88,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div> -->
                 <button mat-menu-item (click)="detailUser()">
@@ -100,22 +102,22 @@
             </mat-menu>
         </div>
 </mat-toolbar>
-<mat-toolbar style="background-color: rgba(4, 25, 131, 0.829);" fxLayout="row" xLayoutAlign="space-between center" fullscreen >
-   <div class="row" style="margin: 0 -5px;"*ngIf="!isAdmin && !isSeller">
-    <div class="col-1">
-   <a href="/history"><span style="color: #fff; font-size: medium; margin:0 538px" ><i class="fa fa-history" aria-hidden="true" ></i> Lịch sử giao dịch </span></a>
-    </div>
-    <div class="col-1" style="margin:0 571px ;">
-    <a href="/cart">  <span style="color: #fff; font-size: medium; ">Giỏ hàng</span></a>
-      <button mat-icon-button routerLink="/cart" >
+<mat-toolbar style="background-color: rgba(4, 25, 131, 0.829);" fxLayout="row" xLayoutAlign="space-between center" fullscreen>
+    <div class="row" style="margin: 0 -5px;" *ngIf="!isAdmin && !isSeller">
+        <div class="col-1">
+            <a href="/history" style=" font-size: medium; margin:0 538px"><i class="fa fa-history" aria-hidden="true" ></i> Lịch sử giao dịch </a>
+        </div>
+        <div class="col-1" style="margin:0 571px ;">
+            <a href="/cart" style="font-size: medium; "> Giỏ hàng</a>
+            <button mat-icon-button routerLink="/cart">
             <mat-icon matBadge="{{ length }}" matBadgeSize="small">add_shopping_cart</mat-icon>
        </button>
-    </div>
-    <div class="col-1" style="margin: 0 -556px;">
-       <a href="/wish"><span style="color: #fff; font-size: medium;">Sản phẩm yêu thích</span></a>
-        <button mat-icon-button  routerLink="/wish" matTooltip="Wishlist">
+        </div>
+        <div class="col-1" style="margin: 0 -556px;">
+            <a href="/wish" style="font-size: medium;">Sản phẩm yêu thích</a>
+            <button mat-icon-button routerLink="/wish" matTooltip="Wishlist">
         <mat-icon matBadge="{{wishlistLength}}" matBadgeSize="small" >favorite_border</mat-icon>
         </button>
-    </div>
+        </div>
     </div>
 </mat-toolbar>

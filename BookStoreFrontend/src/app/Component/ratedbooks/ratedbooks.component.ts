@@ -52,6 +52,9 @@ export class RatedbooksComponent implements OnInit {
     );
 
   }
+  matGrout(book:any){
+    return Math.round((book.price-book.priceSale)/book.price*100);
+ }
 
  getRateOfBook(bookId: number)  {
     console.log('book id for avgrate:', bookId);

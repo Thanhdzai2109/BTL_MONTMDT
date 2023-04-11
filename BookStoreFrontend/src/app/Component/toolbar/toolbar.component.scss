@@ -54,12 +54,34 @@ img {
     outline: none;
 }
 
-
-
-.menu{
+.menu {
     margin-left: -25%;
 }
+
+a:link {
+    color: red;
+}
+
+
+/* visited link */
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* mouse over link */
+
 a:hover {
-  color: lightgreen;
-  color: whitesmoke;
+    color: #FAEBD7;
+    text-decoration: none;
+}
+
+
+/* selected link */
+
+a:active {
+    color: #F0FFFF;
+    text-decoration: none;
 }
