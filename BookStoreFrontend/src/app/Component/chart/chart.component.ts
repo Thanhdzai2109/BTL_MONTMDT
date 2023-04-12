@@ -20,8 +20,12 @@ export class ChartComponent implements OnInit {
   isUser = false;
   isSeller = false;
   isAdmin = false;
+  orderedBooks: any;
+  dataTemp: any[] = [];
+  orderdetails = new Array<any>();
   role: string;
   isLogin = false;
+  price4:number;
   dataSl:any=[
     {label: 'Jan', y: 372},
     {label: 'Feb', y: 412},
@@ -176,7 +180,7 @@ export class ChartComponent implements OnInit {
   ngOnInit(): void {
     this.role = localStorage.getItem('role');
     this.setTitle('Bookstore');
-    console.log('role check toolbar', this.role);
+    this.getallUserOrderedBooks();
     if (this.role === 'admin') {
       this.isAdmin = true;
       this.isLogin = true;
@@ -188,8 +192,11 @@ export class ChartComponent implements OnInit {
     if (this.role === 'user') {
       this.isUser = true;
       this.isLogin = true;
-      console.log('is user ', this.isUser);
+    
     }
+    console.log('daa',this.orderdetails)
+
+  
   }
 
   nameEventHander($event: any) {
@@ -308,5 +315,36 @@ export class ChartComponent implements OnInit {
       'Don-hang' + timeSpan,
       arrayExcel,
     );
+  }
+
+  getallUserOrderedBooks() {
+    console.log("order status api called");
+    this.adminservice.getAllOrderedBooks().subscribe((response) => {
+      this.orderedBooks = response.obj;
+      console.log("All orderbooks for order status= :  ", this.orderedBooks);
+      console.log("no of orders " + response.obj.length);
+
+      for (let i = 0; i < response.obj.length; i++) {
+       
+
+        var p = {
+          orderId: response.obj[i].orderId,
+          orderStatus: response.obj[i].orderStatus,
+          bookName: response.obj[i].booksList[0].bookName,
+          bookDetails: response.obj[i].booksList[0].bookDetails,
+          authorName: response.obj[i].booksList[0].authorName,
+          image: response.obj[i].booksList[0].image,
+          totalprice: response.obj[i].quantityOfBooks[0].totalprice,
+          quantityOfBook: response.obj[i].quantityOfBooks[0].quantityOfBook,
+          address: response.obj[i].address,
+          city: response.obj[i].city,
+          ngayMua: response.obj[i].orderPlacedTime,
+          name: response.obj[i].name,
+          phone: response.obj[i].mobileNumber,
+        };
+
+        this.orderdetails.push(p);
+      }
+    });
   }
 }

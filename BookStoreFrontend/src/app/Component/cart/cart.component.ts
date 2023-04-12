@@ -32,6 +32,7 @@ export class CartComponent implements OnInit {
     private orderService: OrderService
   ) {}
   selected = false;
+  public showPaypalButtons: boolean;
   isLinear = false;
   customerForm: FormGroup;
   error: null;
@@ -293,4 +294,6 @@ export class CartComponent implements OnInit {
       });
     }
   }
+
+
 }
