@@ -33,6 +33,7 @@
     "creditcardpayments": "^1.0.3",
     "exceljs": "^4.3.0",
     "express": "^4.17.1",
+    "fcc-express-background": "^0.0.2",
     "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "path": "^0.12.7",
