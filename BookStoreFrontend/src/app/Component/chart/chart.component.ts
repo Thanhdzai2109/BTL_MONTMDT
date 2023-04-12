@@ -29,9 +29,22 @@ export class ChartComponent implements OnInit {
   price4: number;
   dataPrice: any= [];
   dataSl: any = [
-
+   
   ];
-  dataQuanlity: any= [];
+  dataQuanlity: any= [
+    // { label: "Jan", y: 12 },
+    // { label: "Feb", y: 12 },
+    // { label: "Mar", y: 1233 },
+    // { label: "Apr", y: 122 },
+    // { label: "May", y: 222 },
+    // { label: "Jun", y: 33 },
+    // { label: "Jul", y: 1212 },
+    // { label: "Aug", y: 12 },
+    // { label: "Sep", y: 12 },
+    // { label: "Oct", y: 12 },
+    // { label: "Nov", y: 21 },
+    // { label: "Dec", y: 12 },
+  ];
   dataSource: any = [];
   displayedColumns: string[] = ["stt", "Thang", "Doanhthu"];
   discolum: string[] = ["stt", "Thang", "soDonhang"];
@@ -143,7 +156,7 @@ export class ChartComponent implements OnInit {
       this.isUser = true;
       this.isLogin = true;
     }
-   console.log('data2', this.dataQuanlity)
+  
   }
 
   nameEventHander($event: any) {
