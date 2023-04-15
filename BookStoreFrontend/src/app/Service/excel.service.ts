@@ -42,6 +42,14 @@ export class ExcelService {
 
         // merge group data body
         this.mergeGroupBody(worksheet, excel)
+        let footerRow = worksheet.addRow(['Chữ kí tổng giám đốc']);
+        footerRow.getCell(3).fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb: 'FFCCFFE5' }
+        };
+        footerRow.getCell(3).border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+        worksheet.mergeCells(`A${footerRow.number}:B${footerRow.number}`);
     })
 
     this.saveAsExcelFile(workbook, fileName);
@@ -107,6 +115,7 @@ setTitle(worksheet: ExcelProper.Worksheet, excel: Excel) {
     }
 }
 
+
 setSubTitle(worksheet: ExcelProper.Worksheet, excel: Excel) {
     if (!excel.subTitle)
         return;
@@ -114,7 +123,7 @@ setSubTitle(worksheet: ExcelProper.Worksheet, excel: Excel) {
     worksheet.mergeCells(`A2:${this.convertToExcelPosition(excel.headers.length - 1)}2`);
     worksheet.getCell('A2').value = excel.subTitle;
     worksheet.getCell('A2').style = {
-        font: { name: 'Times New Roman', size: 18, bold: true },
+        font: { name: 'Times New Roman', size: 12, bold: true },
         alignment: { vertical: 'middle', horizontal: 'center' }
     }
 }

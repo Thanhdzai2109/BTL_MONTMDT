@@ -187,7 +187,7 @@ export class ChartComponent implements OnInit {
     let widthThietHai: any[] = [8, 10, 40];
     let excelTTThietHai: Excel = {
       title: "Thống kê Doanh thu cả năm",
-      subTitle: null,
+      subTitle: "Hà Nội ngày " + formatDate(new Date(),"dd/MM/yyyy", "en-US") ,
       workSheet: null,
       keys: keyTTThietHai,
       widths: widthThietHai,
@@ -222,7 +222,7 @@ export class ChartComponent implements OnInit {
     let widthThietHai: any[] = [8, 10, 50];
     let excelTTThietHai: Excel = {
       title: "Thống kê Số lượng đơn cả năm",
-      subTitle: null,
+      subTitle: "Hà Nội ngày " + formatDate(new Date(),"dd/MM/yyyy", "en-US") ,
       workSheet: null,
       keys: keyTTThietHai,
       widths: widthThietHai,
