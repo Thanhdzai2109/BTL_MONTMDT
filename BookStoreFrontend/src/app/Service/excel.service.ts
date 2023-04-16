@@ -42,14 +42,18 @@ export class ExcelService {
 
         // merge group data body
         this.mergeGroupBody(worksheet, excel)
-        let footerRow = worksheet.addRow(['Chữ kí tổng giám đốc']);
+        let footerRow = worksheet.addRow(['Chữ kí Tổng giám đốc']);
+        footerRow.font={
+            bold:true,
+            name: 'Times New Roman', size: 14,
+        }
         footerRow.getCell(3).fill = {
           type: 'pattern',
           pattern: 'solid',
           fgColor: { argb: 'FFCCFFE5' }
         };
-        footerRow.getCell(3).border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
-        worksheet.mergeCells(`A${footerRow.number}:B${footerRow.number}`);
+        footerRow.getCell(3).border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin'  }, right: { style: 'thin' } }
+        worksheet.mergeCells(`A${footerRow.number}:F${footerRow.number}`);
     })
 
     this.saveAsExcelFile(workbook, fileName);
@@ -229,15 +233,21 @@ setHeader(worksheet: ExcelProper.Worksheet, excel: Excel, positionGroup: number)
         worksheet.getRow(positionHeader).eachCell((cell, colNum) => {
             cell.style = {
                 font: { name: 'Times New Roman', size: 14, bold: true },
-                alignment: { wrapText: true, vertical: 'middle', horizontal: 'center' }
+                alignment: { wrapText: true, vertical: 'middle', horizontal: 'center'}
+              
             };
-
             cell.border = {
                 top: { style: 'thin' },
                 left: { style: 'thin' },
                 bottom: { style: 'thin' },
                 right: { style: 'thin' }
             };
+            cell.fill = {
+                type: 'pattern',
+                pattern: 'solid',
+                fgColor: { argb: 'FFFFFF00' },
+                bgColor: { argb: 'FF0000FF' }
+              }
         })
     }
 
