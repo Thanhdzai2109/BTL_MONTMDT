@@ -63,6 +63,7 @@ public class UserServiceImplementation implements UserServices {
 		if (user == null) {
 			users = modelMapper.map(information, Users.class);
 			users.setCreatedDate(LocalDateTime.now());
+			users.setActive(1);
 			String epassword = encryption.encode(information.getPassword());
 			// setting the some extra information and encrypting the password
 			users.setPassword(epassword);
