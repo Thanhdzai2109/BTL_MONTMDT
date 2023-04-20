@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
+
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "src/app/Service/user.service";
 import { Location } from "@angular/common";
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-dilalog-change-pass-word",
   templateUrl: "./dilalog-change-pass-word.component.html",
@@ -16,7 +17,7 @@ export class DilalogChangePassWordComponent implements OnInit {
   constructor(
     private fromBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private matSnackBar: MatSnackBar,
+    private toastr: ToastrService,
     private router: Router,
     private readonly location: Location,
     private userService: UserService
@@ -35,7 +36,8 @@ export class DilalogChangePassWordComponent implements OnInit {
   doUpdate() {
     if (this.formBCTKCC.invalid) {
       this.formBCTKCC.markAllAsTouched();
-      this.matSnackBar.open("Kiểm tra thông tin đầu vào", "ok");
+      // this.matSnackBar.open("Kiểm tra thông tin đầu vào", "ok");
+      this.toastr.warning("Thông báo","Kiểm tra thông tin đầu vào")
       return;
     } else {
       let data = {
@@ -45,9 +47,7 @@ export class DilalogChangePassWordComponent implements OnInit {
         .UpdatepassWord(this.userId, data)
         .subscribe((res: any) => {
           if (res.statusCode == 200) {
-            this.matSnackBar.open(res.message, "ok", {
-              duration: 4000,
-            });
+            this.toastr.success("Thông báo", res.message)
             this.router.navigateByUrl("books");
           }
         });

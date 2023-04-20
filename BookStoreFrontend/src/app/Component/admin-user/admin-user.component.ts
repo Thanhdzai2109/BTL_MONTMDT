@@ -5,8 +5,8 @@ import { MatTableDataSource } from "@angular/material/table";
 import { UserService } from "src/app/Service/user.service";
 import { MatDialog } from "@angular/material/dialog";
 import { DilalogUnlockComponent } from "../dilalog-unlock/dilalog-unlock.component";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { DialalogDeleteComponent } from "../dialalog-delete/dialalog-delete.component";
+import { ToastrService } from 'ngx-toastr';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -45,7 +45,7 @@ export class AdminUserComponent implements OnInit {
   constructor(
     private titleService: Title,
     private dialog: MatDialog,
-    private matSnackBar: MatSnackBar,
+    private toastr: ToastrService,
     private userService: UserService
   ) {}
   isLogin = false;
@@ -91,9 +91,7 @@ export class AdminUserComponent implements OnInit {
       if (result) {
         this.userService.ActiveUser(id).subscribe((message) => {
           if (message.statusCode === 200) {
-            this.matSnackBar.open("Cập nhật trạng thái thành công ", "ok", {
-              duration: 4000,
-            });
+            this.toastr.success("Thông báo","Cập nhật Trạng thái thành công")
             this.doSearh();
           }
         });
@@ -110,9 +108,8 @@ export class AdminUserComponent implements OnInit {
       if (result) {
         this.userService.DeleteUser(id).subscribe((message) => {
           if (message.statusCode === 200) {
-            this.matSnackBar.open("Xóa thành công ", "ok", {
-              duration: 4000,
-            });
+           
+            this.toastr.success("Thông báo","Xóa thành công")
             this.doSearh();
           }
         });

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from 'src/app/Service/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reset-password',
@@ -19,7 +19,7 @@ export class ResetPasswordComponent implements OnInit {
   };
   constructor(private user: UserService,
               private route: Router,
-              private matSnakeBar: MatSnackBar,
+              private toastr: ToastrService,
               private activatedRoute: ActivatedRoute
 ) {
 }
@@ -33,9 +33,7 @@ handleError(error) {
   this.isLoading = false;
   this.error = error.error.message;
   console.log(error);
-  this.matSnakeBar.open(this.error, 'ok', {
-  duration: 5000
-});
+  this.toastr.error(this.error);
 }
 onSubmit() {
   this.isLoading = true;
@@ -46,9 +44,7 @@ onSubmit() {
 }
 handleResponse(data) {
   this.isLoading = false;
-  this.matSnakeBar.open('Sucessfull Update Password ', 'ok', {
-  duration: 5000
-  });
+  this.toastr.success('Sucessfull Update Password');
   this.route.navigateByUrl('\login');
 }
 

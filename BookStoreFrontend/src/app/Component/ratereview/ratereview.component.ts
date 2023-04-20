@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BookModule } from 'src/app/Model/book/book.module';
 import { BookService } from 'src/app/Service/book.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { CartService } from 'src/app/Service/cart.service';
 import { WishlistService } from 'src/app/Service/wishlist.service';
@@ -22,7 +22,7 @@ export class RatereviewComponent implements OnInit {
     private data: BookService,
     private cartService: CartService,
     public dialog: MatDialog,
-    private matSnackBar: MatSnackBar,
+    private toastr: ToastrService,
     private wishlistService: WishlistService,
     private route: ActivatedRoute,
   ) { }
@@ -135,9 +135,7 @@ export class RatereviewComponent implements OnInit {
 
   addToCart(bookId: any) {
     if (localStorage.getItem('token') === null) {
-      this.matSnackBar.open('Please Login first', 'ok', {
-        duration: 5000
-      });
+      this.toastr.warning('Please Login first');
       sessionStorage.setItem(bookId, bookId);
       this.isAdded = true;
       this.router.navigateByUrl('login');
@@ -151,14 +149,10 @@ export class RatereviewComponent implements OnInit {
           // this.data.changeMessage("count");
           console.log(response["obj"]);
           this.isAdded = response.obj;
-          this.matSnackBar.open("Book added to cart", "ok", {
-            duration: 1000,
-          });
+          this.toastr.success("Book added to cart");
         });
       }else{
-        this.matSnackBar.open("Sản phẩm đã hết hàng", "ok", {
-          duration: 1000,
-        });
+        this.toastr.warning("Sản phẩm đã hết hàng");
       }
     // } else {
       // const dialogRef = this.dialog.open(LoginComponent);
@@ -177,9 +171,7 @@ export class RatereviewComponent implements OnInit {
       this.wishlistService.addToWishlist(this.bookId).subscribe((response: any) => {
         console.log(response["obj"]);
         this.isListed = response["obj"];
-        this.matSnackBar.open("Book added to wishlist", "ok", {
-          duration: 1000,
-        });
+        this.toastr.success("Book added to wishlist");
       });
     // } else {
     //   const dialogRef = this.dialog.open(LoginComponent);
@@ -200,9 +192,7 @@ export class RatereviewComponent implements OnInit {
   }
 
   onClick(rating: any) {
-    this.matSnackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
-      duration: 2000,
-    });
+    this.toastr.success('You rated ' + rating + ' / ' + this.starCount, '',);
     this.rating = rating;
     return false;
   }
@@ -224,12 +214,12 @@ export class RatereviewComponent implements OnInit {
       .ratingandreview(this.bookId, data ,this.token)
       .subscribe((response: any) => {
         console.log('submit rate response:', response);
-        this.matSnackBar.open(response.response, 'ok', { duration: 2000 });
+        this.toastr.success(response.response);
         // this.router.navigateByUrl('books');
         window.location.reload();
       },
       (error: any) => {
-        this.matSnackBar.open('Lỗi ', 'ok', { duration: 2000 });
+        this.toastr.error('Lỗi ');
       }
 
       );

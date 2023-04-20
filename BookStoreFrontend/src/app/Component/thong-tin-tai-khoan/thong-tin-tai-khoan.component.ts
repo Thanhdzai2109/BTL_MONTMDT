@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { ToastrService } from "ngx-toastr";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "src/app/Service/user.service";
 import { Location } from "@angular/common";
@@ -17,7 +17,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
   constructor(
     private fromBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private matSnackBar: MatSnackBar,
+    private toastr: ToastrService,
     private route1: Router,
     private dialog: MatDialog,
     private router: Router,
@@ -56,9 +56,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
     };
     this.userService.UpdateInfor(data).subscribe((res: any) => {
       if (res.statusCode == 200) {
-        this.matSnackBar.open(res.message, "ok", {
-          duration: 4000,
-        });
+        this.toastr.success(res.message, "ok");
         this.route1.navigateByUrl("books");
       }
     });

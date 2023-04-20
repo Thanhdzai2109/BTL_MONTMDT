@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
+
 import { CartService } from 'src/app/Service/cart.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { CartService } from 'src/app/Service/cart.service';
 export class WishComponent implements OnInit {
 
   constructor( private cartService: CartService, private wishlistService: WishlistService , private route: Router,
-               private matSnackBar: MatSnackBar) { }
+               private matSnackBar: ToastrService) { }
 
   // tslint:disable-next-line: variable-name
   book_id: number;
@@ -70,12 +71,12 @@ export class WishComponent implements OnInit {
       (Response: any) => {
         console.log('book count = ' + Response.obj);
         this.bookcount = Response.obj;
-        this.matSnackBar.open(Response.message, 'undo', { duration: 2500 });
+        this.matSnackBar.success(Response.message, 'undo');
       },
       (error: any) => {
         console.error(error);
         console.log(error.error.message);
-        this.matSnackBar.open(error.error.message, 'undo', { duration: 2500 });
+        this.matSnackBar.error(error.error.message, 'undo');
       }
     );
   }
@@ -86,12 +87,12 @@ export class WishComponent implements OnInit {
     this.wishlistService.removeFromWishList(BookId).subscribe(
       (response: any) => {
 
-        this.matSnackBar.open('Book removed from wish list', 'success', {duration: 5000});
+        this.matSnackBar.success('Book removed from wish list', 'success');
         window.location.reload();
         sessionStorage.removeItem(BookId);
         },
       (error: any) => {
-        this.matSnackBar.open(error.error.message, 'failed', {duration: 5000});
+        this.matSnackBar.error(error.error.message, 'failed');
       }
     );
   }
@@ -101,11 +102,11 @@ export class WishComponent implements OnInit {
 
     this.wishlistService.addToWishlist(orderId).subscribe(
       (response: any) => {
-        this.matSnackBar.open('Book removed from wish list', 'success', {duration: 5000});
+        this.matSnackBar.success('Book removed from wish list', 'success');
 
         },
       (error: any) => {
-        this.matSnackBar.open(error.error.message, 'failed', {duration: 5000});
+        this.matSnackBar.error(error.error.message, 'failed');
       }
     );
   }
@@ -113,9 +114,7 @@ export class WishComponent implements OnInit {
 
   addtobag( bookId: any) {
     if (localStorage.getItem('token') === null) {
-      this.matSnackBar.open('Please Login first', 'ok', {
-        duration: 5000
-      });
+      this.matSnackBar.warning('Please Login first', 'ok');
       sessionStorage.setItem(bookId, bookId);
       this.route.navigateByUrl('login');
     }
@@ -130,17 +129,13 @@ export class WishComponent implements OnInit {
   handleResponse(data: any) {
     console.log(data);
     window.location.reload();
-    this.matSnackBar.open('Book added successfully Into Cart' , 'ok', {
-    duration: 5000
-  });
+    this.matSnackBar.success('Book added successfully Into Cart' , 'ok');
 }
 
 handleError(error: any) {
   this.error = error.error.message;
   console.log(error);
   window.location.reload();
-  this.matSnackBar.open(this.error, 'ok', {
-  duration: 5000
-});
+  this.matSnackBar.error(this.error);
 }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { UserService } from 'src/app/Service/user.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/Service/token.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class LoginComponentComponent implements OnInit {
   constructor(private user: UserService,
               private token: TokenService,
               private route: Router,
-              private matSnackBar: MatSnackBar,
+              private toastr: ToastrService,
               private titleService: Title
     ) {
       this.setTitle('Bookstore | Login');
@@ -37,9 +37,7 @@ export class LoginComponentComponent implements OnInit {
     if ( error.error.status === 0) {
       console.log('please connect database');
     }
-    this.matSnackBar.open(this.error, 'ok', {
-      duration: 5000
-    });
+    this.toastr.error(this.error);
     console.log(error);
   }
   ngOnInit() {
@@ -58,9 +56,7 @@ export class LoginComponentComponent implements OnInit {
     this.isLoading = false;
     this.token.logedIn(true);
     console.log('user is --->' + data);
-    this.matSnackBar.open('Sucessfully Login', 'ok', {
-      duration: 5000
-    });
+    this.toastr.success('Sucessfully Login');
     if (this.form.role === 'admin') {
       localStorage.setItem('role', 'admin');
       this.route.navigateByUrl('chart');

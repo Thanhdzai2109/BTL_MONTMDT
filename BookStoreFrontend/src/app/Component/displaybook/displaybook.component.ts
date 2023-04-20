@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {BookService} from 'src/app/Service/book.service';
-import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 import {BookModule} from 'src/app/Model/book/book.module';
 import {PageEvent} from '@angular/material/paginator';
 import {Router} from '@angular/router';
@@ -47,7 +47,7 @@ export class DisplaybookComponent implements OnInit {
   leng: any;
 
   constructor(private service: BookService,
-              private matSnackBar: MatSnackBar,
+              private matSnackBar: ToastrService,
               private route: Router,
               private cartService: CartService,
               private wishlistService: WishlistService) {
@@ -143,9 +143,7 @@ export class DisplaybookComponent implements OnInit {
 
   addtobag(bookId: any) {
     if (localStorage.getItem('token') === null) {
-      this.matSnackBar.open('Please Login first', 'ok', {
-        duration: 5000
-      });
+      this.matSnackBar.warning('Please Login first');
       this.route.navigateByUrl('login');
       return;
     }
@@ -159,25 +157,19 @@ export class DisplaybookComponent implements OnInit {
 
   handleResponse(data: any) {
     console.log(data);
-    this.matSnackBar.open('Book added successfully Into Cart', 'ok', {
-      duration: 5000
-    });
+    this.matSnackBar.success('Book added successfully Into Cart');
   }
 
   handleWishResponse(wishdata: any) {
     console.log(wishdata);
-    this.matSnackBar.open('Book is added successfully to wishlist', 'ok', {
-      duration: 5000
-    });
+    this.matSnackBar.success('Book is added successfully to wishlist');
   }
 
 
   handleError(error: any) {
     this.error = error.error.message;
     console.log(error);
-    this.matSnackBar.open(this.error, 'ok', {
-      duration: 5000
-    });
+    this.matSnackBar.error(this.error);
   }
 
   getOutput() {
@@ -195,9 +187,7 @@ export class DisplaybookComponent implements OnInit {
 //test
   addtoWish(bookId: any) {
     if (localStorage.getItem('token') === null) {
-      this.matSnackBar.open('Please Login first', 'ok', {
-        duration: 5000
-      });
+      this.matSnackBar.warning('Please Login first');
       this.route.navigateByUrl('login');
     }
     this.wishlistService.addToWishlist(bookId).subscribe(

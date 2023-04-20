@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { UserService } from 'src/app/Service/user.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
   };
   constructor(private user: UserService,
               private route: Router,
-              private matSnakeBar: MatSnackBar
+              private toastr: ToastrService,
   ) {
   }
   ngOnInit() {
@@ -32,9 +32,7 @@ export class RegistrationComponent implements OnInit {
     this.isloading = false;
     this.error = error.error.message;
     console.log(error);
-    this.matSnakeBar.open(this.error, 'ok', {
-      duration: 5000
-    });
+    this.toastr.error(this.error)
   }
   onSubmit() {
     this.isloading = true;
@@ -48,9 +46,7 @@ export class RegistrationComponent implements OnInit {
     this.isloading = false;
     console.log(data);
     this.route.navigateByUrl('/login');
-    this.matSnakeBar.open('Sucessfull Registration Done ', 'ok', {
-      duration: 5000
-    });
+    this.toastr.success('Sucessfull Registration Done ');
 
   }
 }

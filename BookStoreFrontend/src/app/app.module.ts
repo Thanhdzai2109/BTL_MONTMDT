@@ -62,7 +62,7 @@ import { HistoryBuyComponent } from './Component/history-buy/history-buy.compone
 import { ThongTinTaiKhoanComponent } from './Component/thong-tin-tai-khoan/thong-tin-tai-khoan.component';
 import { DilalogChangePassWordComponent } from './Component/dilalog-change-pass-word/dilalog-change-pass-word.component';
 import { SliderComponent } from './Component/slider/slider.component';
-
+import { ToastrModule } from 'ngx-toastr';
 import { PayPalComponent } from './Component/pay-pal/pay-pal.component'
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
@@ -133,6 +133,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     MatDialogModule,
     MatTableModule,
     MatDividerModule,
+    ToastrModule.forRoot(),
     MatCarouselModule.forRoot() // ---------- Important
     
  ],

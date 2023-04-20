@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TokenService } from "src/app/Service/token.service";
 import { Router } from "@angular/router";
 import { BookService } from "src/app/Service/book.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
+
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { BookModule } from "src/app/Model/book/book.module";
@@ -10,6 +10,7 @@ import { Order } from "src/app/Model/order.model";
 import { AdminService } from "src/app/Service/admin.service";
 import { Excel, ExcelService } from "src/app/Service/excel.service";
 import { formatDate } from "@angular/common";
+import { ToastrService } from "ngx-toastr";
 interface Food {
   value: string;
   viewValue: string;
@@ -26,7 +27,7 @@ export class OrderstatusComponent implements OnInit {
     private adminservice: AdminService,
     private dialog: MatDialog,
     private _exporHelperService: ExcelService,
-    private matSnackBar: MatSnackBar,
+    private toastr: ToastrService,
     private sellerService: BookService
   ) {}
   bookSearch: any;
@@ -120,14 +121,13 @@ export class OrderstatusComponent implements OnInit {
     console.log("Order status", status);
     this.adminservice.updateOrderStatus(orderId, status).subscribe(
       (response: any) => {
-        this.matSnackBar.open("Order updated by Admin", "success", {
-          duration: 5000,
-        });
+        // this.matSnackBar.open("Order updated by Admin", "success", {
+        //   duration: 5000,
+        // });
+         this.toastr.success("Thông báo","Cập nhật thành công")
       },
       (error: any) => {
-        this.matSnackBar.open(error.error.message, "failed", {
-          duration: 5000,
-        });
+        this.toastr.error("Thông báo",error.error.message,);
       }
     );
   }
@@ -137,14 +137,10 @@ export class OrderstatusComponent implements OnInit {
     console.log("Order status", status);
     this.adminservice.updateOrderStatus(orderId, status).subscribe(
       (response: any) => {
-        this.matSnackBar.open("Order updated by Seller", "success", {
-          duration: 5000,
-        });
+        this.toastr.success("Order updated by Seller", "success");
       },
       (error: any) => {
-        this.matSnackBar.open(error.error.message, "failed", {
-          duration: 5000,
-        });
+        this.toastr.error(error.error.message, "failed");
       }
     );
   }

@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BookService } from "src/app/Service/book.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { ToastrService } from 'ngx-toastr';
 import { BookModule } from "src/app/Model/book/book.module";
 import { CartService } from "src/app/Service/cart.service";
 import { Customer } from "src/app/Model/customer.model";
@@ -23,7 +23,7 @@ import { UserService } from "src/app/Service/user.service";
 })
 export class CartComponent implements OnInit {
   constructor(
-    private matSnackBar: MatSnackBar,
+    private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private route: Router,
     private service: BookService,
@@ -157,9 +157,10 @@ export class CartComponent implements OnInit {
   handleResponse(data: any): void {
     this.isLoading = false;
     console.log(data);
-    this.matSnackBar.open(data.message, "ok", {
-      duration: 5000,
-    });
+    this.toastr.success("Thông báo",data.message)
+    // this.matSnackBar.open(data.message, "ok", {
+    //   duration: 5000,
+    // });
   }
 
   handleError(error: any) {
@@ -167,9 +168,10 @@ export class CartComponent implements OnInit {
     this.error = error.error.message;
     console.log(error);
     console.log("error", this.error);
-    this.matSnackBar.open(this.error, "ok", {
-      duration: 5000,
-    });
+    // this.matSnackBar.open(this.error, "ok", {
+    //   duration: 5000,
+    // });
+    this.toastr.error("thông báo" ,this.error)
   }
 
   getUserAdress() {
@@ -264,9 +266,7 @@ export class CartComponent implements OnInit {
     this.isLoading = false;
     console.log("data", data);
     sessionStorage.removeItem(data.obj.booksList[0].bookId);
-    this.matSnackBar.open(data.message, "ok", {
-      duration: 5000,
-    });
+    this.toastr.success(data.message)
     this.route.navigateByUrl("greeting");
   }
   OnRegisterSubmit() {

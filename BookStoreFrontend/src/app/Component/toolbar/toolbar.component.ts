@@ -4,7 +4,7 @@ import { BookService } from 'src/app/Service/book.service';
 import { TokenService } from 'src/app/Service/token.service';
 import { Router } from '@angular/router';
 import { WishlistService } from 'src/app/Service/wishlist.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,7 +17,7 @@ export class ToolbarComponent implements OnInit {
                private route: Router,
                private cartService: CartService,
                private wishlistService: WishlistService,
-               private matSnackBar: MatSnackBar
+               private toastr: ToastrService
     ) { }
 
   @Output() toggleEvent = new EventEmitter<boolean>();

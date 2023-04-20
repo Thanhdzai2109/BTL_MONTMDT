@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/Service/user.service";
 import { Router } from "@angular/router";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-forget-password",
@@ -19,7 +19,7 @@ export class ForgetPasswordComponent implements OnInit {
   constructor(
     private user: UserService,
     private route: Router,
-    private matSnackBar: MatSnackBar
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {}
@@ -33,15 +33,11 @@ export class ForgetPasswordComponent implements OnInit {
   handleError(error: { error: any }) {
     this.isLoading = false;
     this.error = error.error.message;
-    this.matSnackBar.open(this.error, "ok", {
-      duration: 5000,
-    });
+    this.toastr.error("Thông báo", this.error)
   }
   handleResponse(data) {
     this.isLoading = false;
-    this.matSnackBar.open("Check Your Email Please ", "ok", {
-      duration: 5000,
-    });
+   this.toastr.success("Thông báo","Vui lòng kiểm tra email")
     this.route.navigateByUrl("login");
   }
 }

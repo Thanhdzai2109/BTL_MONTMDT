@@ -36,6 +36,7 @@
     "fcc-express-background": "^0.0.2",
     "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
+    "ngx-toastr": "^13.2.1",
     "path": "^0.12.7",
     "rxjs": "~6.6.7",
     "tslib": "^1.14.1",

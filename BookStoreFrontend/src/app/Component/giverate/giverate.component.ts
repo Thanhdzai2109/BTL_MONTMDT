@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BookModule } from 'src/app/Model/book/book.module';
 import { ActivatedRouteSnapshot, ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 import { BookService } from 'src/app/Service/book.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { BookService } from 'src/app/Service/book.service';
 export class GiverateComponent implements OnInit {
 
   constructor(
-    private snackBar: MatSnackBar,
+    private toastr: ToastrService,
     private bookService: BookService,
     private route: ActivatedRoute,
     private router: Router,
@@ -51,9 +51,8 @@ export class GiverateComponent implements OnInit {
 
 
   onClick(rating: any) {
-    this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
-      duration: this.snackBarDuration,
-    });
+    this.toastr.success('You rated ' + rating + ' / ' + this.starCount, '', 
+     );
     this.rating = rating;
     return false;
   }
@@ -89,11 +88,11 @@ export class GiverateComponent implements OnInit {
       .ratingandreview(this.bookId, data ,this.token)
       .subscribe((response: any) => {
         console.log('submit rate response:', response);
-        this.snackBar.open(response.response, 'ok', { duration: 2000 });
+        this.toastr.success(response.response);
         this.router.navigateByUrl('books');
       },
       (error: any) => {
-        this.snackBar.open('Lỗi ', 'ok', { duration: 2000 });
+        this.toastr.error('Lỗi');
       }
 
       );
