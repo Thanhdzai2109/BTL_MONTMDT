@@ -317,7 +317,7 @@ public class BookServiceImplementation implements IBookService {
 			if (fetchRole.equals("seller") ) {
 				Book info = repository.fetchbyId(bookId);
 				if (info != null) {
-					repository.deleteByBookId(bookId);
+					repository.deleteById(bookId);
 					return true;
 				}
 			} else {

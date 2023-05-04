@@ -70,7 +70,15 @@ export class BookService {
         })
       );
   }
-
+  deleteBook2(bookId: any): Observable<any> {
+    return this.http
+      .delete(`${environment.BookUrl}/${environment.deleteBook}/${bookId}`)
+      .pipe(
+        tap(() => {
+          this._autoRefresh$.next();
+        })
+      );
+  }
   updateBook(bookId: any, book: any): Observable<any> {
     return this.httpService
     // tslint:disable-next-line: max-line-length
