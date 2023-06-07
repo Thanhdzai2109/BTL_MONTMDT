@@ -208,4 +208,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new UserResponse("status", service.searchData(users.getName()),u.size()));
     }
+   @PostMapping("user/searchCustom")
+  public ResponseEntity<UserResponse>searchCustom(@RequestBody Users users) {
+       List<Users> u= service.searchCustommer(users.getRole());
+       return ResponseEntity.status(HttpStatus.ACCEPTED)
+               .body(new UserResponse("status", service.searchCustommer(users.getRole()),u.size()));
+   }
 }

@@ -66,11 +66,11 @@ export class SidenavbarComponent implements OnInit {
    }
    this.role= localStorage.getItem('role');
    console.log('role check sidenav',this.role);
-   if (this.role === 'admin') 
+   if (this.role === 'admin')
    {
      this.isAdmin=true;
    }
-   if (this.role === 'seller') 
+   if (this.role === 'seller')
    {
      this.isSeller=true;
    }
@@ -84,7 +84,9 @@ export class SidenavbarComponent implements OnInit {
   {
     this.router.navigate(['books'],{queryParams:{book:'order'}});
   }
-
+  customer(){
+    this.router.navigate(['khachhang'])
+  }
   reviews()
   {
     this.router.navigate(['books'],{queryParams:{book:'review'}});
@@ -102,7 +104,7 @@ export class SidenavbarComponent implements OnInit {
     this.router.navigate(['chart']);
   }
   sellerBook(){
-    
+
       this.router.navigate(['books'],{queryParams:{book:'sellerbook'}});
   }
 
@@ -122,6 +124,6 @@ this.router.navigate(['books'],{queryParams:{book:'order'}});
       console.log('total number of itemes are' + response.obj);
      });
   }
-  
+
 }
 

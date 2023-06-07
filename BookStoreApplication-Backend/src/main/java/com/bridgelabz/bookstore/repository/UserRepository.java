@@ -47,5 +47,6 @@ Optional<Users> findUserById(Long id);
     List<Users>getAll();
     @Query("select u from  Users u where u.isdelete is null and u.role='user'")
     List<Users>getAllUser();
-
+    @Query("select u from Users u where  u.role=:role and u.isdelete is null")
+    List<Users> getCustomer(String role);
 }

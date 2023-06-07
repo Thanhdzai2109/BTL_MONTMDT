@@ -21,4 +21,5 @@ public interface UserServices {
 	Users save(Users users);
 	List<Users> getUsersDeleted();
     List<Users> searchData(String name);
+    List<Users> searchCustommer(String role);
 }

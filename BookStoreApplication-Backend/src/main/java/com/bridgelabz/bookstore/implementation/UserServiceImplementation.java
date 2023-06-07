@@ -282,4 +282,9 @@ public class UserServiceImplementation implements UserServices {
 		return  userRepository.getdata(name);
 	}
 
+	@Override
+	public List<Users> searchCustommer(String role) {
+		return userRepository.getCustomer(role);
+	}
+
 }
