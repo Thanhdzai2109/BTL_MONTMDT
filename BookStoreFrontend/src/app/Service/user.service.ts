@@ -45,6 +45,9 @@ export class UserService {
   public SearchUser(data:any){
     return this.http.post(`${environment.BASE_URL}/${environment.UserSearch}`,data)
   }
+  public  SearchCustomer(data:any){
+      return this.http.post(`${environment.BASE_URL}/${environment.CustomerSearch}`,data)
+  }
   public ActiveUser(userId: number) {
     return this.httpService
     // tslint:disable-next-line: max-line-length
@@ -75,5 +78,5 @@ export class UserService {
     return this.http
     .put(`${environment.BASE_URL}/${environment.Updateinfor}`, data, {headers: new HttpHeaders({token: localStorage.token})});
    }
-  
+
 }

@@ -58,6 +58,7 @@ export const environment = {
   WRITE_REVIEW: 'books/ratingreview?bookId=',
   GET_REVIEWS: 'books/ratingreviews/?bookId=',
   UserSearch:'user/SearchData',
+  CustomerSearch:'user/searchCustom',
   ratereview: 'books/getratereviews/?bookId=',
   ActiveUser:'ActiveUser',
   DeleteUser:'DeleteUser',
