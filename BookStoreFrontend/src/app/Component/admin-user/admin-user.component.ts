@@ -77,6 +77,7 @@ export class AdminUserComponent implements OnInit {
     this.userService.SearchUser(data).subscribe((res:any) => {
       this.dataSource = res.obj;
       this.totalItems=res.total;
+      this.paginateData()
     });
   }
 
@@ -108,7 +109,7 @@ export class AdminUserComponent implements OnInit {
       if (result) {
         this.userService.DeleteUser(id).subscribe((message) => {
           if (message.statusCode === 200) {
-           
+
             this.toastr.success("Thông báo","Xóa thành công")
             this.doSearh();
           }
@@ -120,5 +121,10 @@ export class AdminUserComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.page = event.pageIndex;
     this.doSearh();
+  }
+  paginateData() {
+    const start = this.page * this.pageSize;
+    const end = start + this.pageSize;
+    this.dataSource = this.dataSource.slice(start, end);
   }
 }
